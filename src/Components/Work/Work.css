@@ -1,0 +1,298 @@
+.work-page {
+    margin: 0;
+    padding: 0;
+    background-color: #dfdad3;
+    color: #1A1818;
+    background-size: cover;  /* This will ensure the background image (if any) covers the whole container */
+    background-position: center; /* Optional: ensures the background is centered */
+    height: 300vh;
+    width:100vw;
+  }
+  .work-top {
+  
+    margin: 0; /* Removes default margin on ul */
+    padding: 0; /* Removes default padding on ul */
+    }
+    
+  
+    
+  .work-top a {
+      position: fixed;
+      width: 71px;
+      height: 35px;
+      left: 3.5%;
+      top: 4.5%;
+      font-family: 'Italiana';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 35px;
+      text-align: center;
+      text-decoration: none;
+      color: #1A1818;
+      cursor: pointer;
+    }
+    
+    /* Hover effect for the link */
+  .work-top a:hover {
+    text-decoration: line-through 1px;
+    }
+    
+  .work-top img {
+    position: fixed;
+    width: 71px;
+    height: 35px;
+    left: 13%;
+    top: 4.6%;
+    scale: 2;
+  
+  }
+
+.work-desc {
+
+position: fixed;
+width: 360px;
+height: 260px;
+left: 8.5%;
+top: 30%;
+
+/* Body */
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 300;
+font-size: 20px;
+line-height: 26px;
+
+color: #1A1818;
+
+}
+
+.work-container{
+
+position: absolute;
+width: 550px;
+right: 8.5%;
+top: 10%;
+
+}
+
+.work-list{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.work-list a{
+
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 100px;
+line-height: 100px;
+display: flex;
+align-items: flex-end;
+text-align: right;
+letter-spacing: 0.1em;
+color: #1A1818;
+cursor: pointer;
+margin-bottom: 5px;
+text-decoration: none;
+}
+
+.work-list a:hover{
+  transform: translateX(35px) skewX(-10deg); 
+  transition: transform 0.3s ease; 
+  text-decoration: line-through 1px;
+}
+
+.work-list h2{
+
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 41.5px;
+line-height: 49px;
+/* identical to box height */
+letter-spacing: 0.1em;
+
+color: #1A1818;
+
+}
+
+.work-list h3{
+
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 300;
+font-size: 20px;
+line-height: 26px;
+text-align: right;
+
+color: #1A1818;
+margin-top: 5px;
+margin-bottom: 5px;
+
+}
+
+.lang-list {
+  display: flex;
+  flex-wrap: wrap; /* Allow languages to wrap into new lines */
+  justify-content: flex-end; /* Push items to the right */
+}
+
+.language {
+  display: flex; 
+    align-items: center;  /* Vertically center the skill text */
+    justify-content: center;  /* Horizontally center the skill text */
+    padding: 10px 20px;
+    color: #1A1818;  /* Text color */
+    font-family: 'Roboto Mono';  
+    font-size: 18px;  /* Font size */
+    font-weight: 300;  /* Font weight */
+    border: 1px solid #1A1818;  /* Square border around each item */
+    border-radius: 50px;  /* Rounded corners */
+    margin: 10px;
+}
+
+.language:hover{
+  background-color: #1A1818;
+  color: #dfdad3;
+  transform: scale(1.1);
+  transition: all 0.1s ease;
+}
+
+.work-to-top{
+  display: none;
+}
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .work-page{
+    height: 240vh;
+  }
+
+  .work-top{
+    transform: scale(0.7);
+  }
+
+  .work-top a{
+    top: 40px;
+    left:-40px;
+  }
+
+  .work-top img{
+    top:42px;
+    left:90px;
+  }
+
+  .work-desc{
+    position: absolute;
+    top:13%;
+    left:10%;
+    font-size: 15px;
+    line-height: 20px;
+    width:300px;
+  }
+
+  .work-container{
+    top:45%;
+    left:10%;
+    
+  }
+
+  .work-list{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 5%;
+  padding-left: 0%;
+  }
+
+  .work-list a{
+    width: 20%;
+    font-size: 50px;
+    line-height: 50px;
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  .work-list a:hover{
+    transform: translateX(15px) skewX(-7deg); 
+  transition: transform 0.3s ease; 
+  text-decoration: line-through 1px;
+  }
+
+  .work-list h2{
+    font-size: 33px;
+    line-height: 37px;
+    /* identical to box height */
+    letter-spacing: 0.05em;
+  }
+
+  .work-list h3{
+    width: 65%;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: left;
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+
+  .lang-list{
+    justify-content: flex-start;
+    width: 65%;
+    
+    
+  }
+
+  .language{
+    display: flex; 
+    align-items: center;  /* Vertically center the skill text */
+    justify-content: center;  /* Horizontally center the skill text */
+    padding: 1.7% 5%;
+    color: #1A1818;  /* Text color */
+    font-family: 'Roboto Mono';  
+    font-size: 12px;  /* Font size */
+    font-weight: 200;  /* Font weight */
+    border: 1px solid #1A1818;  /* Square border around each item */
+    border-radius: 50px;  /* Rounded corners */
+    margin-right: 4%;
+    margin-left: 0%;
+}
+
+.work-to-top{
+  /* To top */
+display: block;
+position: absolute;
+width: 80px;
+height: 35px;
+left: 10%;
+bottom: -145%;
+
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 35px;
+text-align: center;
+white-space: nowrap;
+padding-bottom: 50px;
+}
+
+.work-to-top a{
+  color: #1A1818;
+  text-decoration: none;
+}
+
+.work-to-top a:hover{
+  text-decoration: line-through 1px;
+}
+  }

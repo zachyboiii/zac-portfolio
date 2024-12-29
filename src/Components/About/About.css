@@ -1,0 +1,399 @@
+.about-top {
+  
+    margin: 0; /* Removes default margin on ul */
+    padding: 0; /* Removes default padding on ul */
+    }
+    
+  
+    
+  .about-top a {
+      position: absolute;
+      width: 71px;
+      height: 35px;
+      left: 3.5%;
+      top: 4.5%;
+      font-family: 'Italiana';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 35px;
+      text-align: center;
+      text-decoration: none;
+      color: #dfdad3;
+      cursor: pointer;
+    }
+    
+    /* Hover effect for the link */
+  .about-top a:hover {
+    text-decoration: line-through 1px;
+    }
+    
+  .about-top img {
+    position: absolute;
+    width: 71px;
+    height: 35px;
+    left: 13%;
+    top: 4.6%;
+    scale: 2;
+  
+  }
+
+.about-left h1{
+    /* h1 About */
+
+position: absolute;
+width: 591px;
+height: 236px;
+left: 11.6%;
+top: 20%;
+
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 200px;
+line-height: 236px;
+/* identical to box height */
+letter-spacing: 0.1em;
+
+color: #ECE7E1;
+
+}
+
+.about-left h2{
+    /* h2 self intro */
+
+position: absolute;
+width: 549px;
+height: 98px;
+left: 11.6%;
+top: 50%;
+
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 41.5px;
+line-height: 49px;
+letter-spacing: 0.1em;
+
+color: #ECE7E1;
+
+}
+
+.self-desc {
+    /* p about me */
+
+position: absolute;
+width: 540px;
+height: 948px;
+left: 11.6%;
+top: 70%;
+
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 300;
+font-size: 18px;
+line-height: 26px;
+
+color: #ECE7E1;
+
+
+}
+
+.dp {
+    /* self-pic */
+
+position: absolute;
+width: 50%;
+height: 90%;
+left: 46.5%;
+top: 20%;   
+z-index: -1;
+transform-origin: top left;
+transform: scale(0.8)
+  }
+
+.border {
+    /* pic-border */
+position: absolute;
+width: 50%;
+height: 90%;
+left: 48%;
+top: 23%;
+z-index: -1;
+transform-origin: top left;
+transform: scale(0.8)
+
+}
+
+.skills{
+  position: absolute;
+  left: 50%;
+  top:100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10%;
+
+  
+}
+
+.skills h2{
+    /* h2 skills */
+
+
+width: 265px;
+height: 49px;
+
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 41.5px;
+line-height: 49px;
+letter-spacing: 0.1em;
+margin: 5%;
+
+
+color: #ECE7E1;
+
+}
+
+.skills-container {
+    position: relative;
+
+    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 4 equal-width columns */
+    grid-template-rows: repeat(4, auto);   /* Automatically size the rows based on content */
+    gap: 20px;  /* Adjust space between grid items */
+    margin-bottom: 80px;  /* Space below the grid */
+    margin-left: 0px;
+    padding-left: 0px;
+    padding: 0 20px; /* Optional padding around the grid container */
+  }
+  
+  .skillsList {
+    display: flex; 
+    align-items: center;  /* Vertically center the skill text */
+    justify-content: center;  /* Horizontally center the skill text */
+    padding: 10px 20px;
+    color: #ECE7E1;  /* Text color */
+    font-family: 'Roboto Mono';  
+    font-size: 18px;  /* Font size */
+    font-weight: 300;  /* Font weight */
+    border: 1px solid #ECE7E1;  /* Square border around each item */
+    border-radius: 50px;  /* Rounded corners */
+    transition: all 0.3s ease;  /* Smooth transition on hover or interaction */
+  }
+
+  .skillsList:hover{
+    transform: scale(1.1);
+  }
+
+
+.about-bottom{
+    /* Contact Me */
+
+position: absolute;
+width: 300px;
+height: 77px;
+left: 11.6%;
+bottom: -115%;
+
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 38px;
+display: flex;
+gap: 150%;
+white-space: nowrap;
+
+
+}
+
+.contactMe{
+    color:#dfdad3;
+    text-decoration: none;
+    box-sizing: border-box;
+    border: 1px solid #ECE7E1;
+    border-radius: 50px;
+    display: flex;            /* Enable flexbox */
+    align-items: center;      /* Vertically center the text */
+    justify-content: center;  /* Horizontally center the text */
+    
+    width: 100%;              /* Make the link take up full width of the container */
+    height: 100%;             /* Make the link take up full height of the container */
+    padding: 20px 100px;       /* Adjust padding for better spacing */
+    text-align: center;       /* Ensure text is centered */
+}
+
+.resumeDownload{
+    color:#dfdad3;
+    text-decoration: none;
+    box-sizing: border-box;
+    border: 1px solid #ECE7E1;
+    border-radius: 50px;
+    display: flex;            /* Enable flexbox */
+    align-items: center;      /* Vertically center the text */
+    justify-content: center;  /* Horizontally center the text */
+    
+    width: 100%;              /* Make the link take up full width of the container */
+    height: 100%;             /* Make the link take up full height of the container */
+    padding: 20px 150px;       /* Adjust padding for better spacing */
+    text-align: center;       /* Ensure text is centered */
+}
+
+.about-bottom a:hover{
+    background-color: #ECE7E1;
+    color: #1A1818;
+
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.to-top{
+    /* To top */
+
+position: absolute;
+width: 80px;
+height: 35px;
+left: 11.6%;
+bottom: -140%;
+
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 35px;
+text-align: center;
+white-space: nowrap;
+padding-bottom: 50px;
+}
+
+.to-top a{
+    color: #dfdad3;
+    text-decoration: none;
+}
+
+.to-top a:hover{
+    text-decoration: line-through 1px;
+}
+
+@media (max-width: 768px) {
+  .about-page{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .about-top{
+    transform: scale(0.7);
+    
+  }
+
+  .about-top a{
+    top:40px;
+    left:-40px;
+  }
+
+  .about-top img{
+    top:42px;
+    left:90px;
+  }
+  
+  .about-left h1{
+    top: 15%;
+    left: 10%;
+    font-size: 5rem;
+    line-height: 120px;
+    /* identical to box height */
+    letter-spacing: 0.1em;
+    
+  }
+
+  .dp{
+    width: 200px;
+    top: 10%;
+    left: 10%;
+    padding-top: 10px;
+    padding-bottom: 20px;
+
+  }
+
+  .border{
+    display: none;
+  }
+
+  .about-left h2{
+    top: 65%;
+    left: 10%;
+    font-size: 150%;
+    width: 70%;
+    line-height: 100%;
+    margin-bottom: 10px;
+    
+  }
+
+  .self-desc{
+    top: 80%;
+    left: 10%;
+    font-size: 90%;
+    width: 80%;
+    height: auto;
+    margin-top: 10px;    
+  }
+
+  .skills {
+    position: absolute;
+    top:235%;
+    left: 6%;
+    
+  }
+
+  .skills h2{
+    font-size: 2rem;
+  }
+  .skills-container{
+    gap:15px;
+  }
+  .skillsList{
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .about-bottom{
+    /* Contact Me */
+
+position: absolute;
+width: 100%;
+left: 11.6%;
+bottom: -200%;
+
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 25px;
+display: flex;
+flex-direction: column;
+gap: 20px;
+
+}
+
+.contactMe {
+  padding: 10px 20px;
+  width: 50%;
+}
+
+.resumeDownload{
+  padding: 10px 20px;
+  width: 50%;
+}
+
+.to-top{
+  left: 10%;
+  bottom: -225%;
+  margin: 10px;
+  margin-left: 0;
+}
+}

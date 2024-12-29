@@ -1,0 +1,305 @@
+.contact-page {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Set to viewport height to cover the entire screen */
+  width:100vw;
+}
+.hero{
+    display: flex;
+    font-family: 'Italiana';
+}
+.summary{
+position: absolute;
+width: 360px;
+height: 214px;
+left: 8.5%;
+top: 13%;
+
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 300;
+font-size:20px;
+line-height: 26px;
+
+color: #dfdad3;
+}
+
+.hero-resume a{
+
+
+position: absolute;
+width: 188px;
+height: 82px;
+left: 8.5%;
+top: 60%;
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 28px;
+line-height: 38px;
+text-align: center;
+color: #ECE7E1;
+cursor: pointer;
+box-sizing: border-box;
+border: 1px solid #ECE7E1;
+border-radius: 50px;
+text-decoration: none;
+
+
+}
+
+
+.hero-resume a:hover{
+  background-color: #dfdad3;
+  color: #1A1818;
+}
+.hero-menu{
+    list-style: none;
+}
+
+.work{
+    /* WORK */
+
+position: absolute;
+width: 454px;
+height: 145px;
+right:8.5% ;
+top: 13%;
+
+/* Header */
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 150px;
+line-height: 177px;
+display: flex;
+align-items: flex-end;
+text-align: right;
+letter-spacing: 0.1em;
+
+color: #ECE7E1;
+
+
+}
+.work a{
+  text-decoration: none;
+  color: #dfdad3;
+}
+
+.about{
+    /* ABOUT */
+position: absolute;
+width: 511px;
+height: 177px;
+right: 8.5%;
+top: 35.5%;
+
+/* Header */
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 150px;
+line-height: 177px;
+/* identical to box height */
+text-align: right;
+letter-spacing: 0.1em;
+
+color: #ECE7E1;
+
+
+}
+.about a{
+  text-decoration: none;
+  color: #dfdad3;
+}
+
+.contact{
+position: absolute;
+width: 689px;
+height: 177px;
+right: 8.5%;
+top: 65%;
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 150px;
+line-height: 177px;
+
+text-align: right;
+letter-spacing: 0.1em;
+}
+
+.contact a{
+  text-decoration: none;
+  color: #dfdad3;
+}
+.work:hover{
+  transform: translateX(20px) skewX(-7deg); 
+      transition: transform 0.3s ease;
+}
+
+.about:hover{
+  transform: translateX(20px) skewX(-7deg); 
+      transition: transform 0.3s ease;
+}
+
+.contact:hover{
+  transform: translateX(20px) skewX(-7deg); 
+      transition: transform 0.3s ease;
+}
+
+.hero-menu li:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px; /* Thickness of the underline */
+  background: #ECE7E1; /* Color of the underline */
+  transform: scaleX(0); /* Initially, the underline is not visible */
+  transition: transform 0.3s ease; /* Smooth transition for the underline */
+}
+
+.hero-menu li:hover:before {
+  transform: scaleX(1); /* Make the underline visible on hover */
+}
+
+.hero-bottom{
+
+position: absolute;
+width: 0px;
+height: 50px;
+left: 2%;
+bottom: 2%;
+
+}
+
+.bottom-menu{
+display: flex;
+justify-content: space-between;
+gap: 20px;
+font-family: 'Italiana';
+font-weight: 300;
+font-size: 33px;
+line-height: 38px;
+
+}
+.bottom-menu a{
+    color: #dfdad3;
+    text-decoration: none;
+}
+.bottom-menu a:hover{
+  text-decoration: line-through 1px;
+}
+
+@keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .gradient {
+    --size: 500px;
+    --speed: 20s;
+    --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+    width: var(--size);
+    height: var(--size);
+    filter: blur(calc(var(--size) / 5));
+    background-image: linear-gradient(45deg, #7106ebd9, hsl(54, 85%, 73%));
+    animation: rotate var(--speed) var(--easing) infinite;
+    border-radius: 30% 70% 70% 30%/30% 30% 70% 70%;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Optional: adds shadow */
+    position: absolute;
+  top: 10%;
+  left: 30%;
+  transform: translate(-10%, -10%);
+  }
+  
+  /* Responsive Size Adjustment */
+  
+  @media (max-width: 768px) {
+    .summary{
+      top:10%;
+      left:10%;
+      width:250px;
+      font-size: 15px;
+      line-height: 20px;
+    }
+
+    .work{
+      top:40%;
+      left:10%;
+      font-size: 60px;
+      line-height: 60px;
+      text-align: left;
+      padding:0px;
+      margin: 0px;
+      width: auto;
+      height: auto;
+    }
+
+    .about{
+      position: absolute;
+      top:52%;
+      left:10%;
+      font-size: 60px;
+      line-height: 60px;
+      text-align: left;
+      padding:0px;
+      margin: 0px;
+      width: auto;
+      height: auto;
+    }
+
+    .contact{
+      top:65%;
+      left:10%;
+      font-size: 60px;
+      line-height: 60px;
+      text-align: left;
+      padding:0px;
+      margin: 0px;
+      width: auto;
+      height: auto;
+    }
+    
+    /* Disable the underline effect on hover */
+  .hero-menu li:before {
+    content: none;  /* Remove the pseudo-element for the underline */
+  }
+
+  /* No underline on hover in mobile view */
+  .hero-menu li:hover:before {
+    transform: none;  /* Ensure the underline doesn't appear */
+  }
+    
+
+    .hero-resume a{
+      top:80%;
+      left:5%;
+      transform: scale(0.7);
+
+    }
+
+    .hero-bottom{
+      top:96%;
+      left:2%;
+
+      transform: scale(0.7);
+    }
+
+    .gradient {
+      --size: 400px;
+      top: 25%;
+      left:55%;
+    }
+  }
+  
+  /* Optional Transition for UI elements */
+  * {
+    transition: all 0.25s ease-out;
+  }
+
