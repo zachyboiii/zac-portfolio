@@ -151,6 +151,8 @@ color: #1A1818;
   .contact-page{
     display: flex;
     flex-direction: column;
+    
+
   }
   
   .top-menu{
@@ -170,34 +172,37 @@ color: #1A1818;
 
   .mainBody h1{
     top: 20%;
-    left: 15%;
-    font-size: 7rem;
+    left: 10%;
+    width: 90%;
+    height: auto;
+    font-size: 6rem;
   }
 
   .desc{
-    left: 15%;
+    left: 10%;
     top: 50%;
     width: 70%;
-    margin-bottom:10px ;
-    font-size: 1.1rem;
+    height: auto;
+    margin:0;
+    font-size: 1rem;
   }
 
   .email{
-    left: 15%;
+    left: 10%;
     top: 70%;
     width: 70%;
     display: flex;
     flex-direction: column;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   
   .links{
-    left: 15%;
+    left: 10%;
     top: 82%;
     width: 70%;
     display: flex;
     flex-direction: column;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 }

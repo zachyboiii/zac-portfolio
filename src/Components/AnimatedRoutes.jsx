@@ -13,7 +13,6 @@ function AnimatedRoutes() {
       <AnimatePresence>
         <Routes location ={location} key ={location.pathname}>
           <Route path="/" element={<Hero />} />
-          {/* Add other routes for different pages */}
           <Route path="/work" element={<Work />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

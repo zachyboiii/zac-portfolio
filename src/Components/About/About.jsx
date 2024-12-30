@@ -11,6 +11,10 @@ import aboutSkills from '../../assets/aboutdata'
 
 
 const About = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <motion.div className='about-page'
             initial ={{opacity: 0}}
@@ -92,7 +96,7 @@ const About = () => {
     <a className='resumeDownload' href={resume} download>Download Resume</a>
   </div>  
   <div className="to-top">
-    <a href="#">back to top</a>
+  <p onClick={scrollToTop} className="back-to-top-text">back to top</p>
   </div>
 </motion.div>
   )

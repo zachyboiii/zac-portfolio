@@ -213,8 +213,9 @@ line-height: 38px;
     border-radius: 30% 70% 70% 30%/30% 30% 70% 70%;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Optional: adds shadow */
     position: absolute;
-  top: 10%;
+  top: 17%;
   left: 30%;
+  z-index: --1;
   transform: translate(-10%, -10%);
   }
   
@@ -227,6 +228,7 @@ line-height: 38px;
       width:250px;
       font-size: 15px;
       line-height: 20px;
+      color: #dfdad3ab;
     }
 
     .work{
@@ -286,15 +288,18 @@ line-height: 38px;
 
     .hero-bottom{
       top:96%;
-      left:2%;
+      left:10%;
 
       transform: scale(0.7);
     }
 
     .gradient {
-      --size: 400px;
-      top: 25%;
-      left:55%;
+      --size: 260px;
+      transform: scaleY(50);
+      background-image: linear-gradient(45deg, #7106ebd9, hsl(310, 85%, 73%));
+      z-index: -1;
+      top: 5%;
+      left:10%;
     }
   }
   

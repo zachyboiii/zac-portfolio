@@ -7,6 +7,9 @@ import {motion} from 'framer-motion';
 
 
 const Work = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   return (
     <motion.div className='work-page'
         initial ={{opacity: 0}}
@@ -43,7 +46,7 @@ const Work = () => {
         })}
       </div>
       <div className="work-to-top">
-        <a href="#">back to top</a>
+      <p onClick={scrollToTop} className="back-to-top-text">back to top</p>
       </div>
 
     </motion.div>
