@@ -1,6 +1,6 @@
-#  Portfolio Website
+#  Zachary's Portfolio Website
 
-This is my (Zachary Lee) portfolio website! 
+This is my personal website showcasing my work as a computer science student. It includes sections like About, Work, and Contact to give visitors a comprehensive view of my skills and experience.
 
 ## Features
 - **Responsive design**: Works on mobile, tablet, and desktop.
