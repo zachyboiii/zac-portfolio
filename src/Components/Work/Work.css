@@ -5,7 +5,7 @@
     color: #1A1818;
     background-size: cover;  /* This will ensure the background image (if any) covers the whole container */
     background-position: center; /* Optional: ensures the background is centered */
-    height: 300vh;
+    height: 400vh;
     width:100vw;
   }
   .work-top {

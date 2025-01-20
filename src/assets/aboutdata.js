@@ -4,6 +4,7 @@ const aboutSkills = [
     'Numpy',
     'Matplotlib',
     'Seaborn',
+    'Streamlit',
     'Flask',
     'HTML',
     'CSS',

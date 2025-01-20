@@ -1,5 +1,12 @@
 const work_data = [
     {
+        w_title: "KebunFresh",
+        w_date: "Jan 25 - Jan 25",
+        w_desc: "Hackathon: Designed a concept website using streamlit that aims to tackle social issues in Surabaya.",
+        w_languages: ['Streamlit','Python','Pandas'],
+        w_link: "https://github.com/zachyboiii/kebunfresh"
+    },
+    {
         w_title: "Portfolio Website",
         w_date: "Dec 24 - Dec 24",
         w_desc: "Personal Project: Designed a portfolio website using Figma before implementing it with React and CSS.",
