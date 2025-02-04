@@ -174,10 +174,11 @@ margin-bottom: 5px;
 
 @media (max-width: 768px) {
   .work-page{
-    height: 300vh;
+    height: 320vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     gap: 20px;
   }
 
@@ -281,7 +282,7 @@ position: absolute;
 width: 80px;
 height: 35px;
 left: 10%;
-top: 280%;
+top: 300%;
 
 font-family: 'Italiana';
 font-style: normal;
