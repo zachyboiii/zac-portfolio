@@ -1,8 +1,15 @@
 const work_data = [
     {
+        w_title: "Vroom",
+        w_date: "Jan 25 - Apr 25",
+        w_desc: "School Based Project: Android App implemented using java to connect private driving instructors with students.",
+        w_languages: ['Java'],
+        w_link: "https://github.com/zachyboiii/Vroom"
+    },
+    {
         w_title: "Squid Game: Glass Bridge",
         w_date: "Jan 25 - Apr 25",
-        w_desc: "School Based Project: Arcade-style game inspired by Squid Game’s glass bridge challenge, implemented on an FPGA board using Lucid HDL",
+        w_desc: "School Based Project: Arcade-style game inspired by Squid Game’s glass bridge challenge, implemented on an FPGA board using Lucid HDL.",
         w_languages: ['Lucid'],
         w_link: "https://github.com/zachyboiii/Squid-Game-Glass-Bridge-Arcade-Game"
     },
@@ -38,7 +45,7 @@ const work_data = [
         w_title: "Telegram Bot",
         w_date: "Feb 23 - Mar 23",
         w_desc: "Personal Project: Designed a telegram bot to read event dates from an excel spreadsheet to remind users on any upcoming events. ",
-        w_languages: ['Python','Pandas','Telegram API'],
+        w_languages: ['Python','Pandas'],
         w_link:"https://github.com/zachyboiii/tele_bot"
     },
 ]
