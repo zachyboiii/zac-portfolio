@@ -1,13 +1,15 @@
-#  Zachary's Portfolio Website
+# Zachary's Portfolio Website
 
 This is my personal website showcasing my work as a computer science student. It includes sections like About, Work, and Contact to give visitors a comprehensive view of my skills and experience.
 
 ## Features
+
 - **Responsive design**: Works on mobile, tablet, and desktop.
 - **Smooth animations**: Uses Framer Motion for page transitions.
 - **Downloadable resume**: Visitors can download my resume.
 
 ## Technologies Used
+
 - **React**: For building the frontend.
 - **React Router**: For navigation between pages.
 - **Framer Motion**: For page animations and transitions.
@@ -15,11 +17,12 @@ This is my personal website showcasing my work as a computer science student. It
 - **GitHub Pages**: For deploying the website.
 
 ## The Structure of the website is as follows:
+
 ### App.jsx
 
 ```JSX
 const App = () => {
-  
+
   return (
     <Router>
       <AnimatedRoutes />
@@ -36,7 +39,7 @@ export default App
 function AnimatedRoutes() {
   const location = useLocation();
   return (
-    
+
       <AnimatePresence>
         <Routes location ={location} key ={location.pathname}>
           <Route path="/" element={<Hero />} />
@@ -45,7 +48,7 @@ function AnimatedRoutes() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </AnimatePresence>
-    
+
   );
 }
 
