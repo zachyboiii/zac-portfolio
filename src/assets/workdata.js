@@ -1,5 +1,12 @@
 const work_data = [
     {
+        w_title: "Squid Game: Glass Bridge",
+        w_date: "Jan 25 - Apr 25",
+        w_desc: "School Based Project: Arcade-style game inspired by Squid Game’s glass bridge challenge, implemented on an FPGA board using Lucid HDL",
+        w_languages: ['Lucid'],
+        w_link: "https://github.com/zachyboiii/Squid-Game-Glass-Bridge-Arcade-Game"
+    },
+    {
         w_title: "KebunFresh",
         w_date: "Jan 25 - Jan 25",
         w_desc: "Hackathon: Designed a concept website using streamlit that aims to tackle social issues in Surabaya.",

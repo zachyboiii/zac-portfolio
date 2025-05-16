@@ -5,7 +5,7 @@
     color: #1A1818;
     background-size: cover;  /* This will ensure the background image (if any) covers the whole container */
     background-position: center; /* Optional: ensures the background is centered */
-    height: 400vh;
+    height: 430vh;
     width:100vw;
   }
   .work-top {
@@ -88,7 +88,7 @@ top: 10%;
 font-family: 'Italiana';
 font-style: normal;
 font-weight: 400;
-font-size: 100px;
+font-size: 70px;
 line-height: 100px;
 display: flex;
 align-items: flex-end;

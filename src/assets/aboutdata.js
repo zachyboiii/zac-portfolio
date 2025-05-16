@@ -5,13 +5,14 @@ const aboutSkills = [
     'Matplotlib',
     'Seaborn',
     'Streamlit',
-    'Flask',
+    'Java',
     'HTML',
     'CSS',
     'JavaScript',
     'React',
     'Figma',
-    'Rhino'
+    'Rhino',
+    'Lucid'
 ]
 
 export default aboutSkills
