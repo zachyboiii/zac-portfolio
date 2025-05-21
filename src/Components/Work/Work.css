@@ -5,7 +5,7 @@
     color: #1A1818;
     background-size: cover;  /* This will ensure the background image (if any) covers the whole container */
     background-position: center; /* Optional: ensures the background is centered */
-    height: 430vh;
+    height: 390vh;
     width:100vw;
   }
   .work-top {
@@ -174,7 +174,7 @@ margin-bottom: 5px;
 
 @media (max-width: 768px) {
   .work-page{
-    height: 320vh;
+    height: 350vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -210,6 +210,7 @@ margin-bottom: 5px;
     left:10%;
     width: 90%;
     gap: 20px;
+    
   }
 
   .work-list{
@@ -282,7 +283,7 @@ position: absolute;
 width: 80px;
 height: 35px;
 left: 10%;
-top: 310%;
+top: 320%;
 
 font-family: 'Italiana';
 font-style: normal;

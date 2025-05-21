@@ -31,7 +31,7 @@ const Work = () => {
         {work_data.map((proj, index) => {
           return (
             <div key={index} className="work-list">
-              <a href={proj.w_link} target="_blank">{proj.w_title}</a>
+              <Link to={`/work/${proj.id}`} className="project-title-link">{proj.w_title}</Link>
               <h2>{proj.w_date}</h2>
               <h3>{proj.w_desc}</h3>
               <div className="lang-list">
