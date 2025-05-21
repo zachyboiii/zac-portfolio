@@ -46,7 +46,7 @@ scale: 2;
 
 .pd-title {
     position: fixed;
-    width: 60%;
+    width:60%;
     height: 100px;
     left: -18%;
     top: 50%;
@@ -207,3 +207,26 @@ color: #ECE7E1;
     color: #1A1818;
 }
 
+@media (min-width: 1455px) {
+    .pd-title {
+    position: fixed;
+    width:45%;
+    height: 100px;
+    left: -10%;
+    top: 50%;
+
+font-family: 'Italiana';
+font-style: normal;
+font-weight: 400;
+font-size: 90px;
+line-height: 100%;
+text-align: center;
+letter-spacing: 0.1em;
+
+color: #ECE7E1;
+
+
+transform: rotate(-90deg);
+
+}
+}

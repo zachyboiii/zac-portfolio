@@ -28,7 +28,7 @@ This project demonstrates full-stack mobile app development, backend integration
     },
     {
         id: "squid-game",
-        w_title: "Squid Game: Glass Bridge",
+        w_title: "Glass Bridge Game",
         w_date: "Jan 25 - Apr 25",
         w_desc: "School Based Project: Arcade-style game inspired by Squid Game’s glass bridge challenge, implemented on an FPGA board using Lucid HDL.",
         short_desc:"Squid Game's Glass Bridge game implemented on an FPGA, arcade style.",
