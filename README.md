@@ -39,16 +39,17 @@ export default App
 function AnimatedRoutes() {
   const location = useLocation();
   return (
-
+    
       <AnimatePresence>
         <Routes location ={location} key ={location.pathname}>
           <Route path="/" element={<Hero />} />
           <Route path="/work" element={<Work />} />
+          <Route path="/work/:projectId" element={<ProjectDetail />}/>
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </AnimatePresence>
-
+    
   );
 }
 
