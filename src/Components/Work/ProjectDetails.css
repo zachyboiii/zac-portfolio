@@ -200,6 +200,7 @@ color: #ECE7E1;
 .pd-link2:hover{
     background-color: #ECE7E1;
     color: #1A1818;
+    text-decoration-color: #1A1818;
 }
 
 .pd-link2 a:hover{
