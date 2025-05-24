@@ -8,7 +8,9 @@ import { motion } from 'framer-motion';
 const ProjectDetail = () => {
   const { projectId } = useParams();
   const project = work_data.find(p => p.id === projectId);
-
+  const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
   if (!project) {
     return <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>Project not found.</motion.div>;
   }
@@ -54,12 +56,13 @@ const ProjectDetail = () => {
               ></iframe>
             </div>
           )}
-          <div className="pd-link2">
-              <a href={project.w_link} target='_blank'>Check it out.</a>
-          </div> 
+          <a className="pd-link2" href={project.w_link} target="_blank" rel="noopener noreferrer">
+              Check it out.
+          </a>
+          <p onClick={scrollToTop} className="pd-to-top">back to top</p>
       </div>
     </div>
-    
+       
     </motion.div>
   );
 };

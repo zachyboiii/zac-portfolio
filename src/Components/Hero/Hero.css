@@ -228,7 +228,7 @@ line-height: 38px;
       width:250px;
       font-size: 15px;
       line-height: 20px;
-      color: #dfdad3ab;
+      color: #000;
     }
 
     .work{
@@ -296,7 +296,7 @@ line-height: 38px;
     .gradient {
       --size: 260px;
       transform: scaleY(50);
-      background-image: linear-gradient(45deg, #7106ebd9, hsl(310, 85%, 73%));
+      background-image: linear-gradient(45deg, #ECE7E1, hsl(310, 85%, 73%));
       z-index: -1;
       top: 5%;
       left:10%;

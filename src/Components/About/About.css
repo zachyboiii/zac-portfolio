@@ -207,7 +207,6 @@ display: flex;
 gap: 150%;
 white-space: nowrap;
 
-
 }
 
 .contactMe{
@@ -245,7 +244,6 @@ white-space: nowrap;
 .about-bottom a:hover{
     background-color: #ECE7E1;
     color: #1A1818;
-
 }
 
 html {
