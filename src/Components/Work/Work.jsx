@@ -44,10 +44,11 @@ const Work = () => {
             </div>
           )
         })}
-      </div>
       <div className="work-to-top">
       <p onClick={scrollToTop} className="back-to-top-text">back to top</p>
       </div>
+      </div>
+      
 
     </motion.div>
   )

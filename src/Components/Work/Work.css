@@ -279,11 +279,10 @@ margin-bottom: 5px;
 .work-to-top{
   /* To top */
 display: block;
-position: absolute;
+
 width: 80px;
 height: 35px;
-left: 10%;
-top: 320%;
+
 
 font-family: 'Italiana';
 font-style: normal;
