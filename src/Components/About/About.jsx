@@ -96,7 +96,7 @@ const About = () => {
     <a className='resumeDownload' href={resume} download>Download Resume</a>
   </div>  
   <div className="to-top">
-  <p onClick={scrollToTop} className="back-to-top-text">back to top</p>
+    <p onClick={scrollToTop} className="back-to-top-text">back to top</p>
   </div>
 </motion.div>
   )

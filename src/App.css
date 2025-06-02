@@ -1,0 +1,85 @@
+* {
+    cursor: none !important;
+}
+
+.camera-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  background: none;
+}
+
+.corner-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.camera-cursor .corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid white;
+}
+
+/* Top-left */
+.camera-cursor .corner.tl {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+/* Top-right */
+.camera-cursor .corner.tr {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+/* Bottom-left */
+.camera-cursor .corner.bl {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+}
+
+/* Bottom-right */
+.camera-cursor .corner.br {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.center-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference; /* keeps the inverted color effect */
+}
+
+@media (max-width: 768px){
+    *{
+        cursor:auto !important;
+    }
+
+    .camera-cursor{
+        display: none !important;
+    }
+}
+
+
