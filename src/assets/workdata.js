@@ -4,8 +4,29 @@ import arcadeImg from './mini_arcade.png'
 import kebunImg from './kebunfresh.png' 
 import calcImg from './calc.png'
 import teleImg from './telebot.png'
+import truthieImg from './truthiego.png'
 
 const work_data = [
+    {
+        id: "truthie-go",
+        w_title: "TruthieGo",
+        w_date: "May 25 - Jun 25",
+        w_desc: "Hackathon: Monopoly Go inspired game developed using Godot Engine to help raise awareness on cyber threats.",
+        short_desc: "Mobile game designed to raise awareness on scams and misinformation.",
+        long_desc:`As part of DSTA's BrainHack 2025, my group and I designed and developed a game to address the problem statement: 
+“How might we gamify an experience to teach users real-world skills to detect, report, and counter misinformation and cyber threats in a fun and rewarding way?”
+
+Introducing TruthieGO — a locally themed 2D board game designed for Singaporeans of all ages. Players roll the dice, move their avatars, and encounter mini-games simulating real-life scams and misinformation. Along the way, they earn TruthBucks and CyberShields, our in-game currency, reinforcing good cybersecurity habits.
+Unlike traditional methods, TruthieGO doesn't just inform, it engages. We make learning fun, interactive, and relatable, ensuring the lessons stick.
+
+Achievements: Champion in CODE_EXP Competitive Category`,
+        w_languages: ['Godot', 'Firebase'],
+        w_link: "https://github.com/zachyboiii/TruthieGO",
+        w_img: truthieImg,
+        youtube: "https://youtube.com/embed/Zm7gRWYisLM"
+        
+        
+    },
     {
         id: "vroom",
         w_title: "Vroom",
