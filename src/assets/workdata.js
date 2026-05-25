@@ -5,8 +5,59 @@ import kebunImg from './kebunfresh.png'
 import calcImg from './calc.png'
 import teleImg from './telebot.png'
 import truthieImg from './truthiego.png'
+import hotelImg from './hotel-ease.png'
+import storehouseImg from './storehouse.png'
+import chessImg from './chess.png'
 
 const work_data = [
+    {
+        id: "chess-ai",
+        w_title: "Chess AI",
+        w_date: "Jan 26 - Jan 26",
+        w_desc: "Personal Project: Developed an AI agent capable of playing chess using deep learning.",
+        short_desc: "AI Chess agent that plays chess using deep learning.",
+        long_desc:`Developed a deep learning chess move prediction system using PyTorch and supervised learning on elite Lichess game data. Raw PGNs were transformed into board-state training examples, with each position labeled by the expert move actually played. Board states were represented as a 13-channel 8×8 tensor: 6 channels for white pieces, 6 for black, and 1 channel indicating side to move.
+
+The model was implemented in PyTorch using a convolutional neural network (CNN) architecture composed of stacked Conv2D layers (13→64→128 with 3×3 kernels and ReLU activations), followed by flattening and fully connected layers (8192→256→moves). Leveraging PyTorch’s tensor operations, autograd, and modular training interface, the pipeline efficiently learned spatial patterns from expert play and generalized them to produce strong move predictions directly from board configurations.`,
+        w_languages: ['Python', 'PyTorch', 'Streamlit', 'NumPy'],
+        w_link: "https://github.com/zachyboiii/chess-ai",
+        w_img: chessImg,
+        youtube: null
+        
+        
+    },
+    {
+        id: "storehouse",
+        w_title: "The Storehouse",
+        w_date: "Dec 25 - Jan 26",
+        w_desc: "Volunteer Project: Full stack web application to help streamline delivery management for a non-profit organization.",
+        short_desc: "Full stack web app to streamline delivery management for a non-profit organization.",
+        long_desc:`Contributed to a full-stack delivery management platform supporting a volunteer organization in coordinating and scheduling deliveries to beneficiaries. Implemented RESTful backend services using Node.js, Express.js, and PostgreSQL to support full CRUD workflows for deliveries, including creation, scheduling, assignment, and status updates.
+        
+        On the frontend, developed responsive UI features with vanilla JavaScript, HTML, and CSS, including a Google Calendar–style interactive delivery calendar, form-driven delivery creation, and edit/delete capabilities. The platform improved visibility, reduced scheduling errors, and streamlined operational coordination for volunteers and administrators.`,
+        w_languages: ['JavaScript', 'PostgreSQL', 'Express.js', 'Node.js', 'HTML', 'CSS'],
+        w_link: "https://github.com/zachyboiii/The-Storehouse",
+        w_img: storehouseImg,
+        youtube: null
+        
+        
+    },
+    {
+        id: "hotel-ease",
+        w_title: "Hotel Ease",
+        w_date: "May 25 - Aug 25",
+        w_desc: "School Based Project: Full stack web application developed to streamline hotel operations and enhance guest experiences.",
+        short_desc: "Full stack web app to streamline hotel operations and enhance guest experiences.",
+        long_desc:`Developed a full-stack hotel booking platform integrated with Ascenda Loyalty that enables users to search, compare, and book hotels with real-time pricing and loyalty redemption options. The frontend was built with React.js, delivering a responsive search experience with lazy loading, dynamic filtering/sorting, and an interactive Mapbox-powered visualization to explore hotel clusters visually.
+        
+        On the backend, architected RESTful APIs using Express.js and MongoDB, implementing secure session-based authentication, role-based access, and optimized endpoints for hotel price aggregation and search performance. The system was fully tested end-to-end, reaching 90%+ code coverage across core workflows including booking, authentication, and hotel search. The platform emphasizes performance, usability, and reliability, showcasing end-to-end product design from UI to backend infrastructure.`,
+        w_languages: ['TypeScript', 'MongoDB', 'Express.js', 'Node.js', 'React Native', 'Jest'],
+        w_link: "https://github.com/zachyboiii/HotelEase_SUTD",
+        w_img: hotelImg,
+        youtube: "https://youtube.com/embed/FRKDSMAWDbY"
+        
+        
+    },
     {
         id: "truthie-go",
         w_title: "TruthieGo",

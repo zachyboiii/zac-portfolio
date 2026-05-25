@@ -1,310 +1,225 @@
-.contact-page {
-  margin: 0;
-  padding: 0;
-  height: 100vh; /* Set to viewport height to cover the entire screen */
-  width:100vw;
-}
-.hero{
-    display: flex;
-    font-family: 'Italiana';
-}
-.summary{
-position: absolute;
-width: 360px;
-height: 214px;
-left: 8.5%;
-top: 13%;
-
-font-family: 'Roboto Mono';
-font-style: normal;
-font-weight: 300;
-font-size:20px;
-line-height: 26px;
-
-color: #dfdad3;
+/* ══════════════════════════════════════════
+   Hero — dark bg, beige text
+   Full-screen landing page (absolute layout).
+   ══════════════════════════════════════════ */
+.hero-page {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--dark);
+  color: var(--beige);
 }
 
-.hero-resume a{
-
-
-position: absolute;
-width: 188px;
-height: 82px;
-left: 8.5%;
-top: 60%;
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 28px;
-line-height: 38px;
-text-align: center;
-color: #ECE7E1;
-cursor: pointer;
-box-sizing: border-box;
-border: 1px solid #ECE7E1;
-border-radius: 50px;
-text-decoration: none;
-
-
-}
-
-
-.hero-resume a:hover{
-  background-color: #dfdad3;
-  color: #1A1818;
-}
-.hero-menu{
-    list-style: none;
-}
-
-.work{
-    /* WORK */
-
-position: absolute;
-width: 454px;
-height: 145px;
-right:8.5% ;
-top: 13%;
-
-/* Header */
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 150px;
-line-height: 177px;
-display: flex;
-align-items: flex-end;
-text-align: right;
-letter-spacing: 0.1em;
-
-color: #ECE7E1;
-
-
-}
-.work a{
-  text-decoration: none;
-  color: #dfdad3;
-}
-
-.about{
-    /* ABOUT */
-position: absolute;
-width: 511px;
-height: 177px;
-right: 8.5%;
-top: 35.5%;
-
-/* Header */
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 150px;
-line-height: 177px;
-/* identical to box height */
-text-align: right;
-letter-spacing: 0.1em;
-
-color: #ECE7E1;
-
-
-}
-.about a{
-  text-decoration: none;
-  color: #dfdad3;
-}
-
-.contact{
-position: absolute;
-width: 689px;
-height: 177px;
-right: 8.5%;
-top: 65%;
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 150px;
-line-height: 177px;
-
-text-align: right;
-letter-spacing: 0.1em;
-}
-
-.contact a{
-  text-decoration: none;
-  color: #dfdad3;
-}
-.work:hover{
-  transform: translateX(20px) skewX(-7deg); 
-      transition: transform 0.3s ease;
-}
-
-.about:hover{
-  transform: translateX(20px) skewX(-7deg); 
-      transition: transform 0.3s ease;
-}
-
-.contact:hover{
-  transform: translateX(20px) skewX(-7deg); 
-      transition: transform 0.3s ease;
-}
-
-.hero-menu li:before {
-  content: "";
+/* ── Summary (top-left) ─────────────────── */
+.summary {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px; /* Thickness of the underline */
-  background: #ECE7E1; /* Color of the underline */
-  transform: scaleX(0); /* Initially, the underline is not visible */
-  transition: transform 0.3s ease; /* Smooth transition for the underline */
+  width: min(360px, 40vw);
+  left: 8.5%;
+  top: 13%;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(14px, 1.4vw, 20px);
+  line-height: 1.6;
+  color: var(--beige);
+  z-index: 1;
 }
 
-.hero-menu li:hover:before {
-  transform: scaleX(1); /* Make the underline visible on hover */
+/* Body paragraph: preserves \n\n between bio and "Welcome." */
+.summary-body {
+  margin-top: 1em;
+  white-space: pre-wrap;
 }
 
-.hero-bottom{
-
-position: absolute;
-width: 0px;
-height: 50px;
-left: 2%;
-bottom: 2%;
-
+/* ── Resume button (mid-left) ───────────── */
+.hero-resume a {
+  position: absolute;
+  left: 8.5%;
+  top: 60%;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 1;
+  text-align: center;
+  color: var(--beige-bright);
+  text-decoration: none;
+  padding: 16px 36px;
+  border: 1px solid var(--beige-bright);
+  border-radius: 50px;
+  white-space: nowrap;
+  z-index: 1;
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
-.bottom-menu{
-display: flex;
-justify-content: space-between;
-gap: 20px;
-font-family: 'Italiana';
-font-weight: 300;
-font-size: 33px;
-line-height: 38px;
+.hero-resume a:hover {
+  background: var(--beige);
+  color: var(--dark);
+}
 
+/* ── Desktop nav links (right) ──────────── */
+.hero-menu {
+  list-style: none;
 }
-.bottom-menu a{
-    color: #dfdad3;
-    text-decoration: none;
+
+.work,
+.about,
+.contact {
+  position: absolute;
+  right: 8.5%;
+  font-family: var(--font-display);
+  font-size: clamp(72px, 10vw, 150px);
+  font-weight: 400;
+  line-height: 1.18;
+  text-align: right;
+  letter-spacing: 0.1em;
+  z-index: 1;
+  transition: transform 0.3s ease;
 }
-.bottom-menu a:hover{
+
+.work    { top: 13%; }
+.about   { top: 35.5%; }
+.contact { top: 65%; }
+
+.work a,
+.about a,
+.contact a {
+  text-decoration: none;
+  color: var(--beige);
+  display: block;
+}
+
+.work:hover,
+.about:hover,
+.contact:hover {
+  transform: translateX(20px) skewX(-7deg);
+}
+
+/* ── Social links (bottom-left) ─────────── */
+.hero-bottom {
+  position: absolute;
+  left: 2%;
+  bottom: 2%;
+  z-index: 1;
+}
+
+.bottom-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: 33px;
+  line-height: 38px;
+}
+
+.bottom-menu a {
+  color: var(--beige);
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+.bottom-menu a:hover {
   text-decoration: line-through 1px;
 }
 
-@keyframes rotate {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
-  .gradient {
-    --size: 500px;
-    --speed: 20s;
-    --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
-    width: var(--size);
-    height: var(--size);
-    filter: blur(calc(var(--size) / 5));
-    background-image: linear-gradient(45deg, #7106ebd9, hsl(54, 85%, 73%));
-    animation: rotate var(--speed) var(--easing) infinite;
-    border-radius: 30% 70% 70% 30%/30% 30% 70% 70%;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Optional: adds shadow */
-    position: absolute;
+/* Decorative line drawn with CSS — no SVG scaling quirks */
+.bottom-menu::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: rgba(236, 231, 225, 0.45);
+  flex-shrink: 0;
+}
+
+/* ── Coordinates label (bottom-right) ───── */
+.hero-coords {
+  position: absolute;
+  right: 8.5%;
+  bottom: 2.5%;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--beige);
+  opacity: 0.35;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/* ── Animated gradient blob ─────────────── */
+.gradient {
+  --size: 500px;
+  --speed: 20s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
   top: 17%;
   left: 30%;
-  z-index: --1;
-  transform: translate(-10%, -10%);
-  }
-  
-  /* Responsive Size Adjustment */
-  
-  @media (max-width: 768px) {
-    .summary{
-      top:10%;
-      left:10%;
-      width:250px;
-      font-size: 15px;
-      line-height: 20px;
-      color: #000;
-    }
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(calc(var(--size) / 5));
+  background-image: linear-gradient(45deg, #7106ebd9, hsl(54, 85%, 73%));
+  animation: blob-rotate var(--speed) var(--easing) infinite;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
 
-    .work{
-      top:40%;
-      left:10%;
-      font-size: 60px;
-      line-height: 60px;
-      text-align: left;
-      padding:0px;
-      margin: 0px;
-      width: auto;
-      height: auto;
-    }
+@keyframes blob-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
 
-    .about{
-      position: absolute;
-      top:52%;
-      left:10%;
-      font-size: 60px;
-      line-height: 60px;
-      text-align: left;
-      padding:0px;
-      margin: 0px;
-      width: auto;
-      height: auto;
-    }
-
-    .contact{
-      top:65%;
-      left:10%;
-      font-size: 60px;
-      line-height: 60px;
-      text-align: left;
-      padding:0px;
-      margin: 0px;
-      width: auto;
-      height: auto;
-    }
-    
-    /* Disable the underline effect on hover */
-  .hero-menu li:before {
-    content: none;  /* Remove the pseudo-element for the underline */
+/* ══════════════════════════════════════════
+   MOBILE HERO LAYOUT
+   ══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Hide desktop nav links */
+  .hero-right {
+    display: none;
   }
 
-  /* No underline on hover in mobile view */
-  .hero-menu li:hover:before {
-    transform: none;  /* Ensure the underline doesn't appear */
-  }
-    
-
-    .hero-resume a{
-      top:80%;
-      left:5%;
-      transform: scale(0.7);
-
-    }
-
-    .hero-bottom{
-      top:96%;
-      left:10%;
-
-      transform: scale(0.7);
-    }
-
-    .gradient {
-      --size: 260px;
-      transform: scaleY(50);
-      background-image: linear-gradient(45deg, #ECE7E1, hsl(310, 85%, 73%));
-      z-index: -1;
-      top: 5%;
-      left:10%;
-    }
-  }
-  
-  /* Optional Transition for UI elements */
-  * {
-    transition: all 0.25s ease-out;
+  /* Hide desktop resume (it's in the overlay) */
+  .hero-resume {
+    display: none;
   }
 
+  /* ── Summary — compact, top-left ──────── */
+  .summary {
+    top: 8%;
+    left: 8%;
+    width: min(260px, 78vw);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  /* ── Gradient — centred, prominent ───── */
+  /* Can't use translate + animation together,
+     so offset with calc from top/left instead */
+  .gradient {
+    --size: 320px;
+    top: calc(50% - var(--size) / 2);
+    left: calc(50% - var(--size) / 2);
+    background-image: linear-gradient(45deg, #7106ebd9, hsl(54, 85%, 73%));
+  }
+
+  /* ── Coordinates — hidden on mobile ─────── */
+  .hero-coords {
+    display: none;
+  }
+
+  /* ── Social links — bottom-left ───────── */
+  .hero-bottom {
+    bottom: 6%;
+    left: 8%;
+  }
+
+  .bottom-menu {
+    font-size: 24px;
+    gap: 14px;
+  }
+
+  /* hide the svg line in bottom-menu on mobile — it can overflow */
+  .bottom-menu img {
+    display: none;
+  }
+}

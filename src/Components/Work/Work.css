@@ -1,303 +1,253 @@
+/* ══════════════════════════════════════════
+   Work — beige bg, dark text
+   Sticky left description + scrolling right list.
+   No hardcoded page heights — right panel drives height.
+   ══════════════════════════════════════════ */
 .work-page {
-    margin: 0;
-    padding: 0;
-    background-color: #dfdad3;
-    color: #1A1818;
-    background-size: cover;  /* This will ensure the background image (if any) covers the whole container */
-    background-position: center; /* Optional: ensures the background is centered */
-    height: 390vh;
-    width:100vw;
-  }
-  .work-top {
-  
-    margin: 0; /* Removes default margin on ul */
-    padding: 0; /* Removes default padding on ul */
-    }
-    
-  
-    
-  .work-top a {
-      position: fixed;
-      width: 71px;
-      height: 35px;
-      left: 3.5%;
-      top: 4.5%;
-      font-family: 'Italiana';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 30px;
-      line-height: 35px;
-      text-align: center;
-      text-decoration: none;
-      color: #1A1818;
-      cursor: pointer;
-    }
-    
-    /* Hover effect for the link */
-  .work-top a:hover {
-    text-decoration: line-through 1px;
-    }
-    
-  .work-top img {
-    position: fixed;
-    width: 71px;
-    height: 35px;
-    left: 13%;
-    top: 4.6%;
-    scale: 2;
-  
-  }
+  display: flex;
+  min-height: 100vh;
+  background: var(--beige);
+  color: var(--dark);
+}
+
+/* ── Sticky left panel ──────────────────── */
+.work-left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 38%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 5% 5% 8.5%;
+  overflow: hidden;
+}
+
+.work-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  flex-shrink: 0;
+}
+
+.work-nav a {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  color: var(--dark);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: text-decoration 0.2s;
+}
+
+.work-nav a:hover {
+  text-decoration: line-through 1px;
+}
+
+.work-nav img {
+  flex: 1;
+  min-width: 0;
+  max-width: 180px;
+  height: 18px;
+  opacity: 0.35;
+}
 
 .work-desc {
-
-position: fixed;
-width: 360px;
-height: 260px;
-left: 8.5%;
-top: 30%;
-
-/* Body */
-font-family: 'Roboto Mono';
-font-style: normal;
-font-weight: 300;
-font-size: 20px;
-line-height: 26px;
-
-color: #1A1818;
-
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.875rem, 1.1vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--dark);
+  max-width: 340px;
 }
 
-.work-container{
-
-position: absolute;
-width: 550px;
-right: 8.5%;
-top: 10%;
-
+.work-desc-body {
+  margin-top: 1em;
+  white-space: pre-wrap;
 }
 
-.work-list{
+/* ── Scrolling right panel ──────────────── */
+.work-right {
+  flex: 1;
+  min-width: 0;
+  padding: 5rem 8.5% 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.work-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Project index number ───────────────── */
+.work-index {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  color: var(--dark);
+  opacity: 0.4;
+  margin-bottom: 0.3rem;
+}
+
+/* ── Individual project row ─────────────── */
+.work-list {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding: 20px;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid rgba(26, 24, 24, 0.12);
 }
 
-.work-list a{
-
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 70px;
-line-height: 100px;
-display: flex;
-align-items: flex-end;
-text-align: right;
-letter-spacing: 0.1em;
-color: #1A1818;
-cursor: pointer;
-margin-bottom: 5px;
-text-decoration: none;
+.work-list:first-child {
+  padding-top: 0;
 }
 
-.work-list a:hover{
-  transform: translateX(35px) skewX(-10deg); 
-  transition: transform 0.3s ease; 
+.project-title-link {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4.5vw, 4.375rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.1em;
+  text-align: right;
+  color: var(--dark);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 0.25rem;
+  transition: transform 0.3s ease;
+}
+
+.project-title-link:hover {
+  transform: translateX(20px) skewX(-10deg);
   text-decoration: line-through 1px;
 }
 
-.work-list h2{
-
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 41.5px;
-line-height: 49px;
-/* identical to box height */
-letter-spacing: 0.1em;
-
-color: #1A1818;
-
+.work-list h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.8vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--dark);
+  opacity: 0.65;
+  margin-bottom: 0.35rem;
 }
 
-.work-list h3{
-
-font-family: 'Roboto Mono';
-font-style: normal;
-font-weight: 300;
-font-size: 20px;
-line-height: 26px;
-text-align: right;
-
-color: #1A1818;
-margin-top: 5px;
-margin-bottom: 5px;
-
+.work-list h3 {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.75rem, 0.9vw, 1rem);
+  line-height: 1.55;
+  text-align: right;
+  color: var(--dark);
+  max-width: 500px;
+  margin-bottom: 0.75rem;
 }
 
+/* ── Language tags ──────────────────────── */
 .lang-list {
   display: flex;
-  flex-wrap: wrap; /* Allow languages to wrap into new lines */
-  justify-content: flex-end; /* Push items to the right */
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 .language {
-  display: flex; 
-    align-items: center;  /* Vertically center the skill text */
-    justify-content: center;  /* Horizontally center the skill text */
-    padding: 10px 20px;
-    color: #1A1818;  /* Text color */
-    font-family: 'Roboto Mono';  
-    font-size: 18px;  /* Font size */
-    font-weight: 300;  /* Font weight */
-    border: 1px solid #1A1818;  /* Square border around each item */
-    border-radius: 50px;  /* Rounded corners */
-    margin: 10px;
+  padding: 6px 18px;
+  border: 1px solid var(--dark);
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: clamp(0.6875rem, 0.85vw, 0.9375rem);
+  font-weight: 300;
+  color: var(--dark);
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-.language:hover{
-  background-color: #1A1818;
-  color: #dfdad3;
-  transform: scale(1.1);
-  transition: all 0.1s ease;
+.language:hover {
+  background: var(--dark);
+  color: var(--beige);
+  transform: scale(1.06);
 }
 
-.work-to-top{
-  display: none;
-}
-
-
-
-
-
-
-
-@media (max-width: 768px) {
-  .work-page{
-    height: 350vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 20px;
-  }
-
-  .work-top{
-    transform: scale(0.7);
-  }
-
-  .work-top a{
-    top: 40px;
-    left:-40px;
-  }
-
-  .work-top img{
-    top:42px;
-    left:90px;
-  }
-
-  .work-desc{
-    position: absolute;
-    top:13%;
-    left:10%;
-    font-size: 15px;
-    line-height: 20px;
-    width:300px;
-  }
-
-  .work-container{
-    top:45%;
-    left:10%;
-    width: 90%;
-    gap: 20px;
-    
-  }
-
-  .work-list{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-bottom: 13%;
-  padding-left: 0%;
-  }
-
-  .work-list a{
-    width: 20%;
-    font-size: 50px;
-    line-height: 50px;
-    display: flex;
-    align-items: flex-start;
-    text-align: left;
-    margin-bottom: 5px;
-  }
-
-  .work-list a:hover{
-    transform: translateX(15px) skewX(-7deg); 
-  transition: transform 0.3s ease; 
-  text-decoration: line-through 1px;
-  }
-
-  .work-list h2{
-    font-size: 33px;
-    line-height: 37px;
-    /* identical to box height */
-    letter-spacing: 0.05em;
-  }
-
-  .work-list h3{
-    width: 90%;
-    font-size: 15px;
-    line-height: 20px;
-    text-align: left;
-    margin-top: 3px;
-    margin-bottom: 3px;
-  }
-
-  .lang-list{
-    justify-content: flex-start;
-    width: 90%;
-    
-    
-  }
-
-  .language{
-    display: flex; 
-    align-items: center;  /* Vertically center the skill text */
-    justify-content: center;  /* Horizontally center the skill text */
-    padding: 1.7% 5%;
-    color: #1A1818;  /* Text color */
-    font-family: 'Roboto Mono';  
-    font-size: 12px;  /* Font size */
-    font-weight: 200;  /* Font weight */
-    border: 1px solid #1A1818;  /* Square border around each item */
-    border-radius: 50px;  /* Rounded corners */
-    margin-right: 4%;
-    margin-bottom: 0;
-    margin-left: 0%;
-}
-
-.work-to-top{
-  /* To top */
-display: block;
-
-width: 80px;
-height: 35px;
-
-
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 35px;
-text-align: center;
-white-space: nowrap;
-padding-top: 20px;
-color: #1A1818;
-  text-decoration: none;
+/* ── Back to top ────────────────────────── */
+.work-to-top {
+  margin-top: 3rem;
+  align-self: flex-end;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--dark);
   cursor: pointer;
+  transition: text-decoration 0.2s;
 }
 
-.work-to-top:hover{
+.work-to-top:hover {
   text-decoration: line-through 1px;
 }
+
+/* ── Mobile ─────────────────────────────── */
+@media (max-width: 768px) {
+  .work-page {
+    flex-direction: column;
   }
+
+  /* Left panel becomes a stacked header */
+  .work-left {
+    position: relative;
+    height: auto;
+    width: 100%;
+    padding: 1.25rem 7% 1.75rem;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: visible;
+  }
+
+  /* Hide the decorative line image on narrow screens */
+  .work-nav img {
+    display: none;
+  }
+
+  .work-desc {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  /* Right panel full width */
+  .work-right {
+    padding: 0 7% 4rem;
+  }
+
+  .work-list {
+    align-items: flex-start;
+    padding: 2rem 0;
+  }
+
+  .project-title-link {
+    font-size: clamp(2.25rem, 11vw, 3.25rem);
+    text-align: left;
+  }
+
+  .project-title-link:hover {
+    transform: translateX(12px) skewX(-7deg);
+  }
+
+  .work-list h2 {
+    font-size: 1.15rem;
+    opacity: 0.6;
+  }
+
+  /* mobile: title + date only — hide desc and tags */
+  .work-list h3,
+  .lang-list {
+    display: none;
+  }
+
+  .work-to-top {
+    align-self: flex-start;
+    margin-top: 2rem;
+  }
+}

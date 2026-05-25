@@ -1,10 +1,54 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-body{
-    height: 100vh;
-    background: #1a1818;
-    color: #dfdad3;
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+:root {
+  /* Colour palette */
+  --dark:         #1a1818;
+  --beige:        #dfdad3;
+  --beige-bright: #ece7e1;
+
+  /* Typography */
+  --font-display: 'Italiana', serif;
+  --font-body:    'Roboto Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--dark);
+  color: var(--beige);
+}
+
+/* ── Responsive utilities ─────────────────── */
+/* Hide desktop-only nav links on mobile */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+/* Beige-background pages need dark hamburger bars */
+@media (max-width: 768px) {
+  .work-page .hamburger span,
+  .contact-page .hamburger span {
+    background: var(--dark);
+  }
+}
+
+/* ── ScrambleText cursor ──────────────────── */
+.scramble-cursor {
+  display: inline-block;
+  margin-left: 1px;
+  animation: cursor-blink 0.65s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}

@@ -1,401 +1,395 @@
-.about-top {
-  
-    margin: 0; /* Removes default margin on ul */
-    padding: 0; /* Removes default padding on ul */
-    }
-    
-  
-    
-  .about-top a {
-      position: absolute;
-      width: 71px;
-      height: 35px;
-      left: 3.5%;
-      top: 4.5%;
-      font-family: 'Italiana';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 30px;
-      line-height: 35px;
-      text-align: center;
-      text-decoration: none;
-      color: #dfdad3;
-      cursor: pointer;
-    }
-    
-    /* Hover effect for the link */
-  .about-top a:hover {
-    text-decoration: line-through 1px;
-    }
-    
-  .about-top img {
-    position: absolute;
-    width: 71px;
-    height: 35px;
-    left: 13%;
-    top: 4.6%;
-    scale: 2;
-  
-  }
-
-.about-left h1{
-    /* h1 About */
-
-position: absolute;
-width: 591px;
-height: 236px;
-left: 11.6%;
-top: 20%;
-
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 200px;
-line-height: 236px;
-/* identical to box height */
-letter-spacing: 0.1em;
-
-color: #ECE7E1;
-
+/* ══════════════════════════════════════════
+   About — dark bg, beige text
+   ══════════════════════════════════════════ */
+.about-page {
+  background: var(--dark);
+  color: var(--beige-bright);
+  min-height: 100vh;
 }
 
-.about-left h2{
-    /* h2 self intro */
+/* ── Shared utility ─────────────────────── */
+/* techy mono label, used in bio + skills */
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  color: var(--beige);
+  opacity: 0.4;
+}
 
-position: absolute;
-width: 549px;
-height: 98px;
-left: 11.6%;
-top: 50%;
+/* ── Nav ────────────────────────────────── */
+.about-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 3.5%;
+}
 
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 41.5px;
-line-height: 49px;
-letter-spacing: 0.1em;
+.about-nav a {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  color: var(--beige);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: text-decoration 0.2s;
+}
 
-color: #ECE7E1;
+.about-nav a:hover {
+  text-decoration: line-through 1px;
+}
 
+.about-nav img {
+  flex: 1;
+  min-width: 0;
+  max-width: 180px;
+  height: 18px;
+  opacity: 0.45;
+}
+
+/* ── Full-width heading block ───────────── */
+.about-header {
+  padding: 0.5rem 8% 2.5rem;
+  border-bottom: 1px solid rgba(236, 231, 225, 0.12);
+}
+
+.about-heading {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 16vw, 18rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 0.88;
+  color: var(--beige-bright);
+}
+
+/* ── Main 60 / 40 grid ──────────────────── */
+.about-main {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 5rem;
+  padding: 3.5rem 8% 5rem;
+  align-items: start;
+}
+
+/* ── Left column — bio ──────────────────── */
+.about-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.about-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.2vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  color: var(--beige-bright);
 }
 
 .self-desc {
-    /* p about me */
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.8rem, 0.95vw, 1.05rem);
+  line-height: 1.85;
+  color: var(--beige);
+  opacity: 0.85;
+}
 
-position: absolute;
-width: 540px;
-height: 948px;
-left: 11.6%;
-top: 70%;
+.self-desc strong {
+  color: var(--beige-bright);
+  opacity: 1;
+  font-weight: 400;
+}
 
-font-family: 'Roboto Mono';
-font-style: normal;
-font-weight: 300;
-font-size: 18px;
-line-height: 26px;
+/* ── Right column — photo + meta ────────── */
+.about-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  /* sticky so the whole card stays in view while bio scrolls */
+  position: sticky;
+  top: 2rem;
+  align-self: flex-start;
+}
 
-color: #ECE7E1;
-
-
+.profile-pic-wrap {
+  position: relative;
+  width: 100%;
 }
 
 .dp {
-    /* self-pic */
-
-position: absolute;
-width: 50%;
-height: 90%;
-left: 46.5%;
-top: 20%;   
-z-index: -1;
-transform-origin: top left;
-transform: scale(0.8)
-  }
-
-.border {
-    /* pic-border */
-position: absolute;
-width: 50%;
-height: 90%;
-left: 48%;
-top: 23%;
-z-index: -1;
-transform-origin: top left;
-transform: scale(0.8)
-
+  width: 68%;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 1;
 }
 
-.skills{
+/* decorative frame — behind the photo */
+.border {
   position: absolute;
-  left: 50%;
-  top:100%;
+  top: 4%;
+  left: 7%;
+  width: 68%;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Meta info card ─────────────────────── */
+.about-meta {
+  padding: 1.5rem 0 0;
+  border-top: 1px solid rgba(236, 231, 225, 0.12);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 1.5rem;
+}
+
+.meta-item {
   display: flex;
   flex-direction: column;
-  padding-bottom: 10%;
-
-  
+  gap: 0.3rem;
 }
 
-.skills h2{
-    /* h2 skills */
+.meta-label {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  color: var(--beige);
+  opacity: 0.4;
+}
 
+.meta-value {
+  font-family: var(--font-body);
+  font-size: clamp(0.8rem, 0.9vw, 1rem);
+  font-weight: 300;
+  color: var(--beige-bright);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
 
-width: 265px;
-height: 49px;
+/* Pulsing green "online" dot for status */
+.status-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6ee7a0;
+  flex-shrink: 0;
+  animation: status-pulse 2.4s ease-in-out infinite;
+}
 
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 41.5px;
-line-height: 49px;
-letter-spacing: 0.1em;
-margin: 5%;
+@keyframes status-pulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.8); }
+}
 
+/* ── Skills section ─────────────────────── */
+.skills {
+  padding: 4rem 8% 3rem;
+  border-top: 1px solid rgba(236, 231, 225, 0.12);
+}
 
-color: #ECE7E1;
+.skills > .section-label {
+  margin-bottom: 2rem;
+}
 
+/* Categories displayed side-by-side in a 4-col grid */
+.skills-groups {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem 3rem;
+}
+
+.skills-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.skills-category {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--beige);
+  opacity: 0.45;
 }
 
 .skills-container {
-    position: relative;
-
-    
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 4 equal-width columns */
-    grid-template-rows: repeat(4, auto);   /* Automatically size the rows based on content */
-    gap: 20px;  /* Adjust space between grid items */
-    margin-bottom: 80px;  /* Space below the grid */
-    margin-left: 0px;
-    padding-left: 0px;
-    padding: 0 20px; /* Optional padding around the grid container */
-  }
-  
-  .skillsList {
-    display: flex; 
-    align-items: center;  /* Vertically center the skill text */
-    justify-content: center;  /* Horizontally center the skill text */
-    padding: 10px 20px;
-    color: #ECE7E1;  /* Text color */
-    font-family: 'Roboto Mono';  
-    font-size: 18px;  /* Font size */
-    font-weight: 300;  /* Font weight */
-    border: 1px solid #ECE7E1;  /* Square border around each item */
-    border-radius: 50px;  /* Rounded corners */
-    transition: all 0.3s ease;  /* Smooth transition on hover or interaction */
-  }
-
-  .skillsList:hover{
-    transform: scale(1.1);
-  }
-
-
-.about-bottom{
-    /* Contact Me */
-
-position: absolute;
-width: 300px;
-height: 77px;
-left: 11.6%;
-bottom: -115%;
-
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 32px;
-line-height: 38px;
-display: flex;
-gap: 150%;
-white-space: nowrap;
-
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.contactMe{
-    color:#dfdad3;
-    text-decoration: none;
-    box-sizing: border-box;
-    border: 1px solid #ECE7E1;
-    border-radius: 50px;
-    display: flex;            /* Enable flexbox */
-    align-items: center;      /* Vertically center the text */
-    justify-content: center;  /* Horizontally center the text */
-    
-    width: 100%;              /* Make the link take up full width of the container */
-    height: 100%;             /* Make the link take up full height of the container */
-    padding: 20px 100px;       /* Adjust padding for better spacing */
-    text-align: center;       /* Ensure text is centered */
+.skillsList {
+  padding: 6px 16px;
+  border: 1px solid rgba(236, 231, 225, 0.35);
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: clamp(0.65rem, 0.78vw, 0.875rem);
+  font-weight: 300;
+  color: var(--beige-bright);
+  white-space: nowrap;
+  transition: border-color 0.25s ease, transform 0.25s ease;
 }
 
-.resumeDownload{
-    color:#dfdad3;
-    text-decoration: none;
-    box-sizing: border-box;
-    border: 1px solid #ECE7E1;
-    border-radius: 50px;
-    display: flex;            /* Enable flexbox */
-    align-items: center;      /* Vertically center the text */
-    justify-content: center;  /* Horizontally center the text */
-    
-    width: 100%;              /* Make the link take up full width of the container */
-    height: 100%;             /* Make the link take up full height of the container */
-    padding: 20px 150px;       /* Adjust padding for better spacing */
-    text-align: center;       /* Ensure text is centered */
+.skillsList:hover {
+  border-color: var(--beige-bright);
+  transform: scale(1.07);
 }
 
-.about-bottom a:hover{
-    background-color: #ECE7E1;
-    color: #1A1818;
+/* ── CTA row ────────────────────────────── */
+.about-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 3rem 8%;
+  border-top: 1px solid rgba(236, 231, 225, 0.12);
 }
 
-html {
-    scroll-behavior: smooth;
+.contactMe,
+.resumeDownload {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.6vw, 1.75rem);
+  color: var(--beige);
+  text-decoration: none;
+  border: 1px solid rgba(236, 231, 225, 0.35);
+  border-radius: 50px;
+  padding: 12px 48px;
+  text-align: center;
+  white-space: nowrap;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
-.to-top{
-    /* To top */
-
-position: absolute;
-width: 80px;
-height: 35px;
-left: 11.6%;
-bottom: -140%;
-
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 35px;
-text-align: center;
-white-space: nowrap;
-padding-bottom: 50px;
-color: #dfdad3;
-text-decoration: none;
-cursor: pointer;
+.contactMe:hover,
+.resumeDownload:hover {
+  background: var(--beige-bright);
+  color: var(--dark);
+  border-color: var(--beige-bright);
 }
 
-
-
-.to-top:hover{
-    text-decoration: line-through 1px;
+/* ── Back to top ────────────────────────── */
+.to-top {
+  padding: 0 8% 4rem;
 }
 
+.back-to-top-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--beige);
+  opacity: 0.6;
+  cursor: pointer;
+  display: inline-block;
+  transition: opacity 0.2s, text-decoration 0.2s;
+}
+
+.back-to-top-text:hover {
+  opacity: 1;
+  text-decoration: line-through 1px;
+}
+
+/* ══════════════════════════════════════════
+   MOBILE
+   ══════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .about-page{
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .about-top{
-    transform: scale(0.7);
-    
+  /* Nav */
+  .about-nav {
+    padding: 1.25rem 7%;
   }
 
-  .about-top a{
-    top:40px;
-    left:-40px;
+  /* Heading */
+  .about-header {
+    padding: 0.25rem 7% 2rem;
   }
 
-  .about-top img{
-    top:42px;
-    left:90px;
-  }
-  
-  .about-left h1{
-    width: 90%;
-    top: 15%;
-    left: 10%;
-    font-size: 5rem;
-    line-height: 120px;
-    /* identical to box height */
-    letter-spacing: 0.1em;
-    
+  .about-heading {
+    font-size: clamp(4.5rem, 18vw, 7rem);
+    line-height: 0.92;
   }
 
-  .dp{
-    width: 200px;
-    top: 10%;
-    left: 10%;
-    padding-top: 10px;
-    padding-bottom: 20px;
-
+  /* Single-column layout */
+  .about-main {
+    grid-template-columns: 1fr;
+    padding: 2rem 7% 3rem;
+    gap: 2.5rem;
   }
 
-  .border{
+  /* Photo + meta above bio on mobile */
+  .about-right-col {
+    position: relative;
+    top: auto;
+    order: -1;
+  }
+
+  .profile-pic-wrap {
+    max-width: 200px;
+  }
+
+  /* Hide decorative frame on mobile */
+  .border {
     display: none;
   }
 
-  .about-left h2{
-    top: 65%;
-    left: 10%;
-    font-size: 150%;
-    width: 70%;
-    line-height: 100%;
-    margin-bottom: 10px;
-    
+  .dp {
+    width: 100%;
   }
 
-  .self-desc{
-    top: 80%;
-    left: 10%;
-    font-size: 10px;
-    width: 80%;
-    height: auto;
-    margin-top: 10px;    
+  /* Meta grid → 2 cols on mobile */
+  .about-meta {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding-top: 1.25rem;
   }
 
+  .meta-value {
+    font-size: 0.8rem;
+  }
+
+  /* Bio */
+  .about-tagline {
+    font-size: clamp(1.15rem, 5vw, 1.5rem);
+  }
+
+  .self-desc {
+    font-size: 0.875rem;
+    line-height: 1.75;
+  }
+
+  /* Skills — 2-col grid on mobile */
   .skills {
-    position: absolute;
-    width: 90%;
-    top:220%;
-    left: 6%;
-    
+    padding: 2.5rem 7% 2rem;
   }
 
-  .skills h2{
-    font-size: 2rem;
-  }
-  .skills-container{
-    width: 90%;
-    gap:15px;
-  }
-  .skillsList{
-    font-size: 12px;
-    padding: 5px 10px;
+  .skills-groups {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem 1.5rem;
   }
 
-  .about-bottom{
-    /* Contact Me */
+  .skillsList {
+    font-size: 0.75rem;
+    padding: 5px 12px;
+  }
 
-position: absolute;
-width: 90%;
-left: 11.6%;
-bottom: -180%;
+  /* CTA */
+  .about-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 7%;
+    gap: 1rem;
+  }
 
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-line-height: 25px;
-display: flex;
-flex-direction: column;
-gap: 20px;
+  .contactMe,
+  .resumeDownload {
+    padding: 10px 32px;
+    font-size: 1.05rem;
+  }
 
-}
-
-.contactMe {
-  padding: 10px 20px;
-  width: 50%;
-}
-
-.resumeDownload{
-  padding: 10px 20px;
-  width: 60%;
-}
-
-.to-top{
-  left: 10%;
-  bottom: -210%;
-  margin: 20px;
-  margin-left: 0;
-}
+  .to-top {
+    padding: 0 7% 3rem;
+  }
 }

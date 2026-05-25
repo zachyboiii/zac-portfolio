@@ -1,208 +1,168 @@
-
+/* ══════════════════════════════════════════
+   Contact — beige bg, dark text
+   Full-viewport with vertically centred body.
+   ══════════════════════════════════════════ */
 .contact-page {
-    margin: 0;
-    padding: 0;
-    background-color: #dfdad3;
-    color: #1A1818;
-    background-size: cover;  /* This will ensure the background image (if any) covers the whole container */
-    background-position: center; /* Optional: ensures the background is centered */
-    height: 100vh; /* Set to viewport height to cover the entire screen */
-    width:100vw;
-  }
-
-  
-.top-menu {
-  
-  margin: 0; /* Removes default margin on ul */
-  padding: 0; /* Removes default padding on ul */
-  }
-  
-
-  
-.top-menu a {
-    position: absolute;
-    width: 71px;
-    height: 35px;
-    left: 49px;
-    top: 36px;
-    font-family: 'Italiana';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 35px;
-    text-align: center;
-    text-decoration: none;
-    color: #1A1818;
-    cursor: pointer;
-  }
-  
-  /* Hover effect for the link */
-.top-menu a:hover {
-  text-decoration: line-through 1px;
-  }
-  
-.top-menu img {
-  position: absolute;
-  width: 71px;
-  height: 35px;
-  left: 190px;
-  top: 38px;
-  scale: 2;
-
+  background: var(--beige);
+  color: var(--dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.mainBody h1{
-    /* Hello. */
+/* ── Nav ────────────────────────────────── */
+.top-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 3.5%;
+  flex-shrink: 0;
+}
 
-position: absolute;
-width: 536px;
-height: 236px;
-left: 160px;
-top: 276px;
+.top-menu a {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  color: var(--dark);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: text-decoration 0.2s;
+}
 
-font-family: 'Italiana';
-font-style: normal;
-font-weight: 400;
-font-size: 200px;
-line-height: 236px;
-letter-spacing: 0.1em;
+.top-menu a:hover {
+  text-decoration: line-through 1px;
+}
 
-color: #1A1818;
+.top-menu img {
+  flex: 1;
+  min-width: 0;
+  max-width: 180px;
+  height: 18px;
+  opacity: 0.35;
+}
 
+/* ── Main content — vertically centred ──── */
+.mainBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 8.5% 5rem;
+}
+
+.mainBody h1 {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 12vw, 12.5rem);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  color: var(--dark);
+  margin-bottom: 1.75rem;
 }
 
 .desc {
-position: absolute;
-width: 511px;
-height: 52px;
-left: 160px;
-top: 512px;
-
-/* Body */
-font-family: 'Roboto Mono';
-font-style: normal;
-font-weight: 300;
-font-size: 20px;
-line-height: 26px;
-
-color: #1A1818;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.875rem, 1.15vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--dark);
+  max-width: 520px;
+  margin-bottom: 2rem;
 }
 
-.email{
-position: absolute;
-width: 1000px;
-height: 30px;
-left: 160px;
-top: 592px;
-display: flex;
-
-/* Body */
-font-family: 'Roboto Mono';
-font-style: normal;
-font-weight: 300;
-font-size: 20px;
-line-height: 26px;
-
-color: #1A1818;
+/* ── Contact grid ───────────────────────── */
+.contact-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.email a{
-    text-decoration: none;
-    color: #1A1818;
+.contact-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.75rem;
 }
 
-.email a:hover{
-  text-decoration:underline;
+.contact-label {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  color: var(--dark);
+  opacity: 0.4;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.links{
-    /* On The Internet: LinkedIn / Github */
-
-position: absolute;
-width: 418px;
-height: 26px;
-left: 160px;
-top: 628px;
-display: flex;
-
-/* Body */
-font-family: 'Roboto Mono';
-font-style: normal;
-font-weight: 300;
-font-size: 20px;
-line-height: 26px;
-
-color: #1A1818;
-
-}
-.links a{
-    text-decoration: none;
-    color: #1A1818;
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.75rem;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.8rem, 1.05vw, 1.125rem);
+  line-height: 1.65;
+  color: var(--dark);
 }
 
-.links a:hover{
-  text-decoration:underline;
+.contact-links a {
+  text-decoration: none;
+  color: var(--dark);
+  transition: text-decoration 0.2s;
 }
 
+.contact-links a:hover {
+  text-decoration: underline;
+}
 
+.contact-sep {
+  color: var(--dark);
+  opacity: 0.3;
+  font-family: var(--font-body);
+  font-weight: 300;
+  user-select: none;
+}
 
-
+/* ── Mobile ─────────────────────────────── */
 @media (max-width: 768px) {
-  .contact-page{
-    display: flex;
+  /* Nav: hide the decorative line — it can overflow narrow screens */
+  .top-menu img {
+    display: none;
+  }
+
+  .top-menu {
+    padding: 1.25rem 7%;
+  }
+
+  .mainBody {
+    padding: 2rem 7% 4rem;
+    justify-content: center;
+  }
+
+  .mainBody h1 {
+    font-size: clamp(4.5rem, 18vw, 7rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .desc {
+    font-size: 0.9rem;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-row {
     flex-direction: column;
-    
-
-  }
-  
-  .top-menu{
-    transform: scale(0.7);
-    
+    align-items: flex-start;
+    gap: 0.4rem;
   }
 
-  .top-menu a{
-    top:40px;
-    left:-40px;
-  }
-
-  .top-menu img{
-    top:42px;
-    left:90px;
-  }
-
-  .mainBody h1{
-    top: 20%;
-    left: 10%;
-    width: 90%;
-    height: auto;
-    font-size: 6rem;
-  }
-
-  .desc{
-    left: 10%;
-    top: 50%;
-    width: 70%;
-    height: auto;
-    margin:0;
-    font-size: 1rem;
-  }
-
-  .email{
-    left: 10%;
-    top: 70%;
-    width: 70%;
-    display: flex;
+  .contact-links {
     flex-direction: column;
-    font-size: 1rem;
+    gap: 0.25rem;
+    font-size: 0.9rem;
   }
 
-  
-  .links{
-    left: 10%;
-    top: 82%;
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    font-size: 1rem;
+  .contact-sep {
+    display: none;
   }
 }

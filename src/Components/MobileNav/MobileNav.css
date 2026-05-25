@@ -1,0 +1,132 @@
+/* ══════════════════════════════════════════
+   MobileNav — shared hamburger + overlay
+   Hamburger is hidden on desktop; the overlay
+   is always dark regardless of page theme.
+   ══════════════════════════════════════════ */
+
+/* ── Hamburger button ───────────────────── */
+.hamburger {
+  display: none;           /* desktop: off */
+  position: fixed;
+  top: 1.25rem;
+  right: 5%;
+  z-index: 400;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  /* default: light bars for dark-background pages (Hero, About) */
+  background: var(--beige-bright);
+  border-radius: 2px;
+  transition: transform 0.35s ease, opacity 0.25s ease, width 0.25s ease;
+}
+
+/* three bars of different widths = viewfinder feel */
+.hamburger span:nth-child(1) { width: 26px; }
+.hamburger span:nth-child(2) { width: 18px; }
+.hamburger span:nth-child(3) { width: 26px; }
+
+/* → X when open */
+.hamburger.is-open span:nth-child(1) {
+  width: 26px;
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger.is-open span:nth-child(3) {
+  width: 26px;
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ── Full-screen overlay ────────────────── */
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: var(--dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10%;
+  gap: 0;
+}
+
+.mobile-nav-overlay > a {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 18vw, 6rem);
+  font-weight: 400;
+  color: var(--beige);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  padding: 0.15em 0;
+  border-bottom: 1px solid rgba(236, 231, 225, 0.1);
+  transition: transform 0.3s ease, color 0.2s;
+}
+
+.mobile-nav-overlay > a:first-child {
+  border-top: 1px solid rgba(236, 231, 225, 0.1);
+}
+
+.mobile-nav-overlay > a:hover {
+  transform: translateX(14px) skewX(-7deg);
+  color: var(--beige-bright);
+}
+
+/* ── Resume + social row ────────────────── */
+.mob-nav-meta {
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mob-nav-meta > a {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--beige);
+  text-decoration: none;
+  border: 1px solid rgba(236, 231, 225, 0.4);
+  border-radius: 50px;
+  padding: 10px 28px;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.mob-nav-meta > a:hover {
+  background: var(--beige);
+  color: var(--dark);
+}
+
+.mob-nav-social {
+  display: flex;
+  gap: 1.25rem;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+}
+
+.mob-nav-social a {
+  color: var(--beige);
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+.mob-nav-social a:hover {
+  text-decoration: line-through 1px;
+}
+
+/* ── Show hamburger on mobile ───────────── */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+}
