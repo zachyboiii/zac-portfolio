@@ -125,18 +125,30 @@
 
 /* ── Mobile ─────────────────────────────── */
 @media (max-width: 768px) {
-  /* Nav: hide the decorative line — it can overflow narrow screens */
+  /* Sticky bar — fixed frosted glass at top */
+  .top-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    min-height: 3.5rem;
+    padding: 1.1rem 7%;
+    background: rgba(223, 218, 211, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(26, 24, 24, 0.08);
+  }
+
+  /* Hide the decorative line */
   .top-menu img {
     display: none;
   }
 
-  .top-menu {
-    padding: 1.25rem 7%;
-  }
-
+  /* padding-top clears the fixed nav */
   .mainBody {
-    padding: 2rem 7% 4rem;
-    justify-content: center;
+    padding: 5rem 7% 4rem;
+    justify-content: flex-start;
   }
 
   .mainBody h1 {

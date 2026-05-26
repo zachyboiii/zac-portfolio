@@ -8,7 +8,7 @@
 .hamburger {
   display: none;           /* desktop: off */
   position: fixed;
-  top: 1.25rem;
+  top: 0.75rem;
   right: 5%;
   z-index: 400;
   background: none;

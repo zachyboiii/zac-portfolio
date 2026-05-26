@@ -21,6 +21,16 @@ const Work = () => {
 
   const [fontsReady, setFontsReady]   = useState(false)
   const [activeTab, setActiveTab]     = useState('projects')
+  const [expandedItems, setExpandedItems] = useState(new Set())
+
+  const toggleExpanded = (id) => {
+    setExpandedItems(prev => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
 
   useEffect(() => {
     document.fonts.ready.then(() => setFontsReady(true))
@@ -105,19 +115,36 @@ const Work = () => {
               transition={{ duration: 0.25 }}
             >
               {work_data.map((proj, index) => (
-                <div key={proj.id} className="work-list">
+                <div key={proj.id} className={`work-list${expandedItems.has(proj.id) ? ' is-expanded' : ''}`}>
                   <span className="work-index">{String(index + 1).padStart(2, '0')}</span>
                   <Link to={`/work/${proj.id}`} className="project-title-link">
                     {proj.w_title}
                   </Link>
                   <h2>{proj.w_date}</h2>
-                  <h3>{proj.w_desc}</h3>
-                  <div className="lang-list">
-                    {proj.w_languages.map((lang, idx) => (
-                      <div key={idx} className="language">
-                        <p><strong>{lang}</strong></p>
-                      </div>
-                    ))}
+
+                  {/* Expand toggle — mobile only */}
+                  <button
+                    className="work-expand-btn"
+                    onClick={() => toggleExpanded(proj.id)}
+                    aria-expanded={expandedItems.has(proj.id)}
+                  >
+                    <span>{expandedItems.has(proj.id) ? 'Hide info' : 'More info'}</span>
+                    <svg className="expand-chevron" width="12" height="7" viewBox="0 0 14 8"
+                      fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M1 1l6 6 6-6" />
+                    </svg>
+                  </button>
+
+                  {/* Collapsible: desc + tags */}
+                  <div className="work-collapsible">
+                    <h3>{proj.w_desc}</h3>
+                    <div className="lang-list">
+                      {proj.w_languages.map((lang, idx) => (
+                        <div key={idx} className="language">
+                          <p><strong>{lang}</strong></p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -137,7 +164,7 @@ const Work = () => {
                 <div key={exp.id} className="exp-node">
 
                   {/* ── Content card ── */}
-                  <div className="exp-card">
+                  <div className={`exp-card${expandedItems.has(exp.id) ? ' is-expanded' : ''}`}>
                     <span className="exp-type">// {exp.e_type}</span>
 
                     {exp.e_link ? (
@@ -155,14 +182,30 @@ const Work = () => {
 
                     <p className="exp-role">{exp.e_role}</p>
                     <p className="exp-date">{exp.e_date}</p>
-                    <p className="exp-desc">{exp.e_desc}</p>
 
-                    <div className="lang-list exp-skills">
-                      {exp.e_skills.map((skill, idx) => (
-                        <div key={idx} className="language">
-                          <p>{skill}</p>
-                        </div>
-                      ))}
+                    {/* Expand toggle — mobile only */}
+                    <button
+                      className="work-expand-btn"
+                      onClick={() => toggleExpanded(exp.id)}
+                      aria-expanded={expandedItems.has(exp.id)}
+                    >
+                      <span>{expandedItems.has(exp.id) ? 'Hide info' : 'More info'}</span>
+                      <svg className="expand-chevron" width="12" height="7" viewBox="0 0 14 8"
+                        fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M1 1l6 6 6-6" />
+                      </svg>
+                    </button>
+
+                    {/* Collapsible: desc + skills */}
+                    <div className="work-collapsible">
+                      <p className="exp-desc">{exp.e_desc}</p>
+                      <div className="lang-list exp-skills">
+                        {exp.e_skills.map((skill, idx) => (
+                          <div key={idx} className="language">
+                            <p>{skill}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
 

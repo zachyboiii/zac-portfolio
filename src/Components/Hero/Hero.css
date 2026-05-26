@@ -11,6 +11,13 @@
   color: var(--beige);
 }
 
+/* ── Content fade wrapper ───────────────── */
+/* Fills hero-page so all absolute children keep their existing positions */
+.hero-content {
+  position: absolute;
+  inset: 0;
+}
+
 /* ── Summary (top-left) ─────────────────── */
 .summary {
   position: absolute;
@@ -146,33 +153,118 @@
   white-space: nowrap;
 }
 
-/* ── Animated gradient blob ─────────────── */
+/* ── Animated gradient blob (interactive) ── */
 .gradient {
-  --size: 500px;
-  --speed: 20s;
+  --size:   500px;
+  --speed:  20s;
   --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
   position: absolute;
-  width: var(--size);
+  width:  var(--size);
   height: var(--size);
-  top: 17%;
-  left: 30%;
+  /* Centered by default; JS overrides left/top each frame */
+  top:  calc(50% - var(--size) / 2);
+  left: calc(50% - var(--size) / 2);
   z-index: 0;
-  pointer-events: none;
+  pointer-events: auto;          /* was none — enable hover + click */
+  cursor: pointer;
   filter: blur(calc(var(--size) / 5));
   background-image: linear-gradient(45deg, #7106ebd9, hsl(54, 85%, 73%));
   animation: blob-rotate var(--speed) var(--easing) infinite;
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  will-change: left, top, background-image;
+  transition: filter 0.45s ease;
 }
 
+/* Desktop hover: sharpen slightly for a "pulse" feel */
+.gradient:hover {
+  filter: blur(calc(var(--size) / 7));
+}
+
+/* Idle state: slow organic border-radius morph (transform left for blob-rotate) */
+.gradient--idle {
+  animation:
+    blob-rotate var(--speed) var(--easing) infinite,
+    blob-idle-morph 9s ease-in-out infinite;
+}
+
+/* Splat on click/tap: springy explosion that bounces back */
+.gradient--splat {
+  animation: blob-splat 0.72s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  pointer-events: none;   /* prevent double-fire mid-animation */
+  cursor: default;
+}
+
+/* ── Keyframes ────────────────────────────── */
 @keyframes blob-rotate {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
+}
+
+/* Organic shape-shifting while idle — only touches border-radius so
+   it composes cleanly with the blob-rotate transform above */
+@keyframes blob-idle-morph {
+  0%   { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  20%  { border-radius: 58% 42% 65% 35% / 47% 55% 45% 53%; }
+  40%  { border-radius: 42% 58% 38% 62% / 56% 38% 62% 44%; }
+  60%  { border-radius: 65% 35% 52% 48% / 36% 62% 38% 64%; }
+  80%  { border-radius: 44% 56% 70% 30% / 55% 44% 56% 45%; }
+  100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+}
+
+/* Springy splat morph on click/tap */
+@keyframes blob-splat {
+  0%   { transform: scale(1)    rotate(0deg);   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  18%  { transform: scale(1.45) rotate(25deg);  border-radius: 60% 40% 30% 70% / 55% 30% 70% 45%; }
+  38%  { transform: scale(0.75) rotate(-18deg); border-radius: 40% 60% 65% 35% / 45% 70% 30% 55%; }
+  55%  { transform: scale(1.18) rotate(8deg);   border-radius: 52% 48% 38% 62% / 58% 42% 58% 42%; }
+  72%  { transform: scale(0.94) rotate(-4deg);  border-radius: 36% 64% 62% 38% / 36% 38% 62% 64%; }
+  100% { transform: scale(1)    rotate(0deg);   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+}
+
+/* ── Spotlight overlay (desktop only) ──────
+   Dark veil with a transparent hole driven by JS.
+   pointer-events: none so all links stay clickable.   ─── */
+.hero-spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 4;                /* above content (z-index:1), below mobile bar (z-index:90) */
+  pointer-events: none;
+  /* Initial state: centred hole — JS repaints each rAF frame */
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent   0px,
+    transparent   200px,
+    rgba(26,24,24,0.60) 380px,
+    rgba(26,24,24,0.82) 560px
+  );
+}
+
+/* ── Mobile sticky bar (hidden on desktop) ── */
+.hero-mobile-bar {
+  display: none;
 }
 
 /* ══════════════════════════════════════════
    MOBILE HERO LAYOUT
    ══════════════════════════════════════════ */
 @media (max-width: 768px) {
+  /* Sticky frosted bar at top */
+  .hero-mobile-bar {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    min-height: 3.5rem;
+    padding: 1.1rem 7%;
+    background: rgba(26, 24, 24, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(236, 231, 225, 0.08);
+  }
+
   /* Hide desktop nav links */
   .hero-right {
     display: none;
@@ -183,23 +275,29 @@
     display: none;
   }
 
-  /* ── Summary — compact, top-left ──────── */
+  /* ── Summary — push down to clear fixed bar ── */
   .summary {
-    top: 8%;
+    top: max(5rem, 12%);
     left: 8%;
     width: min(260px, 78vw);
     font-size: 13px;
     line-height: 1.55;
   }
 
-  /* ── Gradient — centred, prominent ───── */
-  /* Can't use translate + animation together,
-     so offset with calc from top/left instead */
+  /* ── Gradient — smaller on mobile, JS still drives position ── */
   .gradient {
     --size: 320px;
-    top: calc(50% - var(--size) / 2);
-    left: calc(50% - var(--size) / 2);
-    background-image: linear-gradient(45deg, #7106ebd9, hsl(54, 85%, 73%));
+    /* top/left fallback already centered via calc() in base rule */
+  }
+
+  /* No hover-sharpen on touch screens */
+  .gradient:hover {
+    filter: blur(calc(var(--size) / 5));
+  }
+
+  /* Spotlight is a cursor effect — hide on touch/mobile */
+  .hero-spotlight {
+    display: none;
   }
 
   /* ── Coordinates — hidden on mobile ─────── */

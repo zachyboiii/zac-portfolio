@@ -308,9 +308,19 @@
    MOBILE
    ══════════════════════════════════════════ */
 @media (max-width: 768px) {
-  /* Nav */
+  /* Sticky bar — fixed frosted glass at top */
   .about-nav {
-    padding: 1.25rem 7%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    min-height: 3.5rem;
+    padding: 1.1rem 7%;
+    background: rgba(26, 24, 24, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(236, 231, 225, 0.08);
   }
 
   /* Hide horiLine on mobile */
@@ -323,10 +333,10 @@
     display: none;
   }
 
-  /* Single-column layout */
+  /* Single-column layout — padding-top clears the fixed nav */
   .about-main {
     grid-template-columns: 1fr;
-    padding: 2rem 7% 3rem;
+    padding: 5rem 7% 3rem;
     gap: 2.5rem;
   }
 
