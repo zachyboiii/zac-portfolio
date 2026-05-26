@@ -47,15 +47,7 @@ const Hero = () => {
         <a href={resume} download>Download Resume</a>
       </div>
 
-      {/* ── Social links (bottom-left) ────────── */}
-      <div className="hero-bottom">
-        <ul className="bottom-menu">
-          <a href="https://github.com/zachyboiii" target="_blank" rel="noopener noreferrer">gh</a>
-          <a href="http://www.linkedin.com/in/zachary-lee-kl" target="_blank" rel="noopener noreferrer">in</a>
-        </ul>
-      </div>
-
-      {/* ── Shared mobile hamburger + overlay ─── */}
+{/* ── Shared mobile hamburger + overlay ─── */}
       <MobileNav />
     </motion.div>
   );

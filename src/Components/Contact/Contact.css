@@ -88,7 +88,7 @@
   font-weight: 300;
   letter-spacing: 0.18em;
   color: var(--dark);
-  opacity: 0.4;
+  opacity: 0.62;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -117,7 +117,7 @@
 
 .contact-sep {
   color: var(--dark);
-  opacity: 0.3;
+  opacity: 0.45;
   font-family: var(--font-body);
   font-weight: 300;
   user-select: none;

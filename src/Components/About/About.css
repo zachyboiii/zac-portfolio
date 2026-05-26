@@ -102,6 +102,17 @@
   font-weight: 400;
 }
 
+/* ── Pic row wrapper ────────────────────── */
+/* Desktop: transparent — children slot directly into about-right-col's flex */
+.about-pic-row {
+  display: contents;
+}
+
+/* Mobile-only rotated heading — invisible on desktop */
+.about-heading--mob {
+  display: none;
+}
+
 /* ── Right column — photo + meta ────────── */
 .about-right-col {
   display: flex;
@@ -302,14 +313,14 @@
     padding: 1.25rem 7%;
   }
 
-  /* Heading */
-  .about-header {
-    padding: 0.25rem 7% 2rem;
+  /* Hide horiLine on mobile */
+  .about-nav img {
+    display: none;
   }
 
-  .about-heading {
-    font-size: clamp(4.5rem, 18vw, 7rem);
-    line-height: 0.92;
+  /* Hide desktop full-width heading — replaced by rotated mob heading */
+  .about-header {
+    display: none;
   }
 
   /* Single-column layout */
@@ -324,9 +335,36 @@
     position: relative;
     top: auto;
     order: -1;
+    gap: 1.5rem;
+  }
+
+  /* ── Rotated heading + photo row ───────── */
+  .about-pic-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  /* "About" rotated 90° CCW:
+     writing-mode gives correct flex dimensions;
+     rotate(180deg) flips CW→CCW so it reads tilting-left */
+  .about-heading--mob {
+    display: block;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 16vw, 6rem);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 0.88;
+    color: var(--beige-bright);
+    flex-shrink: 0;
+    user-select: none;
   }
 
   .profile-pic-wrap {
+    flex: 1;
     max-width: 200px;
   }
 

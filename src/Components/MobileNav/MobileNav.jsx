@@ -6,16 +6,18 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 /**
  * Shared mobile hamburger + full-screen nav overlay.
- * Rendered on every page; hidden on desktop via CSS.
+ * theme="dark"  → dark bg, beige text  (Hero, About, ProjectDetails)
+ * theme="light" → beige bg, dark text  (Work, Contact)
  */
-const MobileNav = () => {
+const MobileNav = ({ theme = 'dark' }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const closeMenu = () => setMenuOpen(false)
+  const t = `theme-${theme}`
 
   return (
     <>
       <button
-        className={`hamburger${menuOpen ? ' is-open' : ''}`}
+        className={`hamburger ${t}${menuOpen ? ' is-open' : ''}`}
         onClick={() => setMenuOpen(o => !o)}
         aria-label={menuOpen ? 'Close menu' : 'Open menu'}
       >
@@ -27,7 +29,7 @@ const MobileNav = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.nav
-            className="mobile-nav-overlay"
+            className={`mobile-nav-overlay ${t}`}
             initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
             animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
             exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}

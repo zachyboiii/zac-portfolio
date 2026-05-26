@@ -22,7 +22,7 @@ const Contact = () => {
       </div>
 
       {/* ── Shared mobile hamburger + overlay ─── */}
-      <MobileNav />
+      <MobileNav theme="light" />
 
       {/* ── Main body ─────────────────────── */}
       <div className="mainBody">

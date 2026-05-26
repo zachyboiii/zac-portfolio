@@ -85,10 +85,16 @@ const About = () => {
 
         {/* Right — photo + techy meta card */}
         <div className="about-right-col">
-          <div className="profile-pic-wrap">
-            <img className="dp" src={selfPic} alt="Zachary Lee" />
-            <img className="border" src={picBorder} alt="" aria-hidden="true" />
-          </div>
+          {/* about-pic-row: transparent on desktop (display:contents),
+              flex row on mobile so heading + photo sit side-by-side */}
+          <div className="about-pic-row">
+            {/* Mobile-only rotated heading */}
+            <h1 className="about-heading about-heading--mob" aria-hidden="true">About</h1>
+            <div className="profile-pic-wrap">
+              <img className="dp" src={selfPic} alt="Zachary Lee" />
+              <img className="border" src={picBorder} alt="" aria-hidden="true" />
+            </div>
+          </div>{/* /about-pic-row */}
 
           <div className="about-meta">
             <div className="meta-item">

@@ -5,6 +5,7 @@ import { useParams, Link } from 'react-router-dom';
 import work_data from '../../assets/workdata';
 import { motion } from 'framer-motion';
 import ScrambleText from '../ScrambleText';
+import MobileNav from '../MobileNav/MobileNav';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -47,6 +48,9 @@ const ProjectDetail = () => {
       exit={{ opacity: 0, y: -30 }}
       transition={{ duration: 0.5 }}
     >
+      {/* ── Shared mobile hamburger ─────── */}
+      <MobileNav theme="dark" />
+
       {/* ── Fixed nav ───────────────────── */}
       <nav className="pd-top">
         <Link to="/work" className="pd-back-btn" aria-label="Back to work">
