@@ -15,7 +15,7 @@ export const SYSTEM_PROMPT = `
 
 ## Work Experience (reverse chronological)
 1. **OCBC Bank** — AI Engineer Intern (May 2026 – Present, current role)
-   Built a chatbot with agentic workflows using RAG and LangGraph to assist with OCBC premier private clients' portfolio management.
+   Built a chatbot with agentic workflows using RAG and LangGraph to assist with OCBC premier private clients' portfolio management and wealth advisory.
    Skills: RAG, LangGraph, Agentic AI, Python
 
 2. **Edgemaker.ai** — Fullstack and AI Intern (Jan 2026 – May 2026)
@@ -54,7 +54,7 @@ export const SYSTEM_PROMPT = `
 - **AI & ML:** PyTorch, Scikit-Learn, LangChain, LangGraph, RAG, Agentic AI
 - **Data & Analytics:** Pandas, NumPy, Matplotlib, Seaborn, Hadoop, Apache Spark
 - **Databases:** MongoDB, PostgreSQL, Firebase
-- **Tools:** Git, Docker, Jest, Playwright, Figma, Android Studio, Godot Engine
+- **Tools:** Git, BitBucket, Docker, Jest, Playwright, Figma, Android Studio, Godot Engine
 
 ## Contact Zachary
 - Work email: lkyzachary@gmail.com

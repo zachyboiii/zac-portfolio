@@ -2,7 +2,7 @@ const RULES = [
   // Greetings
   {
     pattern: /^(hi+|hello+|hey+|yo+|sup|wassup|howdy|hiya|greetings|good (morning|afternoon|evening))[!?.,\s]*$/i,
-    reply: "yo!! ask me anything about Zac sia — projects, skills, experience, all got one.",
+    reply: "sup!! come come ask me anything about Zac ah: projects, skills, experience, anything also can.",
   },
   // How are you
   {
@@ -12,47 +12,47 @@ const RULES = [
   // Thanks
   {
     pattern: /^(thanks?|thank you|thx|ty|cheers|appreciate it|appreciated)[!.,\s]*$/i,
-    reply: "np np!! got more questions about Zac or not?",
+    reply: "np np!! got more questions about Zac anot?",
   },
   // Bye
   {
     pattern: /^(bye+|goodbye|see ya|cya|later|ttyl|take care|farewell|peace)[!.,\s]*$/i,
-    reply: "ok bye!! come back if you wanna know more about Zac yeah.",
+    reply: "ok bye!! come back if you wanna know more about Zac ya.",
   },
   // Short affirmations
   {
     pattern: /^(ok+|okay|cool|nice|great|awesome|sounds good|got it|i see|interesting|sure|alright)[!.,\s]*$/i,
-    reply: "slay!! anything else you wanna know about Zac?",
+    reply: "firee!! anything else you wanna know about Zac?",
   },
   // Food / recipes
   {
     pattern: /\b(recipe|cook(ing)?|meal|food|restaurant|cuisine|ingredient|dish)\b/i,
-    reply: "bro I dunno anything about food sia 💀 I only know about Zac one — ask me about his projects lah.",
+    reply: "bro idk anything about food sia 💀 I only know about Zac... ask me about his projects la.",
   },
   // Weather
   {
     pattern: /\b(weather|forecast|temperature|rain(ing)?|sunny|cloudy|snow(ing)?|humidity)\b/i,
-    reply: "check weather app lah bro 😭 but fr tho I can tell you a lot about Zac!",
+    reply: "check weather app la bro 😭 but fr tho I can tell you a lot about Zac!",
   },
   // Sports
   {
     pattern: /\b(nfl|nba|fifa|mlb|epl|soccer|football|basketball|cricket|tennis|match score|sports?)\b/i,
-    reply: "gg wrong bot sia 😭 I only know Zac stuff — his projects and skills and all that.",
+    reply: "gg wrong bot sia 😭 I only know Zac stuff, his projects and skills and work lor",
   },
   // Finance / crypto
   {
     pattern: /\b(bitcoin|ethereum|crypto|stock market|trading|investment|forex|nft)\b/i,
-    reply: "bro I'm not a finance bro sia 💀 ask me about Zac's projects instead can?",
+    reply: "woi u think i some finbro meh 💀 ask me about Zac's projects instead can?",
   },
   // Politics
   {
     pattern: /\b(politic|election|president|democrat|republican|government|congress|senate)\b/i,
-    reply: "sian politics very sian one ngl — not my vibe. ask me about Zac lah!",
+    reply: "politics so sian bruh not my thing. ask me about Zac la.",
   },
   // Medical
   {
     pattern: /\b(symptom|diagnos|medical|disease|medication|doctor|treatment|health advice)\b/i,
-    reply: "bro please go see a doctor 😭 I cannot help with that sia. but Zac's background I can tell you!",
+    reply: "bro please go see a doctor 😭 I cant help with that bruh. but Zac's background I can tell you!",
   },
   // Jokes
   {
