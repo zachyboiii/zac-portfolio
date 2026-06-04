@@ -9,6 +9,7 @@ import './App.css'
 const PADDING = 10;
 const DEFAULT_SIZE = 50;
 const CLICKABLE = 'a, button, [role="button"], input[type="submit"], input[type="button"]';
+const IS_MOBILE = window.matchMedia('(max-width: 768px)').matches;
 
 const App = () => {
   const rawX = useMotionValue(-200);
@@ -48,10 +49,12 @@ const App = () => {
   }, [rotation]);
 
   useEffect(() => {
+    if (IS_MOBILE) return;
     startSpin();
   }, [startSpin]);
 
   useEffect(() => {
+    if (IS_MOBILE) return;
     const onMove = (e) => {
       const el = document.elementFromPoint(e.clientX, e.clientY);
       const target = el?.closest(CLICKABLE);

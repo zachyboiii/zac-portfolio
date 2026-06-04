@@ -54,7 +54,7 @@ const Contact = () => {
             <div className="contact-links">
               <a href="https://github.com/zachyboiii" target="_blank" rel="noopener noreferrer">Github</a>
               <span className="contact-sep" aria-hidden="true">|</span>
-              <a href="http://www.linkedin.com/in/zachary-lee-kl" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/zachary-lee-ky/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
           </div>
         </div>

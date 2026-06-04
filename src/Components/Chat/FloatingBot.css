@@ -13,6 +13,12 @@
   align-items: flex-end;
   gap: 0.75rem;
   font-family: var(--font-body);
+  pointer-events: none;
+}
+
+.fbot__window--open,
+.fbot__toggle-wrap {
+  pointer-events: auto;
 }
 
 /* ── Toggle wrap (button + orbiting text) ── */

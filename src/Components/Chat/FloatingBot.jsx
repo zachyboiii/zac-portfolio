@@ -26,6 +26,7 @@ export default function FloatingBot() {
   const [input, setInput] = useState('')
   const messagesEndRef = useRef(null)
   const textareaRef = useRef(null)
+  const fbotRef = useRef(null)
   const loadingText = useLoadingText(isLoading)
 
   useEffect(() => {
@@ -33,6 +34,21 @@ export default function FloatingBot() {
       setTimeout(() => messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 50)
     }
   }, [messages, isFloatingOpen])
+
+  useEffect(() => {
+    if (!isFloatingOpen) return
+    const handleClickOutside = (e) => {
+      if (fbotRef.current && !fbotRef.current.contains(e.target)) {
+        setIsFloatingOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('touchstart', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+    }
+  }, [isFloatingOpen, setIsFloatingOpen])
 
   const handleSend = async () => {
     const text = input.trim()
@@ -60,7 +76,7 @@ export default function FloatingBot() {
   if (isZacAIOpen) return null
 
   return (
-    <div className="fbot">
+    <div className="fbot" ref={fbotRef}>
       {/* Chat window */}
       <div className={`fbot__window ${isFloatingOpen ? 'fbot__window--open' : ''}`}>
         <div className="fbot__header">
@@ -165,7 +181,7 @@ export default function FloatingBot() {
           </defs>
           <text fontSize="8" fontFamily="'Roboto Mono', monospace" fill="#dfdad3" letterSpacing="2" filter="url(#fbot-text-shadow)">
             <textPath href="#fbot-ring">
-              {'zac.ai · zac.ai · zac.ai · zac.ai · zac.ai · '}
+              {'zac.ai · zac.ai · zac.ai · '}
             </textPath>
           </text>
         </svg>
