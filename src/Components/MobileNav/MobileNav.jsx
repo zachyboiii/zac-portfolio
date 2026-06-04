@@ -44,7 +44,7 @@ const MobileNav = ({ theme = 'dark' }) => {
               <a href={resume} download onClick={closeMenu}>Download Resume</a>
               <div className="mob-nav-social">
                 <a href="https://github.com/zachyboiii" target="_blank" rel="noopener noreferrer">gh</a>
-                <a href="http://www.linkedin.com/in/zachary-lee-kl" target="_blank" rel="noopener noreferrer">in</a>
+                <a href="https://www.linkedin.com/in/zachary-lee-ky/" target="_blank" rel="noopener noreferrer">in</a>
               </div>
             </div>
           </motion.nav>

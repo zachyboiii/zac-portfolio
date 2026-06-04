@@ -23,8 +23,6 @@ export default function FloatingBot() {
     isZacAIOpen, sendMessage, openZacAI,
   } = useContext(ChatContext)
 
-  if (isZacAIOpen) return null
-
   const [input, setInput] = useState('')
   const messagesEndRef = useRef(null)
   const textareaRef = useRef(null)
@@ -58,11 +56,13 @@ export default function FloatingBot() {
     ta.style.height = Math.min(ta.scrollHeight, 100) + 'px'
   }
 
+  // All hooks above — safe to conditionally return here
+  if (isZacAIOpen) return null
+
   return (
     <div className="fbot">
       {/* Chat window */}
       <div className={`fbot__window ${isFloatingOpen ? 'fbot__window--open' : ''}`}>
-        {/* Header */}
         <div className="fbot__header">
           <span className="fbot__title">zac.ai</span>
           <div className="fbot__header-actions">
@@ -90,19 +90,14 @@ export default function FloatingBot() {
           </div>
         </div>
 
-        {/* Messages */}
         <div className="fbot__messages">
           {messages.length === 0 ? (
             <div className="fbot__empty">
-              <p className="fbot__empty-title">Hi, I'm <strong>zac.ai</strong></p>
+              <p className="fbot__empty-title">Hi, I&apos;m <strong>zac.ai</strong></p>
               <p className="fbot__empty-sub">Ask me anything about Zachary.</p>
               <div className="fbot__suggestions">
                 {SUGGESTIONS.map(s => (
-                  <button
-                    key={s}
-                    className="fbot__suggestion"
-                    onClick={() => sendMessage(s)}
-                  >
+                  <button key={s} className="fbot__suggestion" onClick={() => sendMessage(s)}>
                     {s}
                   </button>
                 ))}
@@ -118,10 +113,8 @@ export default function FloatingBot() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Loading indicator */}
         {isLoading && <LoadingIndicator text={loadingText} />}
 
-        {/* Input */}
         <div className="fbot__input-row">
           <textarea
             ref={textareaRef}
@@ -162,31 +155,15 @@ export default function FloatingBot() {
           )}
         </button>
 
-        {/* Circular "zac.ai" text — hidden on mobile via CSS */}
-        <svg
-          className="fbot__circle-svg"
-          width="80"
-          height="80"
-          viewBox="0 0 80 80"
-          aria-hidden="true"
-        >
+        <svg className="fbot__circle-svg" width="80" height="80" viewBox="0 0 80 80" aria-hidden="true">
           <defs>
-            <path
-              id="fbot-ring"
-              d="M 40 40 m -32 0 a 32 32 0 1 1 64 0 a 32 32 0 1 1 -64 0"
-            />
+            <path id="fbot-ring" d="M 40 40 m -32 0 a 32 32 0 1 1 64 0 a 32 32 0 1 1 -64 0"/>
             <filter id="fbot-text-shadow" x="-20%" y="-20%" width="140%" height="140%">
               <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#1a1818" floodOpacity="1"/>
               <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#1a1818" floodOpacity="1"/>
             </filter>
           </defs>
-          <text
-            fontSize="8"
-            fontFamily="'Roboto Mono', monospace"
-            fill="#dfdad3"
-            letterSpacing="2"
-            filter="url(#fbot-text-shadow)"
-          >
+          <text fontSize="8" fontFamily="'Roboto Mono', monospace" fill="#dfdad3" letterSpacing="2" filter="url(#fbot-text-shadow)">
             <textPath href="#fbot-ring">
               {'zac.ai · zac.ai · zac.ai · zac.ai · zac.ai · '}
             </textPath>

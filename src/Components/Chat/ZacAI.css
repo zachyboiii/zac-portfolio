@@ -231,6 +231,9 @@
 }
 
 .zai__msg-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   font-family: var(--font-display);
   font-size: 0.9rem;
   color: rgba(223, 218, 211, 0.4);
@@ -261,19 +264,10 @@
 }
 
 
-/* ── Loading bar (above input) ──────────── */
-.zai__loading-bar {
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-  padding: 0 1.5rem 0.25rem;
-}
-
-.zai__loading-bar .li {
-  max-width: 680px;
-  width: 100%;
-  padding-left: 0;
-  font-size: 0.82rem;
+.zai__msg-bubble--loading {
+  background: none !important;
+  border: none !important;
+  padding: 0.25rem 0 !important;
 }
 
 /* ── Input bar ──────────────────────────── */
