@@ -1,0 +1,379 @@
+/* ══════════════════════════════════════════
+   ZacAI — Mode 2: full chat interface
+   Absolute overlay within .hero-page
+   Dark bg, beige text, Italiana + Roboto Mono
+   ══════════════════════════════════════════ */
+
+.zai {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  background: var(--dark);
+  font-family: var(--font-body);
+  animation: zai-fade-in 0.3s ease forwards;
+}
+
+@keyframes zai-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Sidebar ────────────────────────────── */
+.zai__sidebar {
+  width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.025);
+  border-right: 1px solid rgba(223, 218, 211, 0.08);
+  transition: width 0.28s ease;
+  flex-shrink: 0;
+}
+
+.zai__sidebar--open {
+  width: 240px;
+}
+
+.zai__sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.1rem 1rem;
+  flex-shrink: 0;
+}
+
+.zai__brand {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--beige-bright);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.zai__sidebar-close {
+  background: none;
+  border: none;
+  color: rgba(223, 218, 211, 0.45);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.zai__sidebar-close:hover { color: var(--beige); }
+
+.zai__new-chat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0.85rem 0.75rem;
+  padding: 0.6rem 0.9rem;
+  background: rgba(223, 218, 211, 0.06);
+  border: 1px solid rgba(223, 218, 211, 0.15);
+  border-radius: 8px;
+  color: rgba(223, 218, 211, 0.75);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.zai__new-chat:hover {
+  background: rgba(223, 218, 211, 0.12);
+  color: var(--beige);
+}
+
+.zai__sidebar-info {
+  padding: 0 1.1rem;
+  color: rgba(223, 218, 211, 0.3);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* ── Main area ──────────────────────────── */
+.zai__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* ── Top bar ────────────────────────────── */
+.zai__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.25rem;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(223, 218, 211, 0.07);
+}
+
+.zai__topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: auto;
+}
+
+.zai__topbar-btn {
+  background: none;
+  border: none;
+  color: rgba(223, 218, 211, 0.45);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.zai__topbar-btn:hover {
+  color: var(--beige);
+  background: rgba(223, 218, 211, 0.07);
+}
+
+/* ── Content / scroll area ──────────────── */
+.zai__content {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(223,218,211,0.12) transparent;
+}
+
+.zai__content::-webkit-scrollbar { width: 4px; }
+.zai__content::-webkit-scrollbar-thumb { background: rgba(223,218,211,0.12); border-radius: 2px; }
+
+/* ── Landing (no messages) ──────────────── */
+.zai__landing {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem 1rem;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.zai__heading {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--beige-bright);
+  line-height: 1;
+}
+
+.zai__subheading {
+  font-size: 0.85rem;
+  color: rgba(223, 218, 211, 0.45);
+  margin-bottom: 0.5rem;
+}
+
+.zai__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.zai__chip {
+  background: rgba(223, 218, 211, 0.06);
+  border: 1px solid rgba(223, 218, 211, 0.18);
+  border-radius: 50px;
+  color: rgba(223, 218, 211, 0.7);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.zai__chip:hover {
+  background: rgba(223, 218, 211, 0.13);
+  border-color: rgba(223, 218, 211, 0.35);
+  color: var(--beige);
+}
+
+/* ── Messages ───────────────────────────── */
+.zai__messages {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.zai__msg {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.zai__msg--user {
+  align-items: flex-end;
+}
+
+.zai__msg--assistant {
+  align-items: flex-start;
+}
+
+.zai__msg-label {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: rgba(223, 218, 211, 0.4);
+  letter-spacing: 0.04em;
+}
+
+.zai__msg-bubble {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  max-width: 82%;
+}
+
+.zai__msg--user .zai__msg-bubble {
+  background: rgba(223, 218, 211, 0.11);
+  border: 1px solid rgba(223, 218, 211, 0.18);
+  color: var(--beige);
+  border-radius: 12px 12px 2px 12px;
+}
+
+.zai__msg--assistant .zai__msg-bubble {
+  background: rgba(223, 218, 211, 0.04);
+  color: rgba(223, 218, 211, 0.88);
+  border-radius: 2px 12px 12px 12px;
+}
+
+
+/* ── Loading bar (above input) ──────────── */
+.zai__loading-bar {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0 1.5rem 0.25rem;
+}
+
+.zai__loading-bar .li {
+  max-width: 680px;
+  width: 100%;
+  padding-left: 0;
+  font-size: 0.82rem;
+}
+
+/* ── Input bar ──────────────────────────── */
+.zai__input-wrap {
+  flex-shrink: 0;
+  padding: 1rem 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.zai__input-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 680px;
+  min-height: 56px;
+  background: rgba(223, 218, 211, 0.05);
+  border: 1px solid rgba(223, 218, 211, 0.18);
+  border-radius: 14px;
+  padding: 0.65rem 0.75rem;
+  transition: border-color 0.2s ease;
+}
+
+.zai__input-box:focus-within {
+  border-color: rgba(223, 218, 211, 0.35);
+}
+
+.zai__input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--beige);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  resize: none;
+  min-height: 22px;
+  max-height: 160px;
+}
+
+.zai__input::placeholder { color: rgba(223, 218, 211, 0.3); }
+
+.zai__send {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  border: 1px solid rgba(223, 218, 211, 0.2);
+  background: rgba(223, 218, 211, 0.08);
+  color: var(--beige);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.zai__send:hover:not(:disabled) {
+  background: rgba(223, 218, 211, 0.18);
+}
+
+.zai__send:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+
+.zai__disclaimer {
+  font-size: 0.67rem;
+  color: rgba(223, 218, 211, 0.22);
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════
+   MOBILE
+   ══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .zai {
+    /* Push below the fixed mobile bar (3.5rem tall) */
+    top: 3.5rem;
+    flex-direction: column;
+  }
+
+  /* Hide sidebar entirely on mobile — use a drawer instead */
+  .zai__sidebar {
+    display: none;
+  }
+
+  .zai__messages {
+    padding: 1rem;
+  }
+
+  .zai__input-wrap {
+    padding: 0.75rem 1rem 1rem;
+  }
+
+  .zai__heading {
+    font-size: clamp(2.8rem, 15vw, 4.5rem);
+  }
+}

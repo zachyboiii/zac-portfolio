@@ -1,0 +1,198 @@
+import React, { useState, useRef, useEffect, useContext } from 'react'
+import { useLocation } from 'react-router-dom'
+import { ChatContext } from './ChatContext'
+import { useLoadingText } from './useLoadingText'
+import smiskiIcon from '../../assets/smiskiIcon.svg'
+import LoadingIndicator from './LoadingIndicator'
+import './FloatingBot.css'
+
+const SUGGESTIONS = [
+  "What projects has Zac built?",
+  "Where has Zac worked?",
+  "What are Zac's AI skills?",
+  "What is Zac studying?",
+]
+
+export default function FloatingBot() {
+  const location = useLocation()
+  const isHero = location.pathname === '/'
+
+  const {
+    messages, isLoading,
+    isFloatingOpen, setIsFloatingOpen,
+    isZacAIOpen, sendMessage, openZacAI,
+  } = useContext(ChatContext)
+
+  if (isZacAIOpen) return null
+
+  const [input, setInput] = useState('')
+  const messagesEndRef = useRef(null)
+  const textareaRef = useRef(null)
+  const loadingText = useLoadingText(isLoading)
+
+  useEffect(() => {
+    if (isFloatingOpen) {
+      setTimeout(() => messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 50)
+    }
+  }, [messages, isFloatingOpen])
+
+  const handleSend = async () => {
+    const text = input.trim()
+    if (!text || isLoading) return
+    setInput('')
+    textareaRef.current && (textareaRef.current.style.height = 'auto')
+    await sendMessage(text)
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      handleSend()
+    }
+  }
+
+  const handleInput = (e) => {
+    setInput(e.target.value)
+    const ta = e.target
+    ta.style.height = 'auto'
+    ta.style.height = Math.min(ta.scrollHeight, 100) + 'px'
+  }
+
+  return (
+    <div className="fbot">
+      {/* Chat window */}
+      <div className={`fbot__window ${isFloatingOpen ? 'fbot__window--open' : ''}`}>
+        {/* Header */}
+        <div className="fbot__header">
+          <span className="fbot__title">zac.ai</span>
+          <div className="fbot__header-actions">
+            {isHero && (
+              <button
+                className="fbot__icon-btn"
+                onClick={openZacAI}
+                title="Full view"
+                aria-label="Expand to full view"
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M1 13L13 1M13 1H7M13 1V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            )}
+            <button
+              className="fbot__icon-btn"
+              onClick={() => setIsFloatingOpen(false)}
+              aria-label="Close chat"
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Messages */}
+        <div className="fbot__messages">
+          {messages.length === 0 ? (
+            <div className="fbot__empty">
+              <p className="fbot__empty-title">Hi, I'm <strong>zac.ai</strong></p>
+              <p className="fbot__empty-sub">Ask me anything about Zachary.</p>
+              <div className="fbot__suggestions">
+                {SUGGESTIONS.map(s => (
+                  <button
+                    key={s}
+                    className="fbot__suggestion"
+                    onClick={() => sendMessage(s)}
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : (
+            messages.map((m, i) => (
+              <div key={i} className={`fbot__msg fbot__msg--${m.role}`}>
+                {m.content}
+              </div>
+            ))
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+
+        {/* Loading indicator */}
+        {isLoading && <LoadingIndicator text={loadingText} />}
+
+        {/* Input */}
+        <div className="fbot__input-row">
+          <textarea
+            ref={textareaRef}
+            className="fbot__input"
+            placeholder="Ask about Zac…"
+            value={input}
+            onChange={handleInput}
+            onKeyDown={handleKeyDown}
+            rows={1}
+            disabled={isLoading}
+          />
+          <button
+            className="fbot__send"
+            onClick={handleSend}
+            disabled={isLoading || !input.trim()}
+            aria-label="Send"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1L7 13M7 1L2 6M7 1L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Toggle wrap: smiski button + orbiting text ring */}
+      <div className="fbot__toggle-wrap">
+        <button
+          className={`fbot__toggle ${isFloatingOpen ? 'fbot__toggle--open' : ''}`}
+          onClick={() => setIsFloatingOpen(v => !v)}
+          aria-label={isFloatingOpen ? 'Close chat' : 'Open chat'}
+        >
+          {isFloatingOpen ? (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 2L14 14M14 2L2 14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+            </svg>
+          ) : (
+            <img src={smiskiIcon} alt="zac.ai" className="fbot__toggle-icon" />
+          )}
+        </button>
+
+        {/* Circular "zac.ai" text — hidden on mobile via CSS */}
+        <svg
+          className="fbot__circle-svg"
+          width="80"
+          height="80"
+          viewBox="0 0 80 80"
+          aria-hidden="true"
+        >
+          <defs>
+            <path
+              id="fbot-ring"
+              d="M 40 40 m -32 0 a 32 32 0 1 1 64 0 a 32 32 0 1 1 -64 0"
+            />
+            <filter id="fbot-text-shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#1a1818" floodOpacity="1"/>
+              <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#1a1818" floodOpacity="1"/>
+            </filter>
+          </defs>
+          <text
+            fontSize="8"
+            fontFamily="'Roboto Mono', monospace"
+            fill="#dfdad3"
+            letterSpacing="2"
+            filter="url(#fbot-text-shadow)"
+          >
+            <textPath href="#fbot-ring">
+              {'zac.ai · zac.ai · zac.ai · zac.ai · zac.ai · '}
+            </textPath>
+          </text>
+        </svg>
+      </div>
+    </div>
+  )
+}

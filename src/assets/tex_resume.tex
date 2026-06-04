@@ -1,0 +1,238 @@
+%-------------------------
+% Resume in LaTeX
+% Zachary Lee Kai Yi — AI Engineer
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{#1 \vspace{-2pt}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape \textbf{Lee Kai Yi Zachary}} \\ \vspace{4pt}
+    \small
+    \faPhone\ +65 8142 2748 \quad
+    \faEnvelope\ \href{mailto:lkyzachary@gmail.com}{lkyzachary@gmail.com} \quad
+    \faLinkedin\ \href{https://www.linkedin.com/in/zachary-lee-ky/}{linkedin.com/in/zachary-lee-ky} \quad
+    \faGlobe\ \href{https://zachyboiii.github.io/zac-portfolio/}{Portfolio}
+\end{center}
+
+\vspace{-8pt}
+\begin{center}
+  \small AI Engineer skilled in LLM systems, multi-agent orchestration, RAG pipelines, and full-stack development. Available May -- Aug 2026.
+\end{center}
+
+%-----------WORK EXPERIENCE-----------
+\section{Work Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {OCBC Bank}{May 2026 -- Aug 2026}
+      {AI Engineer Intern}{Singapore}
+      \resumeItemListStart
+        \resumeItem{Architected a \textbf{wealth portfolio advisory AI agent} for OCBC's premier private clients, leveraging \textbf{Retrieval-Augmented Generation (RAG)} to retrieve real-time market news and client portfolio data, enabling intelligent natural language Q\&A over financial documents.}
+        \resumeItem{Designed a \textbf{multi-agent AI system} with domain-specific specialisations using \textbf{LangGraph} for agentic workflow orchestration, with \textbf{AWS Bedrock} as the LLM backbone for scalable, cloud-native inference.}
+        \resumeItem{Implemented production \textbf{vector database} with \textbf{PGVector} (PostgreSQL) and \textbf{ChromaDB} for local development; integrated \textbf{Redis} caching layer to achieve low-latency inference responses at scale.}
+        \resumeItem{Engineered high-security \textbf{AI guardrails} and compliance controls in alignment with \textbf{MAS (Monetary Authority of Singapore)} financial AI regulations, ensuring responsible and auditable model deployment.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Edgemaker.ai}{Jan 2026 -- May 2026}
+      {AI / Full Stack Development Intern}{Singapore}
+      \resumeItemListStart
+        \resumeItem{Developed and deployed \textbf{RESTful APIs} using \textbf{Java (Spring Boot)} and \textbf{Node.js}, integrated with a \textbf{Next.js} frontend for production AI-powered applications.}
+        \resumeItem{Designed \textbf{LLM agent} logic for enterprise chatbots using advanced \textbf{prompt engineering} techniques, improving response quality and task-completion accuracy.}
+        \resumeItem{Assisted in end-to-end integration of \textbf{LLM AI agents}, \textbf{vector databases}, and custom \textbf{Retrieval-Augmented Generation (RAG)} pipelines for knowledge-grounded generation.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Singapore University of Technology and Design (SUTD)}{May 2025 -- Aug 2025}
+      {Teaching Assistant — 10.020 Data Driven World}{Singapore}
+      \resumeItemListStart
+        \resumeItem{Supported two cohorts in \textbf{Python} programming, data manipulation with \textbf{Pandas}/\textbf{NumPy}, and foundational ML algorithms through consultations and debugging sessions.}
+        \resumeItem{Graded assignments and project deliverables, providing structured technical feedback to improve code quality and problem-solving methodology.}
+        \resumeItem{Collaborated with faculty to refine course materials, enhancing student learning outcomes across data-driven engineering concepts.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Singapore University of Technology and Design (SUTD)}{Sep 2023 -- Present}
+      {B.Eng. Computer Science and Design — GPA 4.65/5.0 (Honors with Highest Distinction)}{Singapore}
+      \resumeItemListStart
+        \resumeItem{SUTD Global Distinguished Scholarship Holder.}
+        \resumeItem{Relevant coursework: Data Structures \& Algorithms, Machine Learning, Database Systems \& Big Data, Computer Systems Engineering, Information Systems \& Android Programming, Elements of Software Construction.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {University of Waterloo}{Sep 2025 -- Dec 2025}
+      {Exchange Program}{Canada}
+      \resumeItemListStart
+        \resumeItem{Coursework: Introduction to Machine Learning, Introduction to Artificial Intelligence, Human Computer Interactions.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+  \resumeSubHeadingListStart
+
+    \resumeProjectHeading
+      {\textbf{Chess AI Engine} $|$ \emph{Deep Reinforcement Learning, PyTorch, Neural Networks}}{Jan 2026}
+      \resumeItemListStart
+        \resumeItem{Developed a chess AI engine using \textbf{PyTorch} and \textbf{deep reinforcement learning}, training a \textbf{neural network} through self-play to evaluate board positions and predict move probabilities.}
+        \resumeItem{Built end-to-end \textbf{RL training pipeline} with policy and value networks; optimised move selection via iterative self-play and experience replay, improving model convergence and performance.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{Storehouse — Volunteer Delivery Management System} $|$ \emph{Node.js, Express.js, PostgreSQL, JavaScript}}{Dec 2025 -- Jan 2026}
+      \resumeItemListStart
+        \resumeItem{Built \textbf{RESTful} backend services with \textbf{Node.js} and \textbf{Express.js}, implementing full \textbf{CRUD} operations against a \textbf{PostgreSQL} database for delivery scheduling and management.}
+        \resumeItem{Created responsive frontend features using \textbf{JavaScript}, \textbf{HTML/CSS}, including an interactive Google Calendar-style delivery view and dynamic form components.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{Hotel Booking Platform} $|$ \emph{React.js, Express.js, MongoDB, Jest, Playwright}}{May 2025 -- Aug 2025}
+      \resumeItemListStart
+        \resumeItem{Built a full-stack hotel booking platform with Ascenda Loyalty integration, featuring lazy loading, real-time filtering, and interactive map visualisation using \textbf{React.js}.}
+        \resumeItem{Architected \textbf{RESTful} backend with \textbf{Express.js} and \textbf{MongoDB}, with secure authentication and session management; achieved \textbf{90\%+ test coverage} via \textbf{Jest} and \textbf{Playwright} end-to-end tests.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{TruthieGO} $|$ \emph{Godot Engine, Firebase, NoSQL — DSTA BrainHack 2025 Champion}}{May 2025 -- Jun 2025}
+      \resumeItemListStart
+        \resumeItem{Engineered modular game logic for a 2D educational board game using \textbf{Godot Engine} and GDScript, supporting multiple game modes and interactive mini-games.}
+        \resumeItem{Integrated \textbf{Firebase (NoSQL)} for real-time user authentication, session management, and cross-device progress tracking; won \textbf{Champion} at CODE\_EXP Competitive Category.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{Vroom — Android Learning Driver App} $|$ \emph{Java, Firebase, Android}}{Jan 2025 -- Apr 2025}
+      \resumeItemListStart
+        \resumeItem{Engineered an \textbf{Android} application connecting learner drivers with private instructors, featuring real-time booking, scheduling, in-app chat, and interactive quizzes.}
+        \resumeItem{Designed scalable \textbf{MVC} architecture using \textbf{Java OOP} principles with \textbf{Firebase Realtime Database} for live booking updates and push notifications.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{AI / ML}{: LLM Fine-tuning, Retrieval-Augmented Generation (RAG), Multi-Agent Systems, LangGraph, LangChain, Prompt Engineering, Deep Reinforcement Learning, PyTorch, Scikit-Learn, Pandas, NumPy, Matplotlib} \\
+     \textbf{Cloud \& Infrastructure}{: AWS Bedrock, Docker, Redis, PGVector, ChromaDB, PostgreSQL, MongoDB, Firebase, Hadoop, Apache Spark} \\
+     \textbf{Languages}{: Python, Java, JavaScript, TypeScript, SQL, HTML/CSS, Tailwind CSS} \\
+     \textbf{Frameworks \& Libraries}{: React.js, Next.js, Node.js, Express.js, Spring Boot, Streamlit} \\
+     \textbf{Testing \& DevOps}{: Jest, Playwright, Git, Docker, CI/CD, REST API Design} \\
+     \textbf{Tools}{: VS Code, Android Studio, Godot Engine, Figma, Lucid HDL, Rhino} \\
+     \textbf{Methodologies}{: Agile / Scrum, Object-Oriented Programming (OOP), Microservices Architecture} \\
+    }}
+ \end{itemize}
+
+%-----------LEADERSHIP AND VOLUNTEERING-----------
+\section{Leadership \& Volunteering}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {New Creation Church}{Aug 2022 -- Present}
+      {Lead IC, Games — Kids Camp Volunteer}{Singapore}
+      \resumeItemListStart
+        \resumeItem{Led end-to-end planning and execution of game activities for large-scale kids camps with 600+ attendees; managed volunteer teams and liaised with external vendors for logistics and equipment.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {SUTD Freshman Orientation}{May 2024 -- Sep 2024}
+      {Orientation Group Leader Head}{}
+      \resumeItemListStart
+        \resumeItem{Spearheaded event planning, people management, and mentorship of incoming freshmen; honed leadership, teamwork, and public speaking skills.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {SUTD Volleyball Club}{Sep 2023 -- Jan 2025}
+      {Secretary}{}
+      \resumeItemListStart
+        \resumeItem{Represented SUTD in Singapore University Games (2023 \& 2024); managed club attendance, logistics, and administrative operations; co-organised inter-club camps with the SUTD Tchoukball Club.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+\end{document}

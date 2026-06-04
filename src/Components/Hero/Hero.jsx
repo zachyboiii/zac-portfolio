@@ -1,12 +1,16 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react'
+import React, { useRef, useEffect, useState, useCallback, useContext } from 'react'
 import './Hero.css'
 import resume from '../../assets/resume.pdf'
 import { Link } from "react-router-dom";
 import { motion } from 'framer-motion'
 import ScrambleText from '../ScrambleText'
 import MobileNav from '../MobileNav/MobileNav'
+import ZacAI from '../Chat/ZacAI'
+import { ChatContext } from '../Chat/ChatContext'
 
 const Hero = () => {
+  const { openZacAI, isZacAIOpen } = useContext(ChatContext)
+
   // Evaluated once at mount — avoids a re-render, safe for SSR-free Vite builds
   const isMobile = useRef(
     typeof window !== 'undefined' && window.innerWidth <= 768
@@ -177,7 +181,7 @@ const Hero = () => {
       <motion.div
         className='hero-content'
         initial={{ opacity: isMobile ? 1 : 0 }}
-        animate={{ opacity: 1 }}
+        animate={{ opacity: isZacAIOpen ? 0 : 1 }}
         exit={{ opacity: 1 }}
         transition={{ duration: isMobile ? 0 : 1 }}
       >
@@ -199,6 +203,8 @@ const Hero = () => {
           </p>
         </div>
 
+        
+
         {/* ── Coordinates label (bottom-right) ── */}
         <div className="hero-coords" aria-hidden="true">01.35°N · 103.82°E</div>
 
@@ -219,6 +225,9 @@ const Hero = () => {
         {/* ── Mobile hamburger + overlay ──────── */}
         <MobileNav />
       </motion.div>
+
+      {/* ── ZacAI full interface (Hero-only, Mode 2) ── */}
+      <ZacAI />
     </div>
   );
 };

@@ -138,6 +138,27 @@
   flex-shrink: 0;
 }
 
+/* ── zac.ai launch button (bottom-left, above resume) ── */
+.hero-zacai-btn {
+  position: absolute;
+  left: 8.5%;
+  top: 73%;
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.4vw, 18px);
+  color: rgba(223, 218, 211, 0.55);
+  background: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.15em;
+  padding: 0;
+  z-index: 1;
+  transition: color 0.25s ease;
+}
+
+.hero-zacai-btn:hover {
+  color: var(--beige-bright);
+}
+
 /* ── Coordinates label (bottom-right) ───── */
 .hero-coords {
   position: absolute;
@@ -273,6 +294,14 @@
   /* Hide desktop resume (it's in the overlay) */
   .hero-resume {
     display: none;
+  }
+
+  /* zac.ai button — reposition below summary on mobile */
+  .hero-zacai-btn {
+    top: auto;
+    bottom: 14%;
+    left: 8%;
+    font-size: 13px;
   }
 
   /* ── Summary — push down to clear fixed bar ── */
