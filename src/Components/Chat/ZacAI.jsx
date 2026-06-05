@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ChatContext } from './ChatContext'
 import { useLoadingText } from './useLoadingText'
 import LoadingIndicator from './LoadingIndicator'
@@ -18,13 +19,21 @@ const SUGGESTIONS = [
 ]
 
 export default function ZacAI() {
+  const navigate = useNavigate()
   const {
     messages, isLoading,
     isZacAIOpen,
     isSidebarOpen, setIsSidebarOpen,
     sendMessage, clearMessages,
     minimizeToFloat, closeZacAI,
+    suggestion, clearSuggestion,
   } = useContext(ChatContext)
+
+  const handleSuggestionYes = () => {
+    clearSuggestion()
+    closeZacAI()
+    navigate(suggestion.path, { state: { tab: suggestion.tab } })
+  }
 
   const [input, setInput]       = useState('')
   const messagesEndRef          = useRef(null)
@@ -186,30 +195,22 @@ export default function ZacAI() {
                   <div className="zai__msg-bubble">{renderContent(m.content)}</div>
                 </div>
               ))}
-              {isLoading && (
-                <div className="zai__msg zai__msg--assistant">
-                  <span className="zai__msg-label">
-                    <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                      <rect x="2.5" y="2.5" width="7" height="7" rx="0.75" stroke="currentColor" strokeWidth="1"/>
-                      <line x1="6" y1="0.5" x2="6" y2="2.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
-                      <line x1="6" y1="9.5" x2="6" y2="11.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
-                      <line x1="0.5" y1="6" x2="2.5" y2="6" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
-                      <line x1="9.5" y1="6" x2="11.5" y2="6" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
-                      <rect x="4.5" y="4.5" width="1" height="1" fill="currentColor"/>
-                      <rect x="6.5" y="4.5" width="1" height="1" fill="currentColor"/>
-                      <line x1="4.5" y1="7" x2="7.5" y2="7" stroke="currentColor" strokeWidth="0.75" strokeLinecap="round"/>
-                    </svg>
-                    zac.ai
-                  </span>
-                  <div className="zai__msg-bubble zai__msg-bubble--loading">
-                    <LoadingIndicator text={loadingText} />
-                  </div>
-                </div>
-              )}
+              {isLoading && <LoadingIndicator text={loadingText} />}
               <div ref={messagesEndRef} />
             </div>
           )}
         </div>
+
+        {/* Page suggestion prompt */}
+        {suggestion && !isLoading && (
+          <div className="zai__suggestion">
+            <span>want to see more details?</span>
+            <div className="zai__suggestion-btns">
+              <button onClick={handleSuggestionYes}>yes</button>
+              <button onClick={clearSuggestion}>no</button>
+            </div>
+          </div>
+        )}
 
         {/* Input bar */}
         <div className="zai__input-wrap" ref={inputAreaRef}>

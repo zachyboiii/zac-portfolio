@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import work_data from '../../assets/workdata'
 import experience_data from '../../assets/experienceData'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLocation } from 'react-router-dom'
 import ScrambleText from '../ScrambleText'
 import MobileNav from '../MobileNav/MobileNav'
 
@@ -15,12 +16,13 @@ const WORK_DESC_2 =
   "Each reflects my drive to learn fast, take on new challenges, and grow beyond what I already know."
 
 const Work = () => {
+  const location = useLocation()
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const [fontsReady, setFontsReady]   = useState(false)
-  const [activeTab, setActiveTab]     = useState('projects')
+  const [activeTab, setActiveTab]     = useState(location.state?.tab || 'projects')
   const [expandedItems, setExpandedItems] = useState(new Set())
 
   const toggleExpanded = (id) => {

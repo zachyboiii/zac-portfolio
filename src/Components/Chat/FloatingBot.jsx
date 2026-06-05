@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ChatContext } from './ChatContext'
 import { useLoadingText } from './useLoadingText'
 import smiskiIcon from '../../assets/smiskiIcon.svg'
@@ -17,11 +17,19 @@ export default function FloatingBot() {
   const location = useLocation()
   const isHero = location.pathname === '/'
 
+  const navigate = useNavigate()
   const {
     messages, isLoading,
     isFloatingOpen, setIsFloatingOpen,
     isZacAIOpen, sendMessage, openZacAI,
+    suggestion, clearSuggestion,
   } = useContext(ChatContext)
+
+  const handleSuggestionYes = () => {
+    clearSuggestion()
+    setIsFloatingOpen(false)
+    navigate(suggestion.path, { state: { tab: suggestion.tab } })
+  }
 
   const [input, setInput] = useState('')
   const messagesEndRef = useRef(null)
@@ -126,10 +134,19 @@ export default function FloatingBot() {
               </div>
             ))
           )}
+          {isLoading && <LoadingIndicator text={loadingText} />}
           <div ref={messagesEndRef} />
         </div>
 
-        {isLoading && <LoadingIndicator text={loadingText} />}
+        {suggestion && !isLoading && (
+          <div className="fbot__page-prompt">
+            <span>want to see more details?</span>
+            <div className="fbot__page-prompt-btns">
+              <button onClick={handleSuggestionYes}>yes</button>
+              <button onClick={clearSuggestion}>no</button>
+            </div>
+          </div>
+        )}
 
         <div className="fbot__input-row">
           <textarea

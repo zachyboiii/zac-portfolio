@@ -1,6 +1,7 @@
 import React, { createContext, useState, useCallback, useEffect } from 'react'
 import { sendToOpenRouter } from './openrouter'
 import { getFastPathResponse } from './fastPath'
+import { getPageSuggestion } from './pageSuggestion'
 
 export const ChatContext = createContext(null)
 
@@ -10,17 +11,20 @@ export function ChatProvider({ children }) {
   const [isFloatingOpen, setIsFloatingOpen] = useState(false)
   const [isZacAIOpen, setIsZacAIOpen]     = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+  const [suggestion, setSuggestion]       = useState(null)
 
   const sendMessage = useCallback(async (text) => {
     const userMsg = { role: 'user', content: text }
     setMessages(prev => [...prev, userMsg])
     setIsLoading(true)
+    setSuggestion(null)
 
     try {
       const fastReply = getFastPathResponse(text)
       if (fastReply) {
         setMessages(prev => [...prev, { role: 'assistant', content: fastReply }])
         setIsLoading(false)
+        setSuggestion(getPageSuggestion(text))
         return
       }
 
@@ -47,6 +51,7 @@ export function ChatProvider({ children }) {
       if (firstChunk) {
         setMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, I could not generate a response.' }])
       }
+      setSuggestion(getPageSuggestion(text))
     } catch (err) {
       setMessages(prev => [...prev, { role: 'assistant', content: 'Something went wrong. Please try again.' }])
     } finally {
@@ -54,7 +59,8 @@ export function ChatProvider({ children }) {
     }
   }, [messages])
 
-  const clearMessages = useCallback(() => setMessages([]), [])
+  const clearMessages = useCallback(() => { setMessages([]); setSuggestion(null) }, [])
+  const clearSuggestion = useCallback(() => setSuggestion(null), [])
 
   // Clear on bfcache restore (browser back/forward navigation)
   useEffect(() => {
@@ -89,6 +95,8 @@ export function ChatProvider({ children }) {
       openZacAI,
       closeZacAI,
       minimizeToFloat,
+      suggestion,
+      clearSuggestion,
     }}>
       {children}
     </ChatContext.Provider>
