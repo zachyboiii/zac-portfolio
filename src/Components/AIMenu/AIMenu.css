@@ -1,0 +1,196 @@
+/* ══════════════════════════════════════════
+   AIMenu — Unified AI control hub
+   Fixed bottom-right robot button + popup
+   ══════════════════════════════════════════ */
+
+.ai-menu {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 500;
+  width: 52px;
+  height: 52px;
+  font-family: var(--font-body);
+}
+
+/* ── Popup (absolute, anchored above the button) ────────── */
+.ai-menu__popup {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform-origin: bottom right;
+}
+
+.ai-menu__popup--open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* ── Option buttons ─────────────────────────────────────── */
+.ai-menu__option {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 10px;
+  border: none;
+  background: var(--beige-bright);
+  color: rgba(26, 24, 24, 0.7);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.55);
+}
+
+/* JARVIS default */
+.ai-menu__option--jarvis:hover {
+  background: #ffffff;
+  color: var(--dark);
+}
+
+/* JARVIS active */
+.ai-menu__option--jarvis-active {
+  background: #00e5ff;
+  color: #0a1a1f;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.55),
+    0 0 14px rgba(0, 229, 255, 0.35);
+}
+
+.ai-menu__option--jarvis-active:hover {
+  background: #33ecff;
+  color: #0a1a1f;
+}
+
+/* Chat default */
+.ai-menu__option--chat:hover {
+  background: #ffffff;
+  color: var(--dark);
+}
+
+/* Chat active */
+.ai-menu__option--chat-active {
+  background: var(--beige);
+  color: var(--dark);
+}
+
+.ai-menu__option--chat-active:hover {
+  background: #ffffff;
+}
+
+.ai-menu__option:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ai-menu__option-icon {
+  flex-shrink: 0;
+}
+
+.ai-menu__option-label {
+  flex: 1;
+}
+
+/* Active indicator dot */
+.ai-menu__status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ai-menu__status-dot--jarvis {
+  background: #0a1a1f;
+}
+
+.ai-menu__status-dot--chat {
+  background: var(--dark);
+  opacity: 0.5;
+}
+
+/* ── Orbiting text ring ─────────────────────────────────── */
+.ai-menu__ring-svg {
+  position: absolute;
+  top: -14px;
+  left: -14px;
+  pointer-events: none;
+  transform-origin: 40px 40px;
+  animation: ai-menu-ring-spin 14s linear infinite;
+}
+
+@keyframes ai-menu-ring-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Robot toggle button ────────────────────────────────── */
+.ai-menu__btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: var(--beige-bright);
+  color: var(--dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  transition: box-shadow 0.25s ease, transform 0.2s ease, background 0.25s ease, color 0.25s ease;
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.6),
+    0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.ai-menu__btn:hover {
+  transform: scale(1.06);
+  background: #ffffff;
+  box-shadow:
+    0 6px 32px rgba(0, 0, 0, 0.65),
+    0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.ai-menu__btn--open {
+  background: var(--beige);
+}
+
+/* Cyan fill when JARVIS is active */
+.ai-menu__btn--jarvis {
+  background: #00e5ff;
+  color: #0a1a1f;
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 229, 255, 0.4);
+}
+
+.ai-menu__robot {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .ai-menu {
+    bottom: 1.25rem;
+    right: 1.25rem;
+  }
+
+  .ai-menu__ring-svg {
+    display: none;
+  }
+}

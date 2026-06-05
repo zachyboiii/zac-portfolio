@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect, useContext } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ChatContext } from './ChatContext'
 import { useLoadingText } from './useLoadingText'
-import smiskiIcon from '../../assets/smiskiIcon.svg'
 import LoadingIndicator from './LoadingIndicator'
 import './FloatingBot.css'
 
@@ -172,37 +171,6 @@ export default function FloatingBot() {
         </div>
       </div>
 
-      {/* Toggle wrap: smiski button + orbiting text ring */}
-      <div className="fbot__toggle-wrap">
-        <button
-          className={`fbot__toggle ${isFloatingOpen ? 'fbot__toggle--open' : ''}`}
-          onClick={() => setIsFloatingOpen(v => !v)}
-          aria-label={isFloatingOpen ? 'Close chat' : 'Open chat'}
-        >
-          {isFloatingOpen ? (
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M2 2L14 14M14 2L2 14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-            </svg>
-          ) : (
-            <img src={smiskiIcon} alt="zac.ai" className="fbot__toggle-icon" />
-          )}
-        </button>
-
-        <svg className="fbot__circle-svg" width="80" height="80" viewBox="0 0 80 80" aria-hidden="true">
-          <defs>
-            <path id="fbot-ring" d="M 40 40 m -32 0 a 32 32 0 1 1 64 0 a 32 32 0 1 1 -64 0"/>
-            <filter id="fbot-text-shadow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#1a1818" floodOpacity="1"/>
-              <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#1a1818" floodOpacity="1"/>
-            </filter>
-          </defs>
-          <text fontSize="8" fontFamily="'Roboto Mono', monospace" fill="#dfdad3" letterSpacing="2" filter="url(#fbot-text-shadow)">
-            <textPath href="#fbot-ring">
-              {'zac.ai · zac.ai · zac.ai · '}
-            </textPath>
-          </text>
-        </svg>
-      </div>
     </div>
   )
 }

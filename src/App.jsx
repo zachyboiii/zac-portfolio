@@ -4,6 +4,8 @@ import AnimatedRoutes from './Components/AnimatedRoutes'
 import { motion, useMotionValue, useSpring, animate } from 'framer-motion'
 import { ChatProvider } from './Components/Chat/ChatContext'
 import FloatingBot from './Components/Chat/FloatingBot'
+import GestureControl from './Components/GestureControl/GestureControl'
+import AIMenu from './Components/AIMenu/AIMenu'
 import './App.css'
 
 const PADDING = 10;
@@ -22,6 +24,9 @@ const App = () => {
   const y = useSpring(rawY, { stiffness: 800, damping: 40 });
   const w = useSpring(rawW, { stiffness: 600, damping: 35 });
   const h = useSpring(rawH, { stiffness: 600, damping: 35 });
+
+  const jarvisRef = useRef(null);
+  const [jarvisMode, setJarvisMode] = useState('off');
 
   const [isLocked, setIsLocked] = useState(false);
   const lockedRef = useRef(false);  // fully expanded on element
@@ -128,6 +133,9 @@ const App = () => {
 
         <AnimatedRoutes />
         <FloatingBot />
+        {/* GestureControl must be inside <Router> so it can call useNavigate */}
+        <GestureControl ref={jarvisRef} onModeChange={setJarvisMode} />
+        <AIMenu jarvisRef={jarvisRef} jarvisMode={jarvisMode} />
       </Router>
     </ChatProvider>
   );
