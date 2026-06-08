@@ -16,7 +16,8 @@
  * ── GESTURES ────────────────────────────────────────────────────────────────
  *   ☝️  Point (index up, others curled)      → moves the targeting cursor
  *   🤏  Pinch (thumb tip near index tip)     → clicks whatever is under cursor
- *   🖐️  Open hand + move up / down           → scrolls the page
+ *   🖐️  Open hand (all fingers)              → scroll up (hold)
+ *   🤟  3 fingers (pinky curled)             → scroll down (hold)
  *   ✌️  Peace + horizontal swipe             → navigates prev / next page
  *
  * ── DEPENDENCIES ────────────────────────────────────────────────────────────
@@ -112,14 +113,19 @@ function getGesture(lms) {
   const rE = ringTip.y  < ringPIP.y;  // ring extended?
   const pE = pinkyTip.y < pinkyPIP.y; // pinky extended?
 
+  // Thumb: moves laterally, not vertically — check x-distance from palm center (lms[9]).
+  // Works for both left and right hands regardless of mirroring.
+  const tE = Math.abs(thumbTip.x - lms[9].x) > 0.12; // thumb spread out?
+
   const pinchDist = Math.hypot(thumbTip.x - indexTip.x, thumbTip.y - indexTip.y);
 
   return {
-    pinching: pinchDist < 0.06,         // 🤏 thumb touches index tip
-    pointing: iE && !mE && !rE,         // ☝️ only index finger up
-    peace:    iE && mE && !rE && !pE,   // ✌️ index + middle up
-    open:     iE && mE && rE && pE,     // 🖐️ all four fingers extended → SCROLL
-    fist:     !iE && !mE && !rE && !pE, // ✊ all fingers curled (unused, reserved)
+    pinching:   pinchDist < 0.06,              // 🤏 thumb + index tips touching → click
+    pointing:   iE && !mE && !rE,             // ☝️ index only → move cursor
+    peace:      iE && mE && !rE && !pE,       // ✌️ index + middle → navigate (swipe)
+    scrollUp:   tE && iE && mE && rE && pE,   // 🖐️ thumb + all four fingers out → scroll UP
+    scrollDown: tE && !iE && !mE && !rE && pE, // 🤙 thumb out + pinky out + three fingers curled → scroll DOWN
+    fist:       !iE && !mE && !rE && !pE,     // ✊ all curled → hold to exit
   };
 }
 
@@ -222,11 +228,10 @@ const GestureControl = forwardRef(function GestureControl({ onModeChange }, ref)
    *     Scroll  — compare consecutive y values while open hand is held
    *     Swipe   — compare oldest vs newest x value over a short time window
    */
-  const posHistRef    = useRef([]);
-  const lastClickRef  = useRef(0); // timestamp — debounce click  (900 ms gap)
-  const lastScrollRef = useRef(0); // timestamp — debounce scroll (one frame ≈ 16 ms)
-  const lastNavRef    = useRef(0); // timestamp — debounce navigate (1500 ms gap)
-  const fistStartRef  = useRef(0); // when fist gesture began — hold 1.5 s to exit
+  const posHistRef   = useRef([]);
+  const lastClickRef = useRef(0);   // debounce click (900 ms)
+  const lastNavRef   = useRef(0);   // debounce navigate (1500 ms)
+  const fistStartRef = useRef(0);   // fist hold timer for exit
   const deactivateRef = useRef(null); // stable ref so the rAF loop can call deactivate
 
   // ── stopAll ───────────────────────────────────────────────────────────────
@@ -239,6 +244,9 @@ const GestureControl = forwardRef(function GestureControl({ onModeChange }, ref)
     cancelAnimationFrame(rafRef.current);
     streamRef.current?.getTracks().forEach(track => track.stop());
     streamRef.current = null;
+    // Clear srcObject so the video element fully resets — without this, readyState
+    // stays >= 1 on the next activation and the new stream loads incorrectly.
+    if (videoRef.current) videoRef.current.srcObject = null;
   }, []);
 
   // ── runDetection ──────────────────────────────────────────────────────────
@@ -371,7 +379,8 @@ const GestureControl = forwardRef(function GestureControl({ onModeChange }, ref)
       if      (g.fist && fistHoldPct > 0) label = `⬡  EXIT JARVIS ${fistHoldPct}%`;
       else if (g.pinching)                label = '⬡  PINCH SELECT';
       else if (g.pointing)                label = '⬡  TARGETING';
-      else if (g.open)                    label = '⬡  SCROLL MODE';
+      else if (g.scrollUp)                label = '⬡  SCROLL ▲ UP';
+      else if (g.scrollDown)              label = '⬡  SCROLL ▼ DOWN';
       else if (g.peace)                   label = '⬡  NAVIGATE';
       setGesture(label);
 
@@ -395,22 +404,13 @@ const GestureControl = forwardRef(function GestureControl({ onModeChange }, ref)
         }
       }
 
-      // ── ACTION: Open hand + vertical movement → Scroll ────────────────
-      /**
-       * Compare y of the current frame's palm against the previous frame's.
-       * Positive dy = hand moved DOWN the screen → scroll page DOWN (natural).
-       * Multiplied by 5 to amplify the small per-frame delta into a useful
-       * scroll distance. Debounced to one frame gap (~16 ms).
-       */
-      if (g.open && posHistRef.current.length >= 2) {
-        const prev = posHistRef.current[posHistRef.current.length - 2];
-        const curr = posHistRef.current[posHistRef.current.length - 1];
-        const dy   = curr.y - prev.y;
-        // Negated so hand-up = scroll down, matching Windows scroll wheel direction
-        if (Math.abs(dy) > 2 && now - lastScrollRef.current > 16) {
-          window.scrollBy(0, -dy * 5);
-          lastScrollRef.current = now;
-        }
+      // ── ACTION: Gesture-based Scroll ──────────────────────────────────
+      // The gesture shape itself tells you the direction — no baseline,
+      // no zones, no invisible reference points.
+      //   🖐️ Open hand (all 4 fingers up) → scroll UP
+      //   🤟 3 fingers (index+middle+ring, pinky down) → scroll DOWN
+      if (g.scrollUp || g.scrollDown) {
+        window.scrollBy(0, g.scrollUp ? -9 : 9);
       }
 
       // ── ACTION: Peace sign + horizontal swipe → Navigate ──────────────
@@ -518,13 +518,25 @@ const GestureControl = forwardRef(function GestureControl({ onModeChange }, ref)
       }
 
       // ── Camera init ────────────────────────────────────────────────────
-      // getUserMedia triggers the browser's camera permission prompt
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: { width: 640, height: 480, facingMode: 'user' },
+        video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } },
       });
-      streamRef.current          = stream;
-      videoRef.current.srcObject = stream;
-      await videoRef.current.play();
+      streamRef.current = stream;
+
+      // Always wait for loadedmetadata — never short-circuit on readyState.
+      // On second+ activation the video element has stale state from the
+      // previous stopped stream; readyState can be 4 (HAVE_ENOUGH_DATA) even
+      // though srcObject was just replaced, causing play() to fire too early.
+      const vid = videoRef.current;
+      vid.srcObject = stream;
+      await new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => reject(new Error('Video metadata timeout')), 8000);
+        vid.onloadedmetadata = () => { clearTimeout(timeout); resolve(); };
+        vid.onerror          = () => { clearTimeout(timeout); reject(new Error('Video load error')); };
+      });
+      vid.onloadedmetadata = null;
+      vid.onerror          = null;
+      await vid.play();
 
       // ── Enforce minimum boot duration ──────────────────────────────────
       // Ensures the cinematic boot sequence plays fully even on fast networks
@@ -653,68 +665,26 @@ const GestureControl = forwardRef(function GestureControl({ onModeChange }, ref)
             )}
           </div>
 
-          {/* ── Gesture instructions ──────────────────────────────────────
-              Shown on the right side of the boot screen so users know
-              exactly what to do before JARVIS goes live. Each card fades
-              in after a short stagger delay (set via CSS animation-delay)
-              so they appear progressively rather than all at once. */}
+          {/* ── Gesture instructions — compact horizontal strip ────────── */}
           <div className="jarvis-boot__instructions">
-            <div className="jarvis-boot__instructions-title">
+            <div className="jarvis-boot__instructions-title" style={{ animationDelay: '0.8s' }}>
               // GESTURE REFERENCE
             </div>
-
-            <div className="jarvis-boot__instruction-card" style={{ animationDelay: '1.2s' }}>
-              <div className="jarvis-boot__instruction-icon">☝️</div>
-              <div className="jarvis-boot__instruction-text">
-                <div className="jarvis-boot__instruction-name">POINT</div>
-                <div className="jarvis-boot__instruction-desc">
-                  Raise your index finger — the targeting reticle follows your fingertip
+            <div className="jarvis-boot__instruction-row">
+              {[
+                { icon: '☝️', name: 'POINT',      sub: 'cursor',     delay: '1.2s' },
+                { icon: '🤏', name: 'PINCH',      sub: 'click',      delay: '1.5s' },
+                { icon: '🖐️', name: 'OPEN HAND',  sub: 'scroll up',  delay: '1.8s' },
+                { icon: '🤙', name: '3 + PINKY',  sub: 'scroll down',delay: '2.1s' },
+                { icon: '✌️', name: 'PEACE SWIPE',sub: 'navigate',   delay: '2.4s' },
+                { icon: '✊', name: 'FIST 1.5s',  sub: 'exit',       delay: '2.7s' },
+              ].map(({ icon, name, sub, delay }) => (
+                <div key={name} className="jarvis-boot__instruction-tile" style={{ animationDelay: delay }}>
+                  <span className="jarvis-boot__tile-icon">{icon}</span>
+                  <span className="jarvis-boot__tile-name">{name}</span>
+                  <span className="jarvis-boot__tile-sub">{sub}</span>
                 </div>
-              </div>
-            </div>
-
-            <div className="jarvis-boot__instruction-card" style={{ animationDelay: '1.6s' }}>
-              <div className="jarvis-boot__instruction-icon">🤏</div>
-              <div className="jarvis-boot__instruction-text">
-                <div className="jarvis-boot__instruction-name">PINCH</div>
-                <div className="jarvis-boot__instruction-desc">
-                  Bring thumb and index together to click whatever the cursor is over
-                </div>
-              </div>
-            </div>
-
-            <div className="jarvis-boot__instruction-card" style={{ animationDelay: '2.0s' }}>
-              <div className="jarvis-boot__instruction-icon">🖐️</div>
-              <div className="jarvis-boot__instruction-text">
-                <div className="jarvis-boot__instruction-name">OPEN HAND WAVE</div>
-                <div className="jarvis-boot__instruction-desc">
-                  Spread all fingers open and move your hand up or down to scroll
-                </div>
-              </div>
-            </div>
-
-            <div className="jarvis-boot__instruction-card" style={{ animationDelay: '2.4s' }}>
-              <div className="jarvis-boot__instruction-icon">✌️</div>
-              <div className="jarvis-boot__instruction-text">
-                <div className="jarvis-boot__instruction-name">PEACE + SWIPE</div>
-                <div className="jarvis-boot__instruction-desc">
-                  Hold a peace sign and swipe left or right to navigate between pages
-                </div>
-              </div>
-            </div>
-
-            <div className="jarvis-boot__instruction-card" style={{ animationDelay: '2.8s' }}>
-              <div className="jarvis-boot__instruction-icon">✊</div>
-              <div className="jarvis-boot__instruction-text">
-                <div className="jarvis-boot__instruction-name">HOLD FIST — EXIT</div>
-                <div className="jarvis-boot__instruction-desc">
-                  Close all fingers into a fist and hold for 1.5 s to exit JARVIS
-                </div>
-              </div>
-            </div>
-
-            <div className="jarvis-boot__instructions-tip" style={{ animationDelay: '3.2s' }}>
-              // Ensure your hand is visible to the camera and well-lit
+              ))}
             </div>
           </div>
 
@@ -757,12 +727,23 @@ const GestureControl = forwardRef(function GestureControl({ onModeChange }, ref)
           {/* Gesture guide — appears for 6 s after activation then fades */}
           {showGuide && (
             <div className="jarvis-guide" role="tooltip">
-              <div className="jarvis-guide__title">GESTURE CONTROLS</div>
-              <div className="jarvis-guide__item">☝️  Point → Move cursor</div>
-              <div className="jarvis-guide__item">🤏  Pinch → Select / Click</div>
-              <div className="jarvis-guide__item">🖐️  Open hand + move → Scroll</div>
-              <div className="jarvis-guide__item">✌️  Peace + swipe → Navigate pages</div>
-              <div className="jarvis-guide__item">✊  Hold fist 1.5s → Exit JARVIS</div>
+              <div className="jarvis-guide__title">// GESTURE CONTROLS</div>
+              <div className="jarvis-guide__row">
+                {[
+                  { icon: '☝️', label: 'POINT',      sub: 'cursor'      },
+                  { icon: '🤏', label: 'PINCH',      sub: 'click'       },
+                  { icon: '🖐️', label: 'OPEN HAND',  sub: 'scroll up'   },
+                  { icon: '🤙', label: '3 + PINKY',  sub: 'scroll down' },
+                  { icon: '✌️', label: 'PEACE SWIPE',sub: 'navigate'    },
+                  { icon: '✊', label: 'FIST 1.5s',  sub: 'exit'        },
+                ].map(({ icon, label, sub }) => (
+                  <div key={label} className="jarvis-guide__tile">
+                    <span className="jarvis-guide__tile-icon">{icon}</span>
+                    <span className="jarvis-guide__tile-label">{label}</span>
+                    <span className="jarvis-guide__tile-sub">{sub}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </>

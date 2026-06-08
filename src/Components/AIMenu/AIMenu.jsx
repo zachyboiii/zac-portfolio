@@ -1,13 +1,10 @@
 import { useState, useRef, useEffect, useContext } from 'react'
-import { useLocation } from 'react-router-dom'
 import { ChatContext } from '../Chat/ChatContext'
 import './AIMenu.css'
 
 export default function AIMenu({ jarvisRef, jarvisMode }) {
   const [open, setOpen] = useState(false)
   const { isFloatingOpen, setIsFloatingOpen } = useContext(ChatContext)
-  const location = useLocation()
-  const isHero = location.pathname === '/'
   const menuRef = useRef(null)
 
   // Close on click outside
@@ -36,8 +33,8 @@ export default function AIMenu({ jarvisRef, jarvisMode }) {
     setOpen(false)
   }
 
-  // JARVIS option only on hero page + desktop
-  const showJarvis = isHero && window.innerWidth > 768
+  // JARVIS option on all pages, desktop only
+  const showJarvis = window.innerWidth > 768
   const jarvisOn      = jarvisMode === 'on'
   const jarvisBooting = jarvisMode === 'booting'
 

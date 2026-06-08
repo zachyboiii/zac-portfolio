@@ -176,37 +176,65 @@
 }
 
 /* ─── Gesture Guide Panel ───────────────────────────────────────────────────── */
-/*
- * Appears bottom-left for 6 seconds after JARVIS activates,
- * showing a quick reference for all available gestures.
- * Fades in on mount; the component removes it from the DOM after 6 s
- * so no exit animation is needed.
- */
 .jarvis-guide {
   position: fixed;
-  bottom: 80px;
-  left: 2rem;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 9003;
   font-family: var(--jarvis-font);
   color: var(--jarvis-cyan);
   pointer-events: none;
-  background: rgba(0, 10, 30, 0.7);
-  border: 1px solid rgba(0, 229, 255, 0.3);
-  padding: 14px 18px;
+  background: rgba(0, 10, 30, 0.75);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  padding: 10px 14px;
   animation: hudFadeIn 0.5s ease forwards;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: min(860px, 94vw);
 }
 .jarvis-guide__title {
-  font-size: 8px;
+  font-size: 7px;
   letter-spacing: 3px;
-  opacity: 0.6;
-  margin-bottom: 10px;
+  opacity: 0.45;
 }
-.jarvis-guide__item {
-  font-size: 11px;
+.jarvis-guide__row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+.jarvis-guide__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 12px;
+  border: 1px solid rgba(0, 229, 255, 0.12);
+  border-bottom: 2px solid rgba(0, 229, 255, 0.45);
+  background: rgba(0, 229, 255, 0.03);
+  min-width: 76px;
+}
+.jarvis-guide__tile-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+.jarvis-guide__tile-label {
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  color: var(--jarvis-cyan);
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
+  white-space: nowrap;
+}
+.jarvis-guide__tile-sub {
+  font-size: 7px;
   letter-spacing: 1px;
-  margin: 4px 0;
-  opacity: 0.85;
+  color: rgba(0, 229, 255, 0.4);
+  white-space: nowrap;
 }
 
 /* ─── Targeting Reticle Cursor ──────────────────────────────────────────────── */
@@ -625,104 +653,74 @@
   box-shadow: 3px 3px 10px rgba(0,229,255,0.4);
 }
 
-/* ─── Boot Screen — Gesture Instructions Panel ──────────────────────────────── */
-/*
- * Positioned on the right side of the boot screen, vertically centered.
- * Shows all four gestures as staggered cards so users know exactly what
- * to do the moment JARVIS goes live.
- *
- * Each card fades in from the right with a delay set inline via
- * style={{ animationDelay }} in JSX. This staggers the reveal without
- * needing JS timers — pure CSS handles the animation once the element mounts.
- */
+/* ─── Boot Screen — Gesture Instructions Strip ──────────────────────────────── */
 .jarvis-boot__instructions {
   position: absolute;
-  right: 6%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: min(280px, 30vw);
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 8px;
   font-family: var(--jarvis-font);
+  width: min(860px, 94vw);
 }
 
-/* "// GESTURE REFERENCE" header above the cards */
 .jarvis-boot__instructions-title {
-  font-size: 9px;
+  font-size: 8px;
   letter-spacing: 3px;
-  color: rgba(0, 229, 255, 0.5);
-  margin-bottom: 4px;
+  color: rgba(0, 229, 255, 0.4);
   opacity: 0;
-  animation: instructionFadeIn 0.5s ease forwards;
-  animation-delay: 0.8s;
+  animation: instructionFadeIn 0.4s ease forwards;
 }
 
-/*
- * Each instruction card: icon on the left, name + description on the right.
- * Starts invisible and off to the right, slides in when its delay fires.
- * The left border accent gives a military-data-panel feel.
- */
-.jarvis-boot__instruction-card {
+.jarvis-boot__instruction-row {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 10px 12px;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.jarvis-boot__instruction-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 14px;
   border: 1px solid rgba(0, 229, 255, 0.15);
-  border-left: 2px solid var(--jarvis-cyan);
+  border-bottom: 2px solid rgba(0, 229, 255, 0.5);
   background: rgba(0, 229, 255, 0.04);
   backdrop-filter: blur(4px);
+  min-width: 88px;
   opacity: 0;
-  animation: instructionFadeIn 0.5s ease forwards;
-  /* animation-delay is set inline in JSX per card */
+  animation: instructionFadeIn 0.4s ease forwards;
 }
 
-/* Emoji icon — fixed width so all descriptions align */
-.jarvis-boot__instruction-icon {
-  font-size: 20px;
+.jarvis-boot__tile-icon {
+  font-size: 18px;
   line-height: 1;
-  flex-shrink: 0;
-  width: 28px;
-  text-align: center;
-  margin-top: 2px;
 }
 
-.jarvis-boot__instruction-text {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-/* Gesture name — all-caps, cyan, glowing */
-.jarvis-boot__instruction-name {
-  font-size: 9px;
-  letter-spacing: 2.5px;
+.jarvis-boot__tile-name {
+  font-size: 8px;
+  letter-spacing: 1.5px;
   color: var(--jarvis-cyan);
-  text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
+  white-space: nowrap;
 }
 
-/* Plain-language description below the name */
-.jarvis-boot__instruction-desc {
-  font-size: 10px;
-  letter-spacing: 0.5px;
-  color: rgba(0, 229, 255, 0.55);
-  line-height: 1.5;
-}
-
-/* Small italic tip at the bottom of the panel */
-.jarvis-boot__instructions-tip {
+.jarvis-boot__tile-sub {
   font-size: 8px;
   letter-spacing: 1px;
-  color: rgba(0, 229, 255, 0.35);
-  padding-top: 4px;
-  opacity: 0;
-  animation: instructionFadeIn 0.5s ease forwards;
-  /* animation-delay set inline in JSX */
+  color: rgba(0, 229, 255, 0.45);
+  white-space: nowrap;
 }
 
 @keyframes instructionFadeIn {
-  from { opacity: 0; transform: translateX(16px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ─── Mobile: hide JARVIS entirely ─────────────────────────────────────────── */
@@ -745,14 +743,3 @@
   }
 }
 
-/* ─── Responsive — hide instructions on narrow screens ─────────────────────── */
-/*
- * On small viewports the right panel overlaps the reactor / log.
- * Below 640 px we hide it — the gesture guide that appears after
- * boot already covers all the same information.
- */
-@media (max-width: 640px) {
-  .jarvis-boot__instructions {
-    display: none;
-  }
-}
