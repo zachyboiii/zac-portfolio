@@ -114,6 +114,23 @@ export default function ZacAI() {
         <div className="zai__sidebar-info">
           <p>Ask anything about<br />Zachary Lee.</p>
         </div>
+
+        <nav className="zai__sidebar-nav">
+          <span className="zai__sidebar-nav-label">Pages</span>
+          {[
+            { label: 'Work',    path: '/work' },
+            { label: 'About',   path: '/about' },
+            { label: 'Contact', path: '/contact' },
+          ].map(({ label, path }) => (
+            <button
+              key={path}
+              className="zai__sidebar-nav-link"
+              onClick={() => { closeZacAI(); navigate(path) }}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
       </aside>
 
       {/* ── Main area ──────────────────────────── */}
