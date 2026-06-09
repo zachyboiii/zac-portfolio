@@ -7,6 +7,7 @@ import ScrambleText from '../ScrambleText'
 import MobileNav from '../MobileNav/MobileNav'
 import ZacAI from '../Chat/ZacAI'
 import { ChatContext } from '../Chat/ChatContext'
+import SkillTicker from './SkillTicker'
 
 const SPLINE_SCENE = 'https://prod.spline.design/8sJFCjP6bKNQ1qqB/scene.splinecode'
 
@@ -193,6 +194,9 @@ const Hero = () => {
         exit={{ opacity: 1 }}
         transition={{ duration: isMobile ? 0 : 1 }}
       >
+        {/* ── Skill ticker (top) ──────────────── */}
+        <SkillTicker />
+
         {/* ── Mobile sticky bar ───────────────── */}
         <div className="hero-mobile-bar" aria-hidden="true" />
 
