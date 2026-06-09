@@ -8,6 +8,8 @@ import MobileNav from '../MobileNav/MobileNav'
 import ZacAI from '../Chat/ZacAI'
 import { ChatContext } from '../Chat/ChatContext'
 
+const SPLINE_SCENE = 'https://prod.spline.design/8sJFCjP6bKNQ1qqB/scene.splinecode'
+
 const Hero = () => {
   const { openZacAI, isZacAIOpen } = useContext(ChatContext)
 
@@ -41,6 +43,12 @@ const Hero = () => {
       };
     }, 3000);
   }, []);
+
+  // Preload Spline module + scene file so About avatar is instant on navigation
+  useEffect(() => {
+    import('@splinetool/react-spline')
+    fetch(SPLINE_SCENE, { mode: 'no-cors' }).catch(() => {})
+  }, [])
 
   useEffect(() => {
     /* ── Mouse (desktop) ─────────────────────────── */

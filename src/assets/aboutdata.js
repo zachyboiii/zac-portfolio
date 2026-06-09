@@ -5,7 +5,7 @@ const aboutSkills = [
     },
     {
         category: 'Frontend',
-        skills: ['React.js', 'HTML', 'CSS', 'Tailwind CSS', 'Streamlit']
+        skills: ['React.js','Next.js', 'HTML', 'CSS', 'Tailwind CSS', 'Streamlit']
     },
     {
         category: 'Backend',
@@ -21,7 +21,7 @@ const aboutSkills = [
     },
     {
         category: 'Databases',
-        skills: ['MongoDB', 'PostgreSQL', 'Firebase']
+        skills: ['MongoDB', 'PostgreSQL', 'Firebase','Supabase', 'Vector Database']
     },
     {
         category: 'Tools',

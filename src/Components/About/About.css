@@ -127,25 +127,77 @@
 .profile-pic-wrap {
   position: relative;
   width: 100%;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-.dp {
-  width: 68%;
-  height: auto;
-  display: block;
+.profile-pic-wrap > div {
+  width: 100% !important;
+  height: calc(100% + 50px) !important;
+  transform: translateX(15%) scale(1.2);
+}
+
+/* Canvas matches the oversized div — watermark at the bottom falls
+   outside the container and is clipped by overflow: hidden */
+.profile-pic-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Fallback when Spline fails — original photo + decorative border */
+.profile-pic-fallback {
   position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-pic-fallback .pic-border {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.55;
+}
+
+.profile-pic-fallback .self-pic {
+  position: relative;
+  width: 72%;
+  height: 85%;
+  object-fit: cover;
+  border-radius: 4px;
   z-index: 1;
 }
 
-/* decorative frame — behind the photo */
-.border {
-  position: absolute;
-  top: 4%;
-  left: 7%;
-  width: 68%;
-  height: auto;
-  pointer-events: none;
-  z-index: 0;
+/* Loading state shown while Spline downloads */
+.spline-loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spline-loader__text {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  color: var(--beige);
+  opacity: 0.5;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: spline-typing 1.6s steps(15, end) forwards;
+}
+
+@keyframes spline-typing {
+  from { width: 0; }
+  to   { width: 9em; }
 }
 
 /* ── Meta info card ─────────────────────── */
@@ -185,17 +237,26 @@
 /* Pulsing green "online" dot for status */
 .status-dot {
   display: inline-block;
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #6ee7a0;
   flex-shrink: 0;
-  animation: status-pulse 2.4s ease-in-out infinite;
+  box-shadow: 0 0 6px 2px rgba(110, 231, 160, 0.6);
+  animation: status-pulse 1.4s ease-in-out infinite;
 }
 
 @keyframes status-pulse {
-  0%, 100% { opacity: 1;   transform: scale(1); }
-  50%       { opacity: 0.4; transform: scale(0.8); }
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 6px 2px rgba(110, 231, 160, 0.6);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.75);
+    box-shadow: 0 0 2px 1px rgba(110, 231, 160, 0.1);
+  }
 }
 
 /* ── Skills section ─────────────────────── */
@@ -375,16 +436,8 @@
 
   .profile-pic-wrap {
     flex: 1;
-    max-width: 200px;
-  }
-
-  /* Hide decorative frame on mobile */
-  .border {
-    display: none;
-  }
-
-  .dp {
-    width: 100%;
+    max-width: 220px;
+    height: 320px;
   }
 
   /* Meta grid → 2 cols on mobile */

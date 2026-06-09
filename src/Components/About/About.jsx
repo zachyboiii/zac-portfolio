@@ -1,13 +1,29 @@
-import React from 'react'
+import React, { lazy, Suspense, Component } from 'react'
 import '../About/About.css'
 import horiLine from '../../assets/hori-line.svg'
-import { Link } from "react-router-dom";
-import { motion } from 'framer-motion'
 import selfPic from '../../assets/self-pic.svg'
 import picBorder from '../../assets/pic-border.svg'
+import { Link } from "react-router-dom";
+import { motion } from 'framer-motion'
 import resume from '../../assets/resume.pdf'
 import aboutSkills from '../../assets/aboutdata'
 import MobileNav from '../MobileNav/MobileNav'
+
+const Spline = lazy(() => import('@splinetool/react-spline'))
+
+class SplineErrorBoundary extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { failed: false }
+  }
+  static getDerivedStateFromError() {
+    return { failed: true }
+  }
+  render() {
+    if (this.state.failed) return this.props.fallback
+    return this.props.children
+  }
+}
 
 const About = () => {
   const scrollToTop = () => {
@@ -91,8 +107,16 @@ const About = () => {
             {/* Mobile-only rotated heading */}
             <h1 className="about-heading about-heading--mob" aria-hidden="true">About</h1>
             <div className="profile-pic-wrap">
-              <img className="dp" src={selfPic} alt="Zachary Lee" />
-              <img className="border" src={picBorder} alt="" aria-hidden="true" />
+              <SplineErrorBoundary fallback={
+                <div className="profile-pic-fallback">
+                  <img src={picBorder} className="pic-border" alt="" aria-hidden="true" />
+                  <img src={selfPic} className="self-pic" alt="Zachary Lee" />
+                </div>
+              }>
+                <Suspense fallback={<div className="spline-loader"><span className="spline-loader__text">Avatar loading...</span></div>}>
+                  <Spline scene="https://prod.spline.design/8sJFCjP6bKNQ1qqB/scene.splinecode" />
+                </Suspense>
+              </SplineErrorBoundary>
             </div>
           </div>{/* /about-pic-row */}
 
@@ -113,7 +137,7 @@ const About = () => {
               <span className="meta-label">// status</span>
               <span className="meta-value">
                 <span className="status-dot" aria-hidden="true" />
-                Open to Internships
+                Open to full time roles
               </span>
             </div>
           </div>
