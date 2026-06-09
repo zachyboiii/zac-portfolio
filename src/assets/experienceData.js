@@ -22,7 +22,7 @@ const experience_data = [
     e_type: "Internship",
     e_date: "May 2026 – Present",
     e_desc: "Built a chatbot with agentic workflows using RAG and LangGraph to assist with customer portfolio management.",
-    e_skills: ["RAG", "LangGraph", "Agentic AI", "Python"],
+    e_skills: ["RAG", "LangGraph", "Agentic AI","Vector DB", "FastAPI", "PostgreSQL", "Git"],
     e_link: "",
     e_current: true,
   },
