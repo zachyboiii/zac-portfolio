@@ -436,8 +436,13 @@
 
   .profile-pic-wrap {
     flex: 1;
-    max-width: 220px;
+    max-width: 350px;
     height: 320px;
+    z-index: 5;
+  }
+
+  .profile-pic-wrap > div {
+    transform: translateX(15%) scale(1.1);
   }
 
   /* Meta grid → 2 cols on mobile */
