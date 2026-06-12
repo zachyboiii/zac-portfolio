@@ -4,12 +4,7 @@ import { ChatContext } from './ChatContext'
 import { useLoadingText } from './useLoadingText'
 import LoadingIndicator from './LoadingIndicator'
 import './ZacAI.css'
-
-function renderContent(text) {
-  return text.split(/\*\*(.*?)\*\*/g).map((part, i) =>
-    i % 2 === 1 ? <strong key={i}>{part}</strong> : part
-  )
-}
+import { renderContent } from './renderContent'
 
 const SUGGESTIONS = [
   { label: "Projects", text: "What projects has Zac built?" },
@@ -178,6 +173,9 @@ export default function ZacAI() {
             <div className="zai__landing">
               <h1 className="zai__heading">zac.ai</h1>
               <p className="zai__subheading">Ask me anything about Zachary.</p>
+              <p className="zai__rag-note">
+                RAG-driven — answers are retrieved from Zac&apos;s resume and project data via semantic vector search.
+              </p>
               <div className="zai__chips">
                 {SUGGESTIONS.map(s => (
                   <button

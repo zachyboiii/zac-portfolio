@@ -2,6 +2,7 @@ import React, { createContext, useState, useCallback, useEffect } from 'react'
 import { sendToOpenRouter } from './openrouter'
 import { getFastPathResponse } from './fastPath'
 import { getPageSuggestion } from './pageSuggestion'
+import { retrieveContext, preloadRAG } from './rag'
 
 export const ChatContext = createContext(null)
 
@@ -28,11 +29,15 @@ export function ChatProvider({ children }) {
         return
       }
 
+      // RAG: embed the query in-browser and retrieve the most relevant
+      // knowledge chunks to ground the LLM's answer
+      const context = await retrieveContext(text)
+
       const history = [...messages, userMsg]
       let firstChunk = true
 
       // Append each streamed token to the last (assistant) message
-      await sendToOpenRouter(history, (chunk) => {
+      await sendToOpenRouter(history, context, (chunk) => {
         if (firstChunk) {
           firstChunk = false
           setIsLoading(false)
@@ -61,6 +66,10 @@ export function ChatProvider({ children }) {
 
   const clearMessages = useCallback(() => { setMessages([]); setSuggestion(null) }, [])
   const clearSuggestion = useCallback(() => setSuggestion(null), [])
+
+  // Warm up the RAG pipeline (embedding model + vector DB) in the background
+  // so the first message doesn't pay the full startup cost
+  useEffect(() => { preloadRAG() }, [])
 
   // Clear on bfcache restore (browser back/forward navigation)
   useEffect(() => {

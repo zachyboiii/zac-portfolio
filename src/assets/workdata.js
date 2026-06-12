@@ -8,8 +8,27 @@ import truthieImg from './truthiego.png'
 import hotelImg from './hotel-ease.png'
 import storehouseImg from './storehouse.png'
 import chessImg from './chess.png'
+import zacaiImg from './smiskiIcon.svg'
 
 const work_data = [
+    {
+        id: "zac-ai",
+        w_title: "zac.ai",
+        w_date: "Jun 26 - Jun 26",
+        w_desc: "Personal Project: RAG chatbot embedded in this portfolio that answers questions about me, grounded in my resume and project data.",
+        short_desc: "RAG chatbot that answers questions about Zac.",
+        long_desc:`zac.ai is the chatbot living on this very website — an end-to-end Retrieval-Augmented Generation (RAG) pipeline that grounds every answer in my actual resume, work experience, and project data.
+
+The knowledge base is built by an embedding pipeline that parses my resume and structured site data, chunks it into self-contained semantic units, and encodes each chunk into 384-dimensional dense vectors using the all-MiniLM-L6-v2 sentence transformer. At query time, the user's question is embedded with the same model via Transformers.js, and a cosine similarity search ranks the knowledge base to retrieve the top-k most relevant chunks. Only this retrieved context is injected into the LLM prompt — grounding generation, reducing hallucination, and keeping token usage low.
+
+Responses are streamed token-by-token from the LLM, with a regex fast path that answers greetings and small talk instantly without an inference call. The bot also speaks Gen Z Singlish, so go ahead and ask it anything about me la.`,
+        w_languages: ['React.js', 'Transformers.js', 'RAG', 'OpenRouter', 'Node.js'],
+        w_link: "https://zachyboiii.github.io/zac-portfolio/",
+        w_img: zacaiImg,
+        youtube: null,
+        opens_zacai: true,
+        img_small: true
+    },
     {
         id: "chess-ai",
         w_title: "Chess AI",

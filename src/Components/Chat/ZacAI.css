@@ -266,6 +266,14 @@
   margin-bottom: 0.5rem;
 }
 
+.zai__rag-note {
+  font-size: 0.7rem;
+  color: rgba(223, 218, 211, 0.3);
+  max-width: 26rem;
+  margin: 0 auto 0.75rem;
+  line-height: 1.5;
+}
+
 .zai__chips {
   display: flex;
   flex-wrap: wrap;

@@ -1,4 +1,4 @@
-import { SYSTEM_PROMPT } from './systemPrompt'
+import { buildSystemPrompt } from './systemPrompt'
 
 const API_URL = 'https://openrouter.ai/api/v1/chat/completions'
 
@@ -43,9 +43,11 @@ async function readStream(res, onChunk) {
   }
 }
 
-export async function sendToOpenRouter(conversationHistory, onChunk) {
+export async function sendToOpenRouter(conversationHistory, context, onChunk) {
   const key = import.meta.env.VITE_OPENROUTER_API_KEY
   if (!key) throw new Error('Missing VITE_OPENROUTER_API_KEY')
+
+  const systemPrompt = buildSystemPrompt(context)
 
   const models = import.meta.env.VITE_OPENROUTER_MODEL
     ? [import.meta.env.VITE_OPENROUTER_MODEL]
@@ -64,7 +66,7 @@ export async function sendToOpenRouter(conversationHistory, onChunk) {
         model,
         stream: true,
         messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
+          { role: 'system', content: systemPrompt },
           ...conversationHistory,
         ],
         max_tokens: 300,

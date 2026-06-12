@@ -4,6 +4,7 @@ import { ChatContext } from './ChatContext'
 import { useLoadingText } from './useLoadingText'
 import LoadingIndicator from './LoadingIndicator'
 import './FloatingBot.css'
+import { renderContent } from './renderContent'
 
 const SUGGESTIONS = [
   "What projects has Zac built?",
@@ -118,6 +119,9 @@ export default function FloatingBot() {
             <div className="fbot__empty">
               <p className="fbot__empty-title">Hi, I&apos;m <strong>zac.ai</strong></p>
               <p className="fbot__empty-sub">Ask me anything about Zachary.</p>
+              <p className="fbot__rag-note">
+                RAG-driven: answers grounded in Zac&apos;s resume and project data.
+              </p>
               <div className="fbot__suggestions">
                 {SUGGESTIONS.map(s => (
                   <button key={s} className="fbot__suggestion" onClick={() => sendMessage(s)}>
@@ -129,7 +133,7 @@ export default function FloatingBot() {
           ) : (
             messages.map((m, i) => (
               <div key={i} className={`fbot__msg fbot__msg--${m.role}`}>
-                {m.content}
+                {renderContent(m.content)}
               </div>
             ))
           )}

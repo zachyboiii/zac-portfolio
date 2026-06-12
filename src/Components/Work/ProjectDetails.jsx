@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../Work/ProjectDetails.css'
 import horiLine from '../../assets/hori-line.svg'
 import { useParams, Link } from 'react-router-dom';
@@ -6,10 +6,12 @@ import work_data from '../../assets/workdata';
 import { motion } from 'framer-motion';
 import ScrambleText from '../ScrambleText';
 import MobileNav from '../MobileNav/MobileNav';
+import { ChatContext } from '../Chat/ChatContext';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
   const project = work_data.find(p => p.id === projectId);
+  const { openZacAI } = useContext(ChatContext);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -73,7 +75,7 @@ const ProjectDetail = () => {
 
       {/* ── Scrollable content (right) ───── */}
       <div className="pd-content">
-        <img className="pd-img" src={project.w_img} alt={project.w_title} />
+        <img className={`pd-img${project.img_small ? ' pd-img--small' : ''}`} src={project.w_img} alt={project.w_title} />
 
         <h2 className="pd-shortdesc">
           <ScrambleText text={project.short_desc} delay={300} speed={20} />
@@ -115,14 +117,21 @@ const ProjectDetail = () => {
           </div>
         )}
 
-        <a
-          className="pd-link2"
-          href={project.w_link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Check it out.
-        </a>
+        {project.opens_zacai ? (
+          // ZacAI lives on the home route; open it via context then navigate
+          <Link className="pd-link2" to="/" onClick={openZacAI}>
+            Check it out.
+          </Link>
+        ) : (
+          <a
+            className="pd-link2"
+            href={project.w_link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Check it out.
+          </a>
+        )}
 
         <p onClick={scrollToTop} className="pd-to-top">back to top</p>
       </div>

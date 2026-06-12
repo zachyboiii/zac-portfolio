@@ -1,0 +1,381 @@
+/*
+ * JarvisVoice.css
+ *
+ * JARVIS Voice Interface (Mobile) — Visual Styling
+ * ────────────────────────────────────────────────
+ * Same holographic HUD aesthetic as GestureControl.css:
+ *   Cyan glow     #00e5ff   primary interactive color
+ *   Electric blue #0080ff   secondary / depth
+ *   Gold          #ffd700   active / transmit state
+ *   Dark base     rgba(0,10,20,…) overlay backgrounds
+ *
+ * Tokens are re-declared here because GestureControl.css is only bundled
+ * when the desktop component is imported; on mobile this file must be
+ * self-sufficient. Same names + same values, so duplication is harmless.
+ */
+
+:root {
+  --jarvis-cyan:  #00e5ff;
+  --jarvis-blue:  #0080ff;
+  --jarvis-gold:  #ffd700;
+  --jarvis-dark:  rgba(0, 10, 20, 0.92);
+  --jarvis-font:  'Courier New', 'Lucida Console', monospace;
+}
+
+/* ─── Shared: CRT scanlines ─────────────────────────────────────────────────── */
+.jv-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 229, 255, 0.025) 3px,
+    rgba(0, 229, 255, 0.025) 4px
+  );
+  animation: jvScanDrift 10s linear infinite;
+}
+@keyframes jvScanDrift {
+  from { background-position: 0 0; }
+  to   { background-position: 0 200px; }
+}
+
+/* ─── Shared: HUD corner brackets ───────────────────────────────────────────── */
+.jv-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+}
+.jv-corner--tl {
+  top: 14px; left: 14px;
+  border-top: 2px solid var(--jarvis-cyan);
+  border-left: 2px solid var(--jarvis-cyan);
+  box-shadow: -3px -3px 10px rgba(0, 229, 255, 0.35);
+}
+.jv-corner--tr {
+  top: 14px; right: 14px;
+  border-top: 2px solid var(--jarvis-cyan);
+  border-right: 2px solid var(--jarvis-cyan);
+  box-shadow: 3px -3px 10px rgba(0, 229, 255, 0.35);
+}
+.jv-corner--bl {
+  bottom: 14px; left: 14px;
+  border-bottom: 2px solid var(--jarvis-cyan);
+  border-left: 2px solid var(--jarvis-cyan);
+  box-shadow: -3px 3px 10px rgba(0, 229, 255, 0.35);
+}
+.jv-corner--br {
+  bottom: 14px; right: 14px;
+  border-bottom: 2px solid var(--jarvis-cyan);
+  border-right: 2px solid var(--jarvis-cyan);
+  box-shadow: 3px 3px 10px rgba(0, 229, 255, 0.35);
+}
+
+/* ─── Boot screen ───────────────────────────────────────────────────────────── */
+.jv-boot {
+  position: fixed;
+  inset: 0;
+  z-index: 9500;
+  background: var(--jarvis-dark);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-family: var(--jarvis-font);
+  color: var(--jarvis-cyan);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+.jv-boot--done {
+  opacity: 0;
+}
+
+/* Arc reactor */
+.jv-boot__reactor {
+  position: relative;
+  width: 96px;
+  height: 96px;
+}
+.jv-boot__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+.jv-boot__ring--1 {
+  border-top-color: var(--jarvis-cyan);
+  border-right-color: var(--jarvis-cyan);
+  animation: jvSpin 1.6s linear infinite;
+}
+.jv-boot__ring--2 {
+  inset: 14px;
+  border-bottom-color: var(--jarvis-blue);
+  border-left-color: var(--jarvis-blue);
+  animation: jvSpin 2.4s linear infinite reverse;
+}
+.jv-boot__core {
+  position: absolute;
+  inset: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #bdfaff 0%, var(--jarvis-cyan) 55%, transparent 75%);
+  animation: jvCorePulse 1.4s ease-in-out infinite;
+}
+@keyframes jvSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes jvCorePulse {
+  0%, 100% { opacity: 0.7; transform: scale(0.92); }
+  50%      { opacity: 1;   transform: scale(1.05); }
+}
+
+/* Boot log */
+.jv-boot__log {
+  width: min(86vw, 420px);
+  min-height: 170px;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  line-height: 1.9;
+}
+.jv-boot__log-line {
+  opacity: 0.65;
+  animation: jvLineIn 0.25s ease both;
+}
+.jv-boot__log-line--active {
+  opacity: 1;
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.7);
+}
+@keyframes jvLineIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { transform: translateY(0); }
+}
+.jv-boot__cursor {
+  animation: jvBlink 0.8s step-end infinite;
+}
+@keyframes jvBlink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* ─── Voice HUD ─────────────────────────────────────────────────────────────── */
+.jv-hud {
+  position: fixed;
+  inset: 0;
+  z-index: 9400;
+  background: var(--jarvis-dark);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-family: var(--jarvis-font);
+  color: var(--jarvis-cyan);
+  display: flex;
+  flex-direction: column;
+  padding: calc(16px + env(safe-area-inset-top, 0px)) 16px calc(16px + env(safe-area-inset-bottom, 0px));
+  overscroll-behavior: contain;
+}
+
+/* Status bar */
+.jv-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 26px 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  background: rgba(0, 20, 35, 0.6);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.15), inset 0 0 14px rgba(0, 229, 255, 0.05);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+.jv-status__title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.jv-status__badge {
+  padding: 2px 8px;
+  border: 1px solid var(--jarvis-cyan);
+  color: var(--jarvis-cyan);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.jv-status__badge--listening {
+  border-color: var(--jarvis-gold);
+  color: var(--jarvis-gold);
+  animation: jvBadgePulse 1s ease-in-out infinite;
+}
+.jv-status__badge--speaking {
+  background: rgba(0, 229, 255, 0.12);
+}
+@keyframes jvBadgePulse {
+  0%, 100% { box-shadow: 0 0 4px rgba(255, 215, 0, 0.4); }
+  50%      { box-shadow: 0 0 14px rgba(255, 215, 0, 0.9); }
+}
+
+/* EXIT button */
+.jv-exit {
+  appearance: none;
+  background: transparent;
+  border: 1px solid rgba(255, 80, 80, 0.7);
+  color: #ff6b6b;
+  font-family: var(--jarvis-font);
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.jv-exit:active {
+  background: rgba(255, 80, 80, 0.15);
+}
+
+/* Transcript */
+.jv-transcript {
+  flex: 1;
+  margin: 0 26px;
+  padding: 12px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid rgba(0, 229, 255, 0.18);
+  background: rgba(0, 14, 26, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.jv-transcript__empty {
+  margin: auto;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  opacity: 0.55;
+  text-align: center;
+}
+.jv-msg {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-width: 92%;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.jv-msg--user {
+  align-self: flex-end;
+  text-align: right;
+  color: var(--jarvis-gold);
+}
+.jv-msg--ai {
+  align-self: flex-start;
+  color: #b8f4ff;
+}
+.jv-msg__tag {
+  font-size: 9px;
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+.jv-msg__text {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.jv-msg--interim .jv-msg__text {
+  opacity: 0.7;
+  font-style: italic;
+}
+.jv-msg--thinking .jv-msg__text {
+  opacity: 0.7;
+}
+.jv-ellipsis::after {
+  content: '...';
+  animation: jvBlink 1s step-end infinite;
+}
+
+/* Error / fallback line */
+.jv-error {
+  margin: 8px 26px 0;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 120, 80, 0.55);
+  color: #ffab8a;
+  font-size: 10px;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ─── Push-to-talk zone ─────────────────────────────────────────────────────── */
+.jv-talk-zone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0 4px;
+}
+
+/* Pulsing listening ring behind the button */
+.jv-talk__pulse {
+  position: absolute;
+  top: 16px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px solid var(--jarvis-gold);
+  pointer-events: none;
+  animation: jvPulseRing 1.1s ease-out infinite;
+}
+@keyframes jvPulseRing {
+  0%   { transform: scale(1);    opacity: 0.8; }
+  100% { transform: scale(1.55); opacity: 0;   }
+}
+
+/* The talk button itself — hold-to-talk, so suppress every native
+   long-press / scroll / selection behaviour */
+.jv-talk {
+  appearance: none;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px solid var(--jarvis-cyan);
+  background: radial-gradient(circle at 50% 38%, rgba(0, 229, 255, 0.18), rgba(0, 16, 30, 0.9) 70%);
+  color: var(--jarvis-cyan);
+  font-family: var(--jarvis-font);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.35), inset 0 0 18px rgba(0, 229, 255, 0.12);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+.jv-talk__label {
+  font-size: 7.5px;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+.jv-talk svg {
+  pointer-events: none;
+}
+.jv-talk--listening {
+  border-color: var(--jarvis-gold);
+  color: var(--jarvis-gold);
+  transform: scale(1.06);
+  box-shadow: 0 0 26px rgba(255, 215, 0, 0.55), inset 0 0 18px rgba(255, 215, 0, 0.15);
+}
+.jv-talk--speaking {
+  animation: jvBadgePulse 1.2s ease-in-out infinite;
+}
+.jv-talk--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.jv-talk__hint {
+  font-size: 9px;
+  letter-spacing: 2px;
+  opacity: 0.5;
+}
