@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring, animate } from 'framer-motion'
 import { ChatProvider } from './Components/Chat/ChatContext'
 import FloatingBot from './Components/Chat/FloatingBot'
 import GestureControl from './Components/GestureControl/GestureControl'
+import JarvisVoice from './Components/JarvisVoice/JarvisVoice'
 import AIMenu from './Components/AIMenu/AIMenu'
 import './App.css'
 
@@ -134,7 +135,10 @@ const App = () => {
         <AnimatedRoutes />
         <FloatingBot />
         {/* GestureControl must be inside <Router> so it can call useNavigate */}
-        <GestureControl ref={jarvisRef} onModeChange={setJarvisMode} />
+        {IS_MOBILE
+          ? <JarvisVoice ref={jarvisRef} onModeChange={setJarvisMode} />
+          : <GestureControl ref={jarvisRef} onModeChange={setJarvisMode} />
+        }
         <AIMenu jarvisRef={jarvisRef} jarvisMode={jarvisMode} />
       </Router>
     </ChatProvider>

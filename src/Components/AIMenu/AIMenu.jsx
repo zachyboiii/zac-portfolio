@@ -33,8 +33,8 @@ export default function AIMenu({ jarvisRef, jarvisMode }) {
     setOpen(false)
   }
 
-  // JARVIS option on all pages, desktop only
-  const showJarvis = window.innerWidth > 768
+  // JARVIS option on all screen sizes (GestureControl on desktop, JarvisVoice on mobile)
+  const showJarvis = true
   const jarvisOn      = jarvisMode === 'on'
   const jarvisBooting = jarvisMode === 'booting'
 
