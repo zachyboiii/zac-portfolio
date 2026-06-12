@@ -22,7 +22,7 @@ const work_data = [
 The knowledge base is built by an embedding pipeline that parses my resume and structured site data, chunks it into self-contained semantic units, and encodes each chunk into 384-dimensional dense vectors using the all-MiniLM-L6-v2 sentence transformer. At query time, the user's question is embedded with the same model via Transformers.js, and a cosine similarity search ranks the knowledge base to retrieve the top-k most relevant chunks. Only this retrieved context is injected into the LLM prompt — grounding generation, reducing hallucination, and keeping token usage low.
 
 Responses are streamed token-by-token from the LLM, with a regex fast path that answers greetings and small talk instantly without an inference call. The bot also speaks Gen Z Singlish, so go ahead and ask it anything about me la.`,
-        w_languages: ['React.js', 'Transformers.js', 'RAG', 'OpenRouter', 'Node.js'],
+        w_languages: ['React.js', 'Transformers.js', 'RAG', 'Node.js'],
         w_link: "https://zachyboiii.github.io/zac-portfolio/",
         w_img: zacaiImg,
         youtube: null,
