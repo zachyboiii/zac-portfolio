@@ -1,11 +1,12 @@
 // Build-time embedding pipeline.
 //
 // Derives the knowledge base from the real data sources:
-//   - src/assets/tex_resume.tex     (resume — same content as resume.pdf)
-//   - src/assets/workdata.js        (projects)
-//   - src/assets/experienceData.js  (work experience)
-//   - src/assets/aboutdata.js       (skills)
-//   - EXTRA_CHUNKS below            (facts not in any data file)
+//   - src/assets/tex_resume.tex       (resume — same content as resume.pdf)
+//   - src/assets/workdata.js          (projects)
+//   - src/assets/experienceData.js    (work experience)
+//   - src/assets/aboutdata.js         (skills)
+//   - src/assets/sutd_transcript.pdf  (coursework — hardcoded in EXTRA_CHUNKS below)
+//   - EXTRA_CHUNKS below              (facts not in any data file)
 //
 // Embeds every chunk with the same model the browser uses
 // (Xenova/all-MiniLM-L6-v2) and writes:
@@ -28,17 +29,15 @@ const EXTRA_CHUNKS = [
   `About Zachary Lee: Computer Science and Design student at SUTD (Singapore University of Technology and Design), specializing in Artificial Intelligence and Software Engineering. Expected graduation 2027. Based in Singapore and open to full-time roles in AI and software engineering starting Aug 2027.`,
   `Contact Zachary: Work email lkyzachary@gmail.com. School email zachary_lee@mymail.sutd.edu.sg. LinkedIn: https://www.linkedin.com/in/zachary-lee-ky/`,
 
-  // Derived from sutd_transcript.pdf
-  `SUTD Coursework (Singapore University of Technology and Design, B.Eng. Computer Science and Design, Cumulative GPA 4.65/5.0):
+  // Derived from sutd_transcript.pdf (updated 15 Jun 2026)
+  `SUTD Coursework (Singapore University of Technology and Design, B.Eng. Computer Science and Design, Cumulative GPA 4.65/5.0, Honours with Highest Distinction):
 2023 Sep–Dec: Computational Thinking For Design, Modelling and Analysis, Physical World, Social Science: Understanding Behaviour, Culture & Society.
 2024 Jan–Apr: Design Thinking and Innovation, Modeling Space and Systems (A), Science for a Sustainable World (A-), Technological World (A).
 2024 Sep–Dec: Data Driven World (A), Modelling Uncertainty (A-), Designing Energy Systems (B+), Global Humanities: Literature, Philosophy, and Ethics.
 2025 Jan–Apr: Introduction to Information Systems & Programming (A), Computation Structures (A), Algorithms (A) — Term GPA 5.00.
-2025 May–Aug: Elements of Software Construction (A-), Computer System Engineering (A-), Database Systems (B+), Organisational Processes (A-).`,
-
-  // Derived from uwaterloo_transcript.pdf
-  `University of Waterloo Exchange Coursework (Fall 2025, Mathematics Non-Degree Exchange programme):
-CS 480 Introduction to Machine Learning (68/100), CS 486 Introduction to Artificial Intelligence (60/100), MSE 343 Human-Computer Interaction (82/100), MUSIC 111 Fundamentals of Music Theory (56/100).`,
+2025 May–Aug: Elements of Software Construction (A-), Computer System Engineering (A-), Database Systems (B+), Organisational Processes (A-).
+2025 Sep–Dec (credits transferred from University of Waterloo exchange): User Interface Design & Implementation, Machine Learning, Artificial Intelligence.
+Awards: SUTD Honours List for Sophomore & Junior Terms (Trimester 2, AY 2025).`,
 ]
 
 /* ── LaTeX resume parsing ─────────────────────────────────────────── */
