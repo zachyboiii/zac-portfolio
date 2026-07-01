@@ -8,6 +8,7 @@ import { motion } from 'framer-motion'
 import resume from '../../assets/resume.pdf'
 import aboutSkills from '../../assets/aboutdata'
 import MobileNav from '../MobileNav/MobileNav'
+import usePageMeta from '../usePageMeta'
 
 const Spline = lazy(() => import('@splinetool/react-spline'))
 
@@ -26,6 +27,10 @@ class SplineErrorBoundary extends Component {
 }
 
 const About = () => {
+  usePageMeta(
+    'About — Zachary Lee | AI Engineer & CS Student at SUTD',
+    "Learn about Zachary Lee, a Computer Science & Design student at SUTD graduating 2027, passionate about software development and artificial intelligence."
+  )
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
 import ScrambleText from '../ScrambleText'
 import MobileNav from '../MobileNav/MobileNav'
+import usePageMeta from '../usePageMeta'
 
 const WORK_DESC_1 =
   "A look at what I've built and where I've worked — from personal and school projects to real-world internships."
@@ -16,6 +17,10 @@ const WORK_DESC_2 =
   "Each reflects my drive to learn fast, take on new challenges, and grow beyond what I already know."
 
 const Work = () => {
+  usePageMeta(
+    'Work — Zachary Lee | Projects & Experience',
+    "A look at Zachary Lee's projects and work experience, including AI engineering internships, RAG systems, and full-stack applications."
+  )
   const location = useLocation()
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })

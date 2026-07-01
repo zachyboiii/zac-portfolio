@@ -5,8 +5,13 @@ import { Link } from "react-router-dom";
 import { motion } from 'framer-motion'
 import ScrambleText from '../ScrambleText'
 import MobileNav from '../MobileNav/MobileNav'
+import usePageMeta from '../usePageMeta'
 
 const Contact = () => {
+  usePageMeta(
+    'Contact — Zachary Lee',
+    'Get in touch with Zachary Lee for internship, full-time AI engineering, or software development opportunities. Reach out via email, GitHub, or LinkedIn.'
+  )
   return (
     <motion.div
       className='contact-page'

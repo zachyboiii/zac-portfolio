@@ -8,10 +8,15 @@ import MobileNav from '../MobileNav/MobileNav'
 import ZacAI from '../Chat/ZacAI'
 import { ChatContext } from '../Chat/ChatContext'
 import SkillTicker from './SkillTicker'
+import usePageMeta from '../usePageMeta'
 
 const SPLINE_SCENE = 'https://prod.spline.design/8sJFCjP6bKNQ1qqB/scene.splinecode'
 
 const Hero = () => {
+  usePageMeta(
+    'Zachary Lee — AI Engineer & Software Developer | SUTD',
+    'Zachary Lee is an AI Engineer and Computer Science & Design student at SUTD (Singapore), specializing in RAG pipelines, multi-agent LLM systems, and full-stack development.'
+  )
   const { openZacAI, isZacAIOpen } = useContext(ChatContext)
 
   // Evaluated once at mount — avoids a re-render, safe for SSR-free Vite builds

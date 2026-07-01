@@ -7,11 +7,17 @@ import { motion } from 'framer-motion';
 import ScrambleText from '../ScrambleText';
 import MobileNav from '../MobileNav/MobileNav';
 import { ChatContext } from '../Chat/ChatContext';
+import usePageMeta from '../usePageMeta';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
   const project = work_data.find(p => p.id === projectId);
   const { openZacAI } = useContext(ChatContext);
+
+  usePageMeta(
+    project ? `${project.w_title} — Zachary Lee` : 'Project Not Found — Zachary Lee',
+    project ? project.short_desc : undefined
+  );
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
