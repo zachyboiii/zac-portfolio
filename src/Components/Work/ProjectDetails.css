@@ -125,6 +125,10 @@
   border-radius: 0;
 }
 
+.pd-img--rounded {
+  border-radius: 30px;
+}
+
 /* Short description headline */
 .pd-shortdesc {
   width: 100%;
@@ -245,6 +249,26 @@
   background: var(--beige-bright);
   color: var(--dark);
   text-decoration: line-through 1px;
+}
+
+.pd-download-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+}
+
+.pd-download-group .pd-link2 {
+  margin-bottom: 0;
+}
+
+.pd-download-disclaimer {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--beige);
+  opacity: 0.6;
+  text-align: center;
 }
 
 /* Back to top */

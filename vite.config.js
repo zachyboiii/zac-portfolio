@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: "/zac-portfolio",
+  assetsInclude: ['**/*.zip'],
   optimizeDeps: {
     // @mediapipe/tasks-vision loads WASM files dynamically at runtime.
     // Vite's pre-bundler breaks WASM loading by trying to inline the binary,

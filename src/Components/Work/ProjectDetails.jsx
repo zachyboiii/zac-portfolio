@@ -81,7 +81,7 @@ const ProjectDetail = () => {
 
       {/* ── Scrollable content (right) ───── */}
       <div className="pd-content">
-        <img className={`pd-img${project.img_small ? ' pd-img--small' : ''}`} src={project.w_img} alt={project.w_title} />
+        <img className={`pd-img${project.img_small ? ' pd-img--small' : ''}${project.img_rounded ? ' pd-img--rounded' : ''}`} src={project.w_img} alt={project.w_title} />
 
         <h2 className="pd-shortdesc">
           <ScrambleText text={project.short_desc} delay={300} speed={20} />
@@ -128,6 +128,17 @@ const ProjectDetail = () => {
           <Link className="pd-link2" to="/" onClick={openZacAI}>
             Check it out.
           </Link>
+        ) : project.download_file ? (
+          <div className="pd-download-group">
+            <a
+              className="pd-link2"
+              href={project.download_file}
+              download
+            >
+              Download.
+            </a>
+            <p className="pd-download-disclaimer">* Windows only</p>
+          </div>
         ) : (
           <a
             className="pd-link2"

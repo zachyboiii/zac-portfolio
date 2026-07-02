@@ -1,7 +1,7 @@
 import vroomImg from './vroom.png'
 import squidImg from './squid_game.png'
 import arcadeImg from './mini_arcade.png'
-import kebunImg from './kebunfresh.png' 
+import kebunImg from './kebunfresh.png'
 import calcImg from './calc.png'
 import teleImg from './telebot.png'
 import truthieImg from './truthiego.png'
@@ -9,6 +9,9 @@ import hotelImg from './hotel-ease.png'
 import storehouseImg from './storehouse.png'
 import chessImg from './chess.png'
 import zacaiImg from './smiskiIcon.svg'
+import worldcupImg from './worldcup-sim.png'
+import desktopPetImg from './desktop-pet.png'
+import desktopPetZip from './desktop-pet.zip'
 
 const work_data = [
     {
@@ -27,6 +30,41 @@ Responses are streamed token-by-token from the LLM, with a regex fast path that 
         w_img: zacaiImg,
         youtube: null,
         opens_zacai: true,
+        img_small: true
+    },
+    {
+        id: "worldcup-sim",
+        w_title: "World Cup Predictor",
+        w_date: "Jun 26 - Jun 26",
+        w_desc: "Personal Project: ML pipeline that predicts World Cup match outcomes using gradient boosting models trained on 48,000+ historical international matches.",
+        short_desc: "ML pipeline that predicts World Cup match outcomes.",
+        long_desc:`World Cup Simulator is a Python ML pipeline that trains match prediction models across every stage of a World Cup: a full-time outcome classifier (W/D/L), home and away goals regressors, an extra-time score model, and a penalty shootout classifier. Three gradient boosting algorithms were benchmarked for each task — LightGBM, XGBoost, and CatBoost — selected for their dominance on tabular sports ML benchmarks.
+
+Model selection used a chronological 80/20 train/test split to prevent data leakage, with the test set representing the most recent 20% of matches. Champions were chosen by weighted F1 (classifiers) and MAE (regressors). Secondary metrics included ROC-AUC (macro one-vs-rest), log loss, Brier score, and RMSE. Training weights were applied to up-rank recent matches, high-Elo fixtures, World Cup data (especially 2022), and top-5 league squads — so the model learns from the matches that most resemble WC2026 conditions.
+
+The 38-feature vector covers Elo ratings, 5- and 10-game rolling form, goals averages, head-to-head records, World Cup-specific stats, tournament experience, disciplinary data, and penalty rates. The pipeline is tracked with MLflow and champion models are serialised via joblib.`,
+        w_languages: ['Python', 'LightGBM', 'XGBoost', 'CatBoost', 'scikit-learn', 'MLflow'],
+        w_link: "https://github.com/zachyboiii",
+        w_img: worldcupImg,
+        youtube: null,
+        img_rounded: true
+    },
+    {
+        id: "desktop-pet",
+        w_title: "Desktop Pet",
+        w_date: "Jun 26 - Jun 26",
+        w_desc: "Personal Project: A Tauri desktop app that lets you adopt a pixel-art pet that lives on your screen, walks around, and reacts to your mouse.",
+        short_desc: "Pixel-art desktop pet that lives on your screen.",
+        long_desc:`Desktop Pet is a Tauri v2 app that renders a transparent, always-on-top window housing an animated pixel-art companion. The pet walks across your desktop, idles, and reacts to cursor proximity — all driven by a canvas-based sprite animation engine built from scratch.
+
+The pet canvas runs in a dedicated Vite + React window with a fully transparent background, while a separate dashboard window lets you customise your pet: choose from cats, dogs, or a slime, pick a colour variant, and adjust personality settings. Both windows communicate via Tauri's event system.
+
+The animation engine (PetEngine.js) manages sprite sheet slicing, frame cycling, directional movement, and state transitions (idle, walk, sit, react). Pets are aware of the mouse cursor position and switch to a "react" state when you hover nearby. A phrase bubble pops up at random intervals, pulling from a JSON phrase bank to give the pet a bit of personality.`,
+        w_languages: ['Tauri', 'React', 'JavaScript', 'Rust'],
+        w_link: "https://github.com/zachyboiii",
+        w_img: desktopPetImg,
+        youtube: null,
+        download_file: desktopPetZip,
         img_small: true
     },
     {
