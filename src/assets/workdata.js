@@ -12,6 +12,7 @@ import zacaiImg from './smiskiIcon.svg'
 import worldcupImg from './worldcup-sim.png'
 import desktopPetImg from './desktop-pet.png'
 import desktopPetZip from './desktop-pet.zip'
+import desktopPetMacZip from './desktop-pet-mac.zip'
 
 const work_data = [
     {
@@ -63,10 +64,11 @@ The pet canvas runs in a dedicated Vite + React window with a fully transparent 
 
 The animation engine (PetEngine.js) manages sprite sheet slicing, frame cycling, directional movement, and state transitions (idle, walk, sit, react). Pets are aware of the mouse cursor position and switch to a "react" state when you hover nearby. A phrase bubble pops up at random intervals, pulling from a JSON phrase bank to give the pet a bit of personality.`,
         w_languages: ['Tauri', 'React', 'JavaScript', 'Rust'],
-        w_link: "https://github.com/zachyboiii",
+        w_link: "https://github.com/zachyboiii/desktop-pet",
         w_img: desktopPetImg,
         youtube: null,
-        download_file: desktopPetZip,
+        download_file_win: desktopPetZip,
+        download_file_mac: desktopPetMacZip,
         img_small: true,
         category: "SWE"
     },

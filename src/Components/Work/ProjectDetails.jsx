@@ -128,16 +128,31 @@ const ProjectDetail = () => {
           <Link className="pd-link2" to="/" onClick={openZacAI}>
             Check it out.
           </Link>
-        ) : project.download_file ? (
+        ) : (project.download_file_win || project.download_file_mac) ? (
           <div className="pd-download-group">
-            <a
-              className="pd-link2"
-              href={project.download_file}
-              download
-            >
-              Download.
-            </a>
-            <p className="pd-download-disclaimer">* Windows only</p>
+            <div className="pd-download-btns">
+              {project.download_file_win && (
+                <a
+                  className="pd-link2"
+                  href={project.download_file_win}
+                  download
+                >
+                  Download for Windows.
+                </a>
+              )}
+              {project.download_file_mac && (
+                <a
+                  className="pd-link2"
+                  href={project.download_file_mac}
+                  download
+                >
+                  Download for macOS.
+                </a>
+              )}
+            </div>
+            {project.download_file_mac && (
+              <p className="pd-download-disclaimer">* macOS version is in beta</p>
+            )}
           </div>
         ) : (
           <a

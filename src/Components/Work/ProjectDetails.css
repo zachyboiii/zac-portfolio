@@ -259,6 +259,13 @@
   margin-bottom: 3rem;
 }
 
+.pd-download-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
 .pd-download-group .pd-link2 {
   margin-bottom: 0;
 }
