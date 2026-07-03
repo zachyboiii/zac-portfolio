@@ -16,6 +16,8 @@ const WORK_DESC_1 =
 const WORK_DESC_2 =
   "Each reflects my drive to learn fast, take on new challenges, and grow beyond what I already know."
 
+const PROJECT_FILTERS = ['All', 'AI/ML', 'SWE', 'Full Stack Dev', 'Others']
+
 const Work = () => {
   usePageMeta(
     'Work — Zachary Lee | Projects & Experience',
@@ -29,6 +31,18 @@ const Work = () => {
   const [fontsReady, setFontsReady]   = useState(false)
   const [activeTab, setActiveTab]     = useState(location.state?.tab || 'projects')
   const [expandedItems, setExpandedItems] = useState(new Set())
+  const [activeFilter, setActiveFilter] = useState('All')
+
+  const filteredWorkData = activeFilter === 'All'
+    ? work_data
+    : work_data.filter(proj => proj.category === activeFilter)
+
+  const filterCounts = PROJECT_FILTERS.reduce((counts, filter) => {
+    counts[filter] = filter === 'All'
+      ? work_data.length
+      : work_data.filter(proj => proj.category === filter).length
+    return counts
+  }, {})
 
   const toggleExpanded = (id) => {
     setExpandedItems(prev => {
@@ -121,7 +135,23 @@ const Work = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
             >
-              {work_data.map((proj, index) => (
+              {/* ── Category filters ──────────── */}
+              <div className="work-filters">
+                <p className="work-tabs-label">// filter</p>
+                <div className="work-filter-list">
+                  {PROJECT_FILTERS.map((filter) => (
+                    <button
+                      key={filter}
+                      className={`work-filter-btn${activeFilter === filter ? ' active' : ''}`}
+                      onClick={() => setActiveFilter(filter)}
+                    >
+                      {filter} ({filterCounts[filter]})
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {filteredWorkData.map((proj, index) => (
                 <div key={proj.id} className={`work-list${expandedItems.has(proj.id) ? ' is-expanded' : ''}`}>
                   <span className="work-index">{String(index + 1).padStart(2, '0')}</span>
                   <Link to={`/work/${proj.id}`} className="project-title-link">

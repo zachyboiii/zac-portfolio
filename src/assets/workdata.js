@@ -30,7 +30,8 @@ Responses are streamed token-by-token from the LLM, with a regex fast path that 
         w_img: zacaiImg,
         youtube: null,
         opens_zacai: true,
-        img_small: true
+        img_small: true,
+        category: "AI/ML"
     },
     {
         id: "worldcup-sim",
@@ -47,7 +48,8 @@ The 38-feature vector covers Elo ratings, 5- and 10-game rolling form, goals ave
         w_link: "https://github.com/zachyboiii",
         w_img: worldcupImg,
         youtube: null,
-        img_rounded: true
+        img_rounded: true,
+        category: "AI/ML"
     },
     {
         id: "desktop-pet",
@@ -65,7 +67,8 @@ The animation engine (PetEngine.js) manages sprite sheet slicing, frame cycling,
         w_img: desktopPetImg,
         youtube: null,
         download_file: desktopPetZip,
-        img_small: true
+        img_small: true,
+        category: "SWE"
     },
     {
         id: "chess-ai",
@@ -79,9 +82,8 @@ The model was implemented in PyTorch using a convolutional neural network (CNN) 
         w_languages: ['Python', 'PyTorch', 'Streamlit', 'NumPy'],
         w_link: "https://github.com/zachyboiii/chess-ai",
         w_img: chessImg,
-        youtube: null
-        
-        
+        youtube: null,
+        category: "AI/ML"
     },
     {
         id: "storehouse",
@@ -95,9 +97,8 @@ The model was implemented in PyTorch using a convolutional neural network (CNN) 
         w_languages: ['JavaScript', 'PostgreSQL', 'Express.js', 'Node.js', 'HTML', 'CSS'],
         w_link: "https://github.com/zachyboiii/The-Storehouse",
         w_img: storehouseImg,
-        youtube: null
-        
-        
+        youtube: null,
+        category: "Full Stack Dev"
     },
     {
         id: "hotel-ease",
@@ -111,9 +112,8 @@ The model was implemented in PyTorch using a convolutional neural network (CNN) 
         w_languages: ['TypeScript', 'MongoDB', 'Express.js', 'Node.js', 'React Native', 'Jest'],
         w_link: "https://github.com/zachyboiii/HotelEase_SUTD",
         w_img: hotelImg,
-        youtube: "https://youtube.com/embed/FRKDSMAWDbY"
-        
-        
+        youtube: "https://youtube.com/embed/FRKDSMAWDbY",
+        category: "Full Stack Dev"
     },
     {
         id: "truthie-go",
@@ -131,9 +131,8 @@ Achievements: Champion in CODE_EXP Competitive Category`,
         w_languages: ['Godot', 'Firebase'],
         w_link: "https://github.com/zachyboiii/TruthieGO",
         w_img: truthieImg,
-        youtube: "https://youtube.com/embed/Zm7gRWYisLM"
-        
-        
+        youtube: "https://youtube.com/embed/Zm7gRWYisLM",
+        category: "Others"
     },
     {
         id: "vroom",
@@ -152,8 +151,8 @@ This project demonstrates full-stack mobile app development, backend integration
         w_languages: ['Java', 'Android Studio'],
         w_link: "https://github.com/zachyboiii/Vroom",
         w_img: vroomImg,
-        youtube: "https://youtube.com/embed/fScXZ4dp-mY"
-        
+        youtube: "https://youtube.com/embed/fScXZ4dp-mY",
+        category: "SWE"
     },
     {
         id: "squid-game",
@@ -169,7 +168,8 @@ This project demonstrates full-stack mobile app development, backend integration
         w_languages: ['Lucid'],
         w_link: "https://github.com/zachyboiii/Squid-Game-Glass-Bridge-Arcade-Game",
         w_img: squidImg,
-        youtube: "https://youtube.com/embed/gPTqtwLxEjk"
+        youtube: "https://youtube.com/embed/gPTqtwLxEjk",
+        category: "Others"
     },
     {
         id: "kebun-fresh",
@@ -184,7 +184,8 @@ In Gunung Anyar, Surabaya, my group and I found that many locals are unaware of 
         w_languages: ['Streamlit','Python','Pandas'],
         w_link: "https://github.com/zachyboiii/kebunfresh",
         w_img: kebunImg,
-        youtube: null
+        youtube: null,
+        category: "Full Stack Dev"
     },
     
     {
@@ -201,7 +202,8 @@ The app will record the elapsed time from when you select a challenge to the tim
         w_languages: ['Python','HTML','Flask'],
         w_link:"https://github.com/zachyboiii/calc_webapp",
         w_img: calcImg,
-        youtube: "https://youtube.com/embed/snPY8A-fCgI"
+        youtube: "https://youtube.com/embed/snPY8A-fCgI",
+        category: "Full Stack Dev"
     },
     {
         id: "mini-arcade",
@@ -215,7 +217,8 @@ This arcade machine would contain 4 different mini-games. Snake, Space Shooter, 
         w_languages: ['Python', 'Turtle'],
         w_link:"https://github.com/zachyboiii/mini_arcade",
         w_img: arcadeImg,
-        youtube: "https://youtube.com/embed/Kl2hQZQARsE"
+        youtube: "https://youtube.com/embed/Kl2hQZQARsE",
+        category: "Others"
     },
     {
         id: "tele-bot",
@@ -227,7 +230,8 @@ This arcade machine would contain 4 different mini-games. Snake, Space Shooter, 
         w_languages: ['Python','Pandas'],
         w_link:"https://github.com/zachyboiii/tele_bot",
         w_img: teleImg,
-        youtube: null
+        youtube: null,
+        category: "SWE"
     },
 ]
 
