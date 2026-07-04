@@ -8,6 +8,7 @@ import ScrambleText from '../ScrambleText';
 import MobileNav from '../MobileNav/MobileNav';
 import { ChatContext } from '../Chat/ChatContext';
 import usePageMeta from '../usePageMeta';
+import DesktopPetWidget from './DesktopPetWidget/DesktopPetWidget';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -58,6 +59,9 @@ const ProjectDetail = () => {
     >
       {/* ── Shared mobile hamburger ─────── */}
       <MobileNav theme="dark" />
+
+      {/* ── Live pet demo, only on the desktop-pet page ─ */}
+      {project.id === 'desktop-pet' && <DesktopPetWidget />}
 
       {/* ── Fixed nav ───────────────────── */}
       <nav className="pd-top">
