@@ -1,31 +1,31 @@
 const aboutSkills = [
     {
         category: 'Languages',
-        skills: ['Python', 'Java', 'JavaScript', 'TypeScript', 'SQL', 'Lucid HDL']
+        skills: ['Python', 'JavaScript', 'TypeScript', 'Java', 'SQL', 'Swift', 'Rust', 'Lucid HDL']
     },
     {
         category: 'Frontend',
-        skills: ['React.js','Next.js', 'HTML', 'CSS', 'Tailwind CSS', 'Streamlit']
+        skills: ['React.js','Next.js', 'React Native', 'HTML', 'CSS', 'Tailwind CSS', 'Streamlit']
     },
     {
         category: 'Backend',
-        skills: ['Node.js', 'Express.js', 'Spring Boot', 'FastAPI']
+        skills: ['Node.js', 'Express.js', 'FastAPI', 'Spring Boot', 'Flask']
     },
     {
         category: 'AI & ML',
-        skills: ['PyTorch', 'Scikit-Learn', 'LangChain', 'LangGraph', 'RAG', 'Agentic AI']
+        skills: ['RAG', 'Agentic AI', 'LangChain', 'LangGraph', 'Prompt Engineering', 'PyTorch', 'Scikit-Learn', 'XGBoost', 'MLflow', 'Transformers.js', 'Amazon Bedrock']
     },
     {
         category: 'Data & Analytics',
-        skills: ['Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Hadoop', 'Apache Spark']
+        skills: ['Pandas', 'NumPy', 'Apache Spark', 'Hadoop', 'Matplotlib']
     },
     {
         category: 'Databases',
-        skills: ['MongoDB', 'PostgreSQL', 'Firebase','Supabase', 'Vector Database']
+        skills: ['PostgreSQL', 'MongoDB', 'Redis', 'Vector Database', 'Firebase', 'Supabase']
     },
     {
         category: 'Tools',
-        skills: ['Git', 'Docker', 'Jest', 'Playwright', 'Figma', 'Android Studio', 'Godot Engine']
+        skills: ['Git', 'GitHub Actions (CI/CD)', 'Docker', 'Jest', 'PyTest', 'Playwright', 'Jupyter Notebooks', 'Xcode', 'Android Studio', 'Figma']
     },
 ]
 

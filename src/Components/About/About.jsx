@@ -128,7 +128,7 @@ const About = () => {
           <div className="about-meta">
             <div className="meta-item">
               <span className="meta-label">// role</span>
-              <span className="meta-value">CS &amp; Design Student</span>
+              <span className="meta-value">Computer Science &amp; Design Major</span>
             </div>
             <div className="meta-item">
               <span className="meta-label">// university</span>
@@ -151,7 +151,7 @@ const About = () => {
 
       {/* ── Skills ──────────────────────────── */}
       <section className="skills">
-        <p className="section-label">// skills</p>
+        <p className="section-label">// tech stack</p>
         <div className="skills-groups">
           {aboutSkills.map((group, i) => (
             <div key={i} className="skills-group">
