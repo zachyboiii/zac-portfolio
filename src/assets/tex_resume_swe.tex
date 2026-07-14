@@ -1,6 +1,6 @@
 %-------------------------
 % Resume in LaTeX
-% Zachary Lee Kai Yi — AI Engineer
+% Zachary Lee Kai Yi — Software Engineer / Full Stack / Mobile
 %-------------------------
 
 \documentclass[letterpaper,11pt]{article}
@@ -98,7 +98,7 @@
 
 \vspace{-8pt}
 \begin{center}
-  \small AI Engineer skilled in LLM systems, multi-agent orchestration, RAG pipelines, and full-stack development.
+  \small Software engineer skilled in full-stack web development, native iOS and Android mobile engineering, and production AI systems.
 \end{center}
 
 %-----------WORK EXPERIENCE-----------
@@ -109,18 +109,18 @@
       {OCBC Bank}{May 2026 -- Aug 2026}
       {AI and Mobile Engineer Intern}{Singapore}
       \resumeItemListStart
-        \resumeItem{Implemented a wealth portfolio advisory AI agent for OCBC WoW, an AI avatar banking app for premier private clients (S\$1.5M+ assets under management), building Retrieval-Augmented Generation (RAG) pipelines over real-time market data spanning 7 indices and commodities, OCBC research, and client portfolio data to deliver personalised insights 24/7 via voice and text.}
-        \resumeItem{Developed backend services for a multi-agent AI system of domain-specialised agents orchestrated with LangGraph and served through FastAPI, using AWS Bedrock for cloud-native LLM inference, PGVector (PostgreSQL) as the production vector database with ChromaDB for local development, and a Redis caching layer to reduce response latency.}
-        \resumeItem{Implemented AI guardrails and compliance controls aligned with MAS (Monetary Authority of Singapore) financial AI regulations, and maintained the native iOS client in Swift, shipping UI refinements and stability fixes for the beta rollout to wealth clients.}
+        \resumeItem{Maintained the native iOS client of OCBC WoW, an AI avatar banking app for premier private clients (S\$1.5M+ assets under management), shipping UI refinements and stability fixes in Swift to support the app's beta rollout to wealth clients.}
+        \resumeItem{Developed FastAPI backend services powering a multi-agent AI system orchestrated with LangGraph, using AWS Bedrock for scalable cloud-native LLM inference, PGVector (PostgreSQL) as the production vector database with ChromaDB for local development, and a Redis caching layer to reduce response latency.}
+        \resumeItem{Implemented a wealth portfolio advisory AI agent using Retrieval-Augmented Generation (RAG) over real-time market data spanning 7 indices and commodities, OCBC research, and client portfolio data, alongside AI guardrails and compliance controls aligned with MAS (Monetary Authority of Singapore) financial AI regulations.}
       \resumeItemListEnd
 
     \resumeSubheading
       {Edgemaker.ai}{Jan 2026 -- May 2026}
       {AI / Full Stack Development Intern}{Singapore}
       \resumeItemListStart
-        \resumeItem{Built LLM agents for enterprise chatbots — a personal planner agent managing calendars and to-do lists with Google Calendar integration, and a payment agent collecting payments from clients' end-customers through HitPay's API — implementing tool calling for backend data access and inter-agent routing to direct requests to the right domain-specialised agent.}
-        \resumeItem{Built a file upload and retrieval agent implementing Retrieval-Augmented Generation (RAG), ingesting user-uploaded files into OpenAI's vector store and retrieving relevant content to ground responses; applied prompt engineering to improve response quality and add guardrails against hallucination.}
-        \resumeItem{Developed and deployed the supporting RESTful APIs in Java (Spring Boot) and Node.js, integrated with a Next.js frontend for production AI-powered applications.}
+        \resumeItem{Developed and deployed RESTful APIs in Java (Spring Boot) and Node.js integrated with a Next.js frontend for production AI-powered applications, deploying the platform to DigitalOcean with a GitHub Actions CI/CD pipeline for automated releases.}
+        \resumeItem{Redesigned the subscription system end-to-end: integrated HitPay's payment API and enforced plan-based feature access with subscription guards in the Spring Boot backend, embedding each plan's blocked features into the JWT for stateless authorisation.}
+        \resumeItem{Implemented fuzzy searching with MongoDB search indexes, and built a plug-and-play UI for clients to compose custom workflows from different LLM agents, linking the frontend, backend, and chatbot backend services into a cohesive, user-friendly product.}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -137,11 +137,11 @@
 \section{Technical Skills}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{AI / ML}{: LLM Fine-tuning, Retrieval-Augmented Generation (RAG), Multi-Agent Systems, Tool Calling, LangGraph, LangChain, Prompt Engineering, Deep Reinforcement Learning, PyTorch, Scikit-Learn, Pandas, NumPy, Matplotlib} \\
-     \textbf{Cloud \& Infrastructure}{: AWS Bedrock, Docker, Redis, PGVector, ChromaDB, OpenAI Vector Store, PostgreSQL, MongoDB, Firebase, Hadoop, Apache Spark} \\
      \textbf{Languages}{: Python, Java, JavaScript, TypeScript, Swift, SQL, HTML/CSS, Tailwind CSS} \\
      \textbf{Frameworks \& Libraries}{: React.js, Next.js, Node.js, Express.js, Spring Boot, FastAPI, Streamlit} \\
-     \textbf{Testing \& DevOps}{: Jest, Playwright, Git, CI/CD, REST API Design} \\
+     \textbf{Cloud \& Infrastructure}{: AWS Bedrock, DigitalOcean, Docker, Redis, PostgreSQL, MongoDB, Firebase, PGVector, ChromaDB, Hadoop, Apache Spark} \\
+     \textbf{Testing \& DevOps}{: Jest, Playwright, Git, GitHub Actions, CI/CD, REST API Design} \\
+     \textbf{AI / ML}{: Retrieval-Augmented Generation (RAG), Multi-Agent Systems, LangGraph, LangChain, LLM Fine-tuning, Prompt Engineering, Deep Reinforcement Learning, PyTorch, Scikit-Learn, Pandas, NumPy, Matplotlib} \\
      \textbf{Tools}{: Xcode, Android Studio, Godot Engine, Figma} \\
      \textbf{Methodologies}{: Agile / Scrum, Object-Oriented Programming (OOP), Microservices Architecture} \\
     }}
@@ -170,31 +170,17 @@
   \resumeSubHeadingListStart
 
     \resumeProjectHeading
-      {\textbf{\href{https://zachyboiii.github.io/zac-portfolio/}{zac.ai — In-Browser RAG Portfolio Chatbot}} $|$ \emph{RAG, Transformers.js, React.js, OpenRouter}}{2026}
-      \resumeItemListStart
-        \resumeItem{Built a Retrieval-Augmented Generation (RAG) chatbot embedded in my portfolio site, deploying a transformer embedding model (all-MiniLM-L6-v2 via Transformers.js/WebAssembly) directly in the browser to perform low-latency cosine-similarity retrieval over a precomputed vector store.}
-        \resumeItem{Engineered a build-time embedding pipeline in Node.js that parses my LaTeX resume and site data into knowledge chunks and precomputes their vectors; served streaming LLM responses through the OpenRouter API with automatic multi-model fallback for high availability.}
-      \resumeItemListEnd
-
-    \resumeProjectHeading
-      {\textbf{Chess AI Engine} $|$ \emph{Deep Reinforcement Learning, PyTorch, Neural Networks}}{Jan 2026}
-      \resumeItemListStart
-        \resumeItem{Developed a chess engine in PyTorch, training a neural network through self-play deep reinforcement learning to evaluate board positions and predict move probabilities, reaching an estimated 1500 Elo playing strength.}
-        \resumeItem{Built the end-to-end RL training pipeline with policy and value networks, using iterative self-play and experience replay to improve model convergence and playing strength.}
-      \resumeItemListEnd
-
-    \resumeProjectHeading
-      {\textbf{TruthieGO} $|$ \emph{Godot Engine, Firebase, NoSQL — DSTA BrainHack 2025 Champion}}{May 2025 -- Jun 2025}
-      \resumeItemListStart
-        \resumeItem{Won Champion in the CODE\_EXP Competitive Category at DSTA BrainHack 2025 with a 2D educational board game built in Godot Engine and GDScript, engineering modular game logic across multiple game modes and interactive mini-games.}
-        \resumeItem{Integrated Firebase (NoSQL) for real-time user authentication, session management, and cross-device progress tracking.}
-      \resumeItemListEnd
-
-    \resumeProjectHeading
       {\textbf{Hotel Booking Platform} $|$ \emph{React.js, Express.js, MongoDB, Jest, Playwright}}{May 2025 -- Aug 2025}
       \resumeItemListStart
         \resumeItem{Built a full-stack hotel booking platform with Ascenda Loyalty integration, featuring lazy loading, real-time filtering, and interactive map visualisation in React.js.}
         \resumeItem{Architected the RESTful Express.js and MongoDB backend with secure authentication and session management; achieved 90\%+ test coverage via Jest and Playwright end-to-end tests.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{Vroom — Android Learning Driver App} $|$ \emph{Java, Firebase, Android}}{Jan 2025 -- Apr 2025}
+      \resumeItemListStart
+        \resumeItem{Engineered an Android application connecting learner drivers with private instructors, featuring real-time booking, scheduling, in-app chat, and interactive quizzes.}
+        \resumeItem{Designed scalable MVC architecture using Java OOP principles with Firebase Realtime Database for live booking updates and push notifications.}
       \resumeItemListEnd
 
     \resumeProjectHeading
@@ -205,10 +191,17 @@
       \resumeItemListEnd
 
     \resumeProjectHeading
-      {\textbf{Vroom — Android Learning Driver App} $|$ \emph{Java, Firebase, Android}}{Jan 2025 -- Apr 2025}
+      {\textbf{TruthieGO} $|$ \emph{Godot Engine, Firebase, NoSQL — DSTA BrainHack 2025 Champion}}{May 2025 -- Jun 2025}
       \resumeItemListStart
-        \resumeItem{Engineered an Android application connecting learner drivers with private instructors, featuring real-time booking, scheduling, in-app chat, and interactive quizzes.}
-        \resumeItem{Designed scalable MVC architecture using Java OOP principles with Firebase Realtime Database for live booking updates and push notifications.}
+        \resumeItem{Won Champion in the CODE\_EXP Competitive Category at DSTA BrainHack 2025 with a 2D educational board game built in Godot Engine and GDScript, engineering modular game logic across multiple game modes and interactive mini-games.}
+        \resumeItem{Integrated Firebase (NoSQL) for real-time user authentication, session management, and cross-device progress tracking.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{Chess AI Engine} $|$ \emph{Deep Reinforcement Learning, PyTorch, Neural Networks}}{Jan 2026}
+      \resumeItemListStart
+        \resumeItem{Developed a chess engine in PyTorch, training a neural network through self-play deep reinforcement learning to evaluate board positions and predict move probabilities, reaching an estimated 1500 Elo playing strength.}
+        \resumeItem{Built the end-to-end RL training pipeline with policy and value networks, using iterative self-play and experience replay to improve model convergence and playing strength.}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
