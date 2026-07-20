@@ -38,13 +38,15 @@ Responses are streamed token-by-token from the LLM, with a regex fast path that 
         id: "worldcup-sim",
         w_title: "World Cup Predictor",
         w_date: "Jun 26 - Jun 26",
-        w_desc: "Personal Project: ML pipeline that predicts World Cup match outcomes using gradient boosting models trained on 48,000+ historical international matches.",
-        short_desc: "ML pipeline that predicts World Cup match outcomes.",
+        w_desc: "Personal Project: ML pipeline that predicts World Cup match outcomes using gradient boosting models trained on 48,000+ historical international matches — and correctly predicted the 2026 World Cup winner.",
+        short_desc: "ML pipeline that correctly predicted the 2026 World Cup winner.",
         long_desc:`World Cup Simulator is a Python ML pipeline that trains match prediction models across every stage of a World Cup: a full-time outcome classifier (W/D/L), home and away goals regressors, an extra-time score model, and a penalty shootout classifier. Three gradient boosting algorithms were benchmarked for each task — LightGBM, XGBoost, and CatBoost — selected for their dominance on tabular sports ML benchmarks.
 
 Model selection used a chronological 80/20 train/test split to prevent data leakage, with the test set representing the most recent 20% of matches. Champions were chosen by weighted F1 (classifiers) and MAE (regressors). Secondary metrics included ROC-AUC (macro one-vs-rest), log loss, Brier score, and RMSE. Training weights were applied to up-rank recent matches, high-Elo fixtures, World Cup data (especially 2022), and top-5 league squads — so the model learns from the matches that most resemble WC2026 conditions.
 
-The 38-feature vector covers Elo ratings, 5- and 10-game rolling form, goals averages, head-to-head records, World Cup-specific stats, tournament experience, disciplinary data, and penalty rates. The pipeline is tracked with MLflow and champion models are serialised via joblib.`,
+The 38-feature vector covers Elo ratings, 5- and 10-game rolling form, goals averages, head-to-head records, World Cup-specific stats, tournament experience, disciplinary data, and penalty rates. The pipeline is tracked with MLflow and champion models are serialised via joblib.
+
+And the receipts are in: the model correctly predicted the winner of the 2026 FIFA World Cup.`,
         w_languages: ['Python', 'LightGBM', 'XGBoost', 'CatBoost', 'scikit-learn', 'MLflow'],
         w_link: "https://github.com/zachyboiii",
         w_img: worldcupImg,
