@@ -37,7 +37,7 @@ const Contact = () => {
 
         <p className="desc">
           <ScrambleText
-            text="Looking for a computer science intern who is willing to learn? Get in touch."
+            text="Looking for a software or AI engineer for a full-time role? Get in touch."
             delay={650}
             speed={22}
           />
